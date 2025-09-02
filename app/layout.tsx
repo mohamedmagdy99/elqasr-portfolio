@@ -3,13 +3,15 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
   subsets: ["latin"],
+  weight: ["400", "700"], // optional: choose weights
+  style: "normal",
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
+  weight: ["400"],
+  style: "normal",
 });
 
 export const metadata: Metadata = {
@@ -23,12 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <html lang="en" className={`${geistSans.className} ${geistMono.className}`}>
+      <body className={`antialiased`}>
+      {children}
       </body>
-    </html>
+      </html>
   );
 }
