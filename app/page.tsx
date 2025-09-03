@@ -1,7 +1,8 @@
 import Navbar from '@components/Navbar/Navbar';
 import Hero from '@components/Hero/Hero';
 import Stats from '@components/Stats/Stats';
-import Projects from '@components/Featuredprojects/Featuredprojects';
+import Projects from '@components/FeaturedProjects/FeaturedProjects';
+import About from '@components/AboutSection/AboutSection';
 
 import * as motion from "motion/react-client";
 export default function Home() {
@@ -33,6 +34,9 @@ export default function Home() {
         </motion.section>
         <section id="Projects" className="py-20">
             <Projects/>
+        </section>
+        <section id="about" className="py-20 bg-gray-50">
+            <About/>
         </section>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
 

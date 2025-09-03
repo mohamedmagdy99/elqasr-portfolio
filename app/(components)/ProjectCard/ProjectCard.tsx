@@ -14,7 +14,7 @@ interface ProjectcardProps {
     completionDate?: string;
 }
 
-const Projectcard = ({title,description,image,type,location,completionDate,status}:ProjectcardProps) => {
+const ProjectCard = ({title,description,image,type,location,completionDate,status}:ProjectcardProps) => {
     return (
         <Card className="overflow-hidden hover:shadow-lg transition-shadow">
             <div className="relative">
@@ -68,4 +68,4 @@ const Projectcard = ({title,description,image,type,location,completionDate,statu
         </Card>
     )
 }
-export default Projectcard
+export default ProjectCard

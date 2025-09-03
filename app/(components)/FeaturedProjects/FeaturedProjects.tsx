@@ -1,7 +1,7 @@
 "use client"
 import {useState} from "react";
 import * as motion from "motion/react-client";
-import Card from "@components/Projectcard/Projectcard"
+import Card from "@components/ProjectCard/ProjectCard"
 
 interface Project {
     id: number;
@@ -13,7 +13,7 @@ interface Project {
     location: string;
     completionDate?: string;
 }
-const Featuredprojects = () => {
+const FeaturedProjects = () => {
     const staggerContainer = {
         animate: {
             transition: {
@@ -92,4 +92,4 @@ const Featuredprojects = () => {
         </div>
     )
 }
-export default Featuredprojects
+export default FeaturedProjects
