@@ -1,7 +1,7 @@
 "use client"
-import {useState} from 'react'
+import {useState,useEffect, useRef } from 'react'
 import logo from '../../../public/elqasr-logo.png'
-import { motion } from 'framer-motion';
+import * as motion from "motion/react-client";
 import Image from 'next/image'
 interface NavMenuProps {
     id:number,
@@ -37,6 +37,23 @@ const NavMenu:NavMenuProps[] =[
 ]
 export default function Navbar(){
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const menuRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen, setIsOpen]);
 
     const navbarVariant  = {
         hidden: { opacity: 0, y: -20 },
@@ -96,6 +113,7 @@ export default function Navbar(){
                 </div>
             </motion.div>
             <motion.div
+                ref={menuRef}
                 initial={{ x: "-100%" }}
                 animate={{ x: isOpen ? 0 : "-100%" }}
                 transition={{ type: "tween", duration: 0.3 }}
