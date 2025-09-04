@@ -1,6 +1,7 @@
 "use client"
 import {useState} from "react";
 import * as motion from "motion/react-client";
+// @ts-ignore
 import Card from "@components/ProjectCard/ProjectCard"
 
 interface Project {
@@ -26,6 +27,7 @@ const FeaturedProjects = () => {
         animate: { opacity: 1, y: 0 },
         transition: { duration: 0.6, ease: "easeOut" }
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [projects, setProjects] = useState<Project[]>([
         {
             id: 1,
