@@ -4,6 +4,7 @@ import Stats from '@components/Stats/Stats';
 import Projects from '@components/FeaturedProjects/FeaturedProjects';
 import About from '@components/AboutSection/AboutSection';
 import Gallery from '@components/Gallery/Gallery';
+import Contact from '@components/ContactSection/ContactSection';
 
 import * as motion from "motion/react-client";
 export default function Home() {
@@ -41,6 +42,9 @@ export default function Home() {
         </section>
         <section >
             <Gallery/>
+        </section>
+        <section id="contact" className="py-20 bg-gray-50" >
+            <Contact/>
         </section>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
 
