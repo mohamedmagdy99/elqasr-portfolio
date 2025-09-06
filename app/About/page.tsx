@@ -3,10 +3,10 @@ import * as motion from "motion/react-client";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 
-import logo from "../../public/elqasr-logo.png"
 import Construction from "../../public/Construction-site.jpeg"
 import Transition from "@components/Transition/Transition";
 import ContentCard from '@components/ContactCard/ContactCard';
+import Hero from '@components/PagesHero/PagesHero';
 
 import {  Target, Eye, Heart,Phone } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -46,35 +46,7 @@ const Page = () => {
         <Transition>
             <div className="min-h-screen bg-white">
                 <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
-                    <div className="max-w-7xl px-4 mx-auto sm:px-6 lg:px-8">
-                        <motion.div
-                            className="text-center"
-                            initial="initial"
-                            whileInView="animate"
-                            viewport={{ once: true }}
-                            variants={fadeInUp}
-                        >
-                            <motion.div
-                                className="flex items-center justify-center space-x-2 mb-6"
-                                variants={fadeInUp}
-                            >
-                                <Image src={logo} alt="Alqasr Logo"  style={{ width: "15rem", height: "15rem"}} />
-                            </motion.div>
-                            <motion.h1
-                                className="text-4xl font-bold text-gray-900 mb-6"
-                                variants={fadeInUp}
-                            >
-                                About Alqasr RealEstate
-                            </motion.h1>
-                            <motion.p
-                                className="text-xl text-gray-600 max-w-3xl mx-auto"
-                                variants={fadeInUp}
-                                transition={{ delay: 0.1 }}
-                            >
-                                Building {"tomorrow's"} infrastructure with over 5 years of expertise, innovation, and unwavering commitment to excellence.
-                            </motion.p>
-                        </motion.div>
-                    </div>
+                    <Hero title="About Alqasr RealEstate" description="Building tomorrow's infrastructure with over 5 years of expertise, innovation, and unwavering commitment to excellence."/>
                 </section>
                 <section className="py-20">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,13 +68,13 @@ const Page = () => {
                                     variants={staggerContainer}
                                 >
                                     <motion.p variants={fadeInUp}>
-                                        Founded in 1999, BuildCraft began as a small residential construction company with a big vision: to redefine what it means to build with quality, integrity, and innovation.
+                                        Alqasr Real Estate Development is one of Egypt’s leading companies in the field of real estate investment and development. The company was founded with a clear vision: to deliver integrated projects that combine quality and innovation, meeting the needs of clients across residential, commercial, and investment sectors.
                                     </motion.p>
                                     <motion.p variants={fadeInUp}>
-                                        Over the years, {"we've"} grown from a team of 5 to over 20 skilled professionals, expanding our services to include large-scale commercial developments, luxury residential complexes.
+                                        As a prominent developer in Egypt, Alqasr specializes in residential, commercial, and administrative projects in Obour City and New Cairo. We prioritize strategic locations, modern architectural designs, and flexible payment plans tailored to suit every client.
                                     </motion.p>
                                     <motion.p variants={fadeInUp}>
-                                        Today, {"we're"} proud to be one of the most trusted construction companies in Obour City, with over 50 completed projects and a reputation built on excellence, reliability, and customer satisfaction.
+                                        Today, {"we're"} proud to be one of the most trusted construction companies in Egypt, with over 50 completed projects and a reputation built on excellence, reliability and customer satisfaction.
                                     </motion.p>
                                 </motion.div>
                             </motion.div>
@@ -161,7 +133,7 @@ const Page = () => {
                             <div className="flex sm:flex-row flex-col gap-4 justify-center">
                                 <Button
                                     size="lg"
-                                    onClick={() => onNavigate('contact')}
+                                    onClick={() => onNavigate('Contact')}
                                     className="text-lg px-8 py-6"
                                 >
                                     <Phone className="w-5 h-5 mr-2" />
@@ -170,7 +142,7 @@ const Page = () => {
                                 <Button
                                     size="lg"
                                     variant="outline"
-                                    onClick={() => onNavigate('projects')}
+                                    onClick={() => onNavigate('Projects')}
                                     className="text-lg px-8 py-6"
                                 >
                                     View Our Projects

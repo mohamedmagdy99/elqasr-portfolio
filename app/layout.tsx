@@ -35,22 +35,25 @@ export default function RootLayout({
     };
 
     return (
-      <html lang="en" className={`${geistSans.className} ${geistMono.className}`}>
-      <nav className="sticky top-0 bg-white shadow-sm md:border-b border-gray-300 z-50">
-          <Navbar />
-      </nav>
-      <body className="antialiased">
-      {children}
-      </body>
-      <motion.footer
-          className="bg-gray-900 text-white py-12"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={fadeIn}
-      >
-          <Footer />
-      </motion.footer>
-      </html>
-  );
+        <html lang="en" className={`${geistSans.className} ${geistMono.className}`}>
+            <body className="antialiased">
+            <nav className="sticky top-0 bg-white shadow-sm md:border-b border-gray-300 z-50">
+                <Navbar />
+            </nav>
+
+            <main>{children}</main>
+
+            <motion.footer
+                className="bg-gray-900 text-white py-12"
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                variants={fadeIn}
+            >
+                <Footer />
+            </motion.footer>
+            </body>
+        </html>
+
+    );
 }

@@ -26,8 +26,8 @@ const NavMenu:NavMenuProps[] =[
     },
     {
         id:4,
-        title:"Contact",
-        link:"#"
+        title:"Contact Us",
+        link:"/Contact"
     },
     {
         id:5,

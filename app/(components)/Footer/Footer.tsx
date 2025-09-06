@@ -44,10 +44,10 @@ const Footer = () => {
                     <h3 className="font-semibold mb-4">Social</h3>
                     <ul className="space-y-2 text-gray-400">
                         <li>
-                            <a href="https://www.facebook.com/alqasr.realstate" target="_blank" rel="noreferrer">Facebook</a>
+                            <a href="https://www.facebook.com/elqasr123?locale=ar_AR" target="_blank" rel="noreferrer">Facebook</a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/alqasr.realstate" target="_blank" rel="noreferrer">Instagram</a>
+                            <a href="https://www.instagram.com/elqasr_development/" target="_blank" rel="noreferrer">Instagram</a>
                         </li>
                     </ul>
                 </motion.div>
