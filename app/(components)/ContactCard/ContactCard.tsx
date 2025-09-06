@@ -4,7 +4,7 @@ import * as motion from "motion/react-client";
 import { Card, CardContent,  CardHeader, CardTitle } from '@/components/ui/card';
 interface ContactProps {
     Title: string,
-    Description: string,
+    Description?: string,
     Content:string,
     icon:ReactElement,
     Delay?:number,
@@ -34,7 +34,7 @@ const ContactCard = ({Title,Description,Content,icon,Delay}:ContactProps) => {
                 </CardHeader>
                 <CardContent className="text-center">
                     <p className="text-gray-600">{Content}</p>
-                    <p className="text-sm text-gray-500 mt-2">{Description}</p>
+                    {Description && <p className="text-sm text-gray-500 mt-2">{Description}</p>}
                 </CardContent>
             </Card>
         </motion.div>

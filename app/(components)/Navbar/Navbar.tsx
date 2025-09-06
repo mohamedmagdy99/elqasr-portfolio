@@ -22,7 +22,7 @@ const NavMenu:NavMenuProps[] =[
     {
         id:3,
         title:"About",
-        link:"#"
+        link:"/About"
     },
     {
         id:4,
