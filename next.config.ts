@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'images.unsplash.com',
+                hostname: 'realestate-gallery.s3.eu-central-1.amazonaws.com',
                 pathname: '/**',
             },
         ],

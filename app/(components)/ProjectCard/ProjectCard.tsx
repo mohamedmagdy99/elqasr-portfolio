@@ -8,7 +8,7 @@ interface ProjectcardProps {
     title: string;
     type: 'home' | 'mall';
     description: string;
-    image: string;
+    image: [string];
     status: 'completed' | 'in-progress' | 'planning';
     location: string;
     completionDate?: string;
@@ -24,13 +24,18 @@ const ProjectCard = ({title,description,image,type,location,completionDate,statu
                     className="overflow-hidden h-[250px] relative"
                 >
                     <div className="absolute inset-0">
-                        <Image
-                            src={image}
-                            alt={title}
-                            fill
-                            style={{ objectFit: 'cover' }}
-                            className="w-full h-full"
-                        />
+                        {image.map((img,index)=>(
+                            <Image
+                                src={img}
+                                alt={title}
+                                key={index}
+                                priority={true}
+                                fill
+                                style={{ objectFit: 'cover' }}
+                                className="w-full h-full"
+                            />
+                        ))}
+
                     </div>
                 </motion.div>
 

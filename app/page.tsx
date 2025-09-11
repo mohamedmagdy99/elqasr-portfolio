@@ -1,6 +1,6 @@
 import Hero from '@components/Hero/Hero';
 import Stats from '@components/Stats/Stats';
-import Projects from '@components/FeaturedProjects/FeaturedProjects';
+import Projects from '@components/FeaturedProjectsWrapper/FeaturedProjectsWrapper';
 import About from '@components/AboutSection/AboutSection';
 import Gallery from '@components/Gallery/Gallery';
 import Contact from '@components/ContactSection/ContactSection';

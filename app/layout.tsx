@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from '@components/Navbar/Navbar';
 import Footer from '@components/Footer/Footer';
 import * as motion from "motion/react-client";
+import {TanstackProvider } from "@/components/providers/tanstack-provider";
 
 
 const geistSans = Geist({
@@ -23,37 +24,33 @@ export const metadata: Metadata = {
   description: "this is an offical website for alqasr real state development.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     const fadeIn = {
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        transition: { duration: 0.8, ease: "easeOut" }
+        initial: { opacity: 0, y: 60 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.6, ease: "easeOut" }
     };
-
     return (
         <html lang="en" className={`${geistSans.className} ${geistMono.className}`}>
-            <body className="antialiased">
-            <nav className="sticky top-0 bg-white shadow-sm md:border-b border-gray-300 z-50">
-                <Navbar />
-            </nav>
+        <body className="antialiased">
+        <nav className="sticky top-0 bg-white shadow-sm md:border-b border-gray-300 z-50">
+            <Navbar />
+        </nav>
+        <TanstackProvider dehydratedState={undefined}>
+            {children}
+        </TanstackProvider>
 
-            <main>{children}</main>
-
-            <motion.footer
-                className="bg-gray-900 text-white py-12"
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                variants={fadeIn}
-            >
-                <Footer />
-            </motion.footer>
-            </body>
+        <motion.footer
+            className="bg-gray-900 text-white py-12"
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            variants={fadeIn}
+        >
+            <Footer />
+        </motion.footer>
+        </body>
         </html>
-
     );
 }
+
