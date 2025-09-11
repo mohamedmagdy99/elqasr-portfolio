@@ -3,39 +3,45 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-const images = [
-    { src: '/gallery/gallery1.jpg', alt: 'Project 1' },
-    { src: '/gallery/gallery2.jpg', alt: 'Project 2' },
-    { src: '/gallery/gallery3.jpg', alt: 'Project 3' },
-    { src: '/gallery/gallery4.jpg', alt: 'Project 4' },
-    { src: '/gallery/gallery5.jpg', alt: 'Project 5' },
-];
+import {useQuery} from "@tanstack/react-query";
+import {getAllImages} from "@/server/Images";
+import { Spinner } from '@/components/ui/shadcn-io/spinner';
 
 const GallerySlider = () => {
     const [current, setCurrent] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const [modalImage, setModalImage] = useState<string | null>(null);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const {data,isLoading} = useQuery({queryKey:['gallery'], queryFn:getAllImages});
 
     const handlePrev = () => {
-        setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+        if (!Array.isArray(data) || data.length === 0) return;
+        setCurrent((prev) => (prev === 0 ? data.length - 1 : prev - 1));
     };
 
     const handleNext = () => {
-        setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+        if (!Array.isArray(data) || data.length === 0) return;
+        setCurrent((prev) => (prev === data.length - 1 ? 0 : prev + 1));
     };
 
+
     useEffect(() => {
-        if (!isPaused) {
+        if (!isPaused && Array.isArray(data) && data.length > 0) {
             intervalRef.current = setInterval(() => {
-                setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+                setCurrent((prev) => (prev === data.length - 1 ? 0 : prev + 1));
             }, 3000);
         }
+
         return () => {
             if (intervalRef.current) clearInterval(intervalRef.current);
         };
-    }, [isPaused]);
+    }, [isPaused, data]); // ✅ include data
+    useEffect(() => {
+        if (Array.isArray(data) && data.length > 0) {
+            setCurrent(0); // Reset to first image
+        }
+    }, [data]);
+
 
     return (
         <div
@@ -66,10 +72,15 @@ const GallerySlider = () => {
 
                 {/* Image Slider */}
                 <div className="flex items-center justify-center gap-4 overflow-hidden">
-                    {images.map((img, index) => {
+                    {isLoading ? (
+                        <div className="col-span-full flex justify-center items-center min-h-[200px]">
+                            <Spinner className="text-blue-500" size={64} />
+                        </div>
+                    ) : data.map((imgObj: { image: string }, index: number) => {
+                        const img = imgObj.image;
                         const isCenter = index === current;
-                        const isLeft = index === (current === 0 ? images.length - 1 : current - 1);
-                        const isRight = index === (current === images.length - 1 ? 0 : current + 1);
+                        const isLeft = index === (current === 0 ? data.length - 1 : current - 1);
+                        const isRight = index === (current === data.length - 1 ? 0 : current + 1);
 
                         if (!isCenter && !isLeft && !isRight) return null;
 
@@ -86,11 +97,11 @@ const GallerySlider = () => {
                                 className={`relative h-64 w-64 rounded-xl overflow-hidden shadow-xl cursor-pointer ${
                                     isCenter ? 'z-20' : 'z-10 opacity-70'
                                 }`}
-                                onClick={() => setModalImage(img.src)}
+                                onClick={() => setModalImage(img)}
                             >
                                 <Image
-                                    src={img.src}
-                                    alt={img.alt}
+                                    src={img}
+                                    alt="gallery image"
                                     fill
                                     className="object-cover"
                                     sizes="256px"

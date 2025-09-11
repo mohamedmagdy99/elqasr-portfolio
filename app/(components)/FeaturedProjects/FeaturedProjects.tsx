@@ -2,8 +2,9 @@
 import { useQuery } from "@tanstack/react-query";
 import * as motion from "motion/react-client";
 import Card from "@components/ProjectCard/ProjectCard";
-import { Spinner } from "@/components/ui/spinner";
+import { Spinner } from '@/components/ui/shadcn-io/spinner';
 import { getAllProjects } from "@/server/Projects";
+import React from "react";
 
 interface Project {
     id: number;
@@ -63,7 +64,7 @@ const FeaturedProjects = () => {
             >
                 {isLoading ? (
                     <div className="col-span-full flex justify-center items-center min-h-[200px]">
-                        <Spinner size="sm" className="bg-black dark:bg-white" />
+                        <Spinner className="text-blue-500" size={64} />
                     </div>
                 ) : (
                     data?.map((project: Project, index: number) => (

@@ -17,7 +17,8 @@ export const getAllProjects = async () => {
 
 export const getSingleProject = async (id: string) => {
     const res = await fetch(`http://localhost:3000/api/projects/${id}`);
-    return res.json();
+    const json = await res.json();
+    return Array.isArray(json) ? json : json.data;
 }
 
 export const CreateProject = async (project: Project)=>{
