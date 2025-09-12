@@ -51,7 +51,7 @@ export default function Hero() {
                             transition={{ delay: 0.4 }}
                         >
                             <Button asChild>
-                                <Link href="#">View Our Projects</Link>
+                                <Link href="/Projects">View Our Projects</Link>
                             </Button>
                         </motion.div>
                     </motion.div>

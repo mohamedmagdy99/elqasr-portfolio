@@ -31,6 +31,6 @@
   "exclude": ["node_modules",".next"],
   "typeRoots": [
     "./typings",
-    "../node_modules/@types"
+    "./node_modules/@types"
   ]
 }

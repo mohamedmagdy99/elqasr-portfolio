@@ -5,6 +5,7 @@ import Navbar from '@components/Navbar/Navbar';
 import Footer from '@components/Footer/Footer';
 import * as motion from "motion/react-client";
 import {TanstackProvider } from "@/components/providers/tanstack-provider";
+import NextAuthProvider from '@/components/providers/NextAuthProvider';
 
 
 const geistSans = Geist({
@@ -33,22 +34,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en" className={`${geistSans.className} ${geistMono.className}`}>
         <body className="antialiased">
-        <nav className="sticky top-0 bg-white shadow-sm md:border-b border-gray-300 z-50">
-            <Navbar />
-        </nav>
         <TanstackProvider dehydratedState={undefined}>
-            {children}
-        </TanstackProvider>
+            <NextAuthProvider>
+                {/* ✅ Navbar now inside SessionProvider */}
+                <nav className="sticky top-0 bg-white shadow-sm md:border-b border-gray-300 z-50">
+                    <Navbar />
+                </nav>
 
-        <motion.footer
-            className="bg-gray-900 text-white py-12"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={fadeIn}
-        >
-            <Footer />
-        </motion.footer>
+                {/* ✅ Page content */}
+                {children}
+
+                {/* ✅ Footer also inside provider */}
+                <motion.footer
+                    className="bg-gray-900 text-white py-12"
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                    variants={fadeIn}
+                >
+                    <Footer />
+                </motion.footer>
+            </NextAuthProvider>
+        </TanstackProvider>
         </body>
         </html>
     );

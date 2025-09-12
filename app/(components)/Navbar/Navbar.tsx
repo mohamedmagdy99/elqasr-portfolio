@@ -3,6 +3,11 @@ import {useState,useEffect, useRef } from 'react'
 import logo from '../../../public/elqasr-logo.png'
 import * as motion from "motion/react-client";
 import Image from 'next/image'
+import { useSession } from 'next-auth/react';
+import { signOut } from "next-auth/react";
+
+import {  LogOut  } from 'lucide-react';
+
 interface NavMenuProps {
     id:number,
     title:string,
@@ -17,7 +22,7 @@ const NavMenu:NavMenuProps[] =[
     {
         id:2,
         title:"Projects",
-        link:"#"
+        link:"/Projects"
     },
     {
         id:3,
@@ -28,14 +33,11 @@ const NavMenu:NavMenuProps[] =[
         id:4,
         title:"Contact Us",
         link:"/Contact"
-    },
-    {
-        id:5,
-        title:"Admin",
-        link:"#"
     }
 ]
 export default function Navbar(){
+    const { data: session } = useSession();
+    const isAdmin = session?.user?.role === 'admin';
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
@@ -104,6 +106,55 @@ export default function Navbar(){
                                 </a>
                             </motion.li>
                         ))}
+                        {isAdmin &&
+                        <motion.li
+                            whileHover={{scale: 1.05, y: -2}}
+                            className="relative cursor-pointer"
+                        >
+
+                            <a
+                                href="/Admin"
+                                className="text-gray-700 hover:text-blue-500 transition-colors duration-300
+          after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0
+          after:bg-blue-500 after:transition-all after:duration-300
+          hover:after:w-full"
+
+                            >
+
+                                    ADMIN
+                            </a>
+                        </motion.li>}
+                        {isAdmin &&
+                            <motion.li
+                                whileHover={{scale: 1.05, y: -2}}
+                                className="relative cursor-pointer"
+                            >
+                                <a
+                                    href="/Admin"
+                                    className="text-gray-700 hover:text-blue-500 transition-colors duration-300
+          after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0
+          after:bg-blue-500 after:transition-all after:duration-300
+          hover:after:w-full"
+
+                                >
+                                    make email
+                                </a>
+                            </motion.li>}
+                        {isAdmin &&
+                        <motion.li
+                            whileHover={{scale: 1.05, y: -2}}
+                            className="relative cursor-pointer"
+                        >
+                            <button
+                                className="text-gray-700 hover:text-blue-500 transition-colors duration-300
+          after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0
+          after:bg-blue-500 after:transition-all after:duration-300
+          hover:after:w-full"
+            onClick={() =>  signOut({
+                callbackUrl: "/"})}>
+                                <LogOut className="w-5 h-5  mx-auto mb-4"/>
+                            </button>
+                        </motion.li>}
                     </ul>
                     {/* Mobile Toggle Button */}
                     <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-gray-500 mr-3">

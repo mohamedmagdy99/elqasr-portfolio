@@ -5,23 +5,30 @@ import Card from "@components/ProjectCard/ProjectCard";
 import { Spinner } from '@/components/ui/shadcn-io/spinner';
 import { getAllProjects } from "@/server/Projects";
 import React from "react";
+import {Button} from "@/components/ui/button";
+import {Building2} from "lucide-react";
+import { useRouter } from 'next/navigation';
 
 interface Project {
-    id: number;
+    _id: number;
     title: string;
-    type: "home" | "mall";
+    type: "Residential" | "Commercial";
     description: string;
     image: [string];
-    status: "completed" | "in-progress" | "planning";
+    status: "completed" | "in-progress" | "Planning";
     location: string;
     completionDate?: string;
 }
 
 const FeaturedProjects = () => {
+    const router = useRouter();
+
     const { data, isLoading, isError } = useQuery({
         queryKey: ["project"],
-        queryFn: getAllProjects,
+        queryFn:  () => getAllProjects({ page: 1, limit: 3 }),
     });
+    const typedData = data as { data: Project[] };
+
 
     const fadeInUp = {
         initial: { opacity: 0, y: 60 },
@@ -67,14 +74,15 @@ const FeaturedProjects = () => {
                         <Spinner className="text-blue-500" size={64} />
                     </div>
                 ) : (
-                    data?.map((project: Project, index: number) => (
+                    typedData.data?.map((project: Project, index: number) => (
                         <motion.div
-                            key={project.id}
+                            key={project._id}
                             variants={fadeInUp}
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ y: -5 }}
                         >
                             <Card
+                                _id={project._id}
                                 title={project.title}
                                 description={project.description}
                                 image={project.image}
@@ -86,6 +94,19 @@ const FeaturedProjects = () => {
                         </motion.div>
                     ))
                 )}
+            </motion.div>
+            <motion.div className="flex flex-col sm:flex-row gap-4 justify-center" initial="initial"
+                        whileInView="animate"
+                        viewport={{ once: true }}
+                        variants={staggerContainer}>
+                <Button
+                    size="lg"
+                    onClick={() => router.push(`/Projects/`)}
+                    className="text-lg px-8 py-6"
+                >
+                    <Building2 className="w-5 h-5 mr-2" />
+                    View All Projects
+                </Button>
             </motion.div>
         </div>
     );
