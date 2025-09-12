@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react';
 import { signOut } from "next-auth/react";
 
 import {  LogOut  } from 'lucide-react';
+import Link from "next/link";
 
 interface NavMenuProps {
     id:number,
@@ -129,8 +130,8 @@ export default function Navbar(){
                                 whileHover={{scale: 1.05, y: -2}}
                                 className="relative cursor-pointer"
                             >
-                                <a
-                                    href="/Admin"
+                                <Link
+                                    href="api/auth/signup"
                                     className="text-gray-700 hover:text-blue-500 transition-colors duration-300
           after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0
           after:bg-blue-500 after:transition-all after:duration-300
@@ -138,7 +139,7 @@ export default function Navbar(){
 
                                 >
                                     make email
-                                </a>
+                                </Link>
                             </motion.li>}
                         {isAdmin &&
                         <motion.li
