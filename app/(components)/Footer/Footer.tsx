@@ -55,7 +55,7 @@ const Footer = () => {
             <Separator className="my-8 bg-gray-800" />
             <motion.div
                 className="text-center text-gray-400"
-                variants={{fadeInUp}}
+                variants={fadeInUp}
             >
                 <p>&copy; 2025 Alqasr RealState. All rights reserved.</p>
             </motion.div>
