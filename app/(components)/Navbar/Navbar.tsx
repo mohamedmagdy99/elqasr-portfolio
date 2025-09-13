@@ -5,7 +5,7 @@ import * as motion from "motion/react-client";
 import Image from 'next/image'
 import { useSession } from 'next-auth/react';
 import { signOut } from "next-auth/react";
-
+import { easeOut } from "framer-motion"; // <-- use easing function
 import {  LogOut  } from 'lucide-react';
 import Link from "next/link";
 
@@ -58,16 +58,16 @@ export default function Navbar(){
         };
     }, [isOpen, setIsOpen]);
 
-    const navbarVariant  = {
+    const navbarVariant = {
         hidden: { opacity: 0, y: -20 },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
                 duration: 0.6,
-                ease: "easeOut",
-                when: "beforeChildren",
-                staggerChildren: 0.1,
+                ease: easeOut,          // ✅ correct easing
+                staggerChildren: 0.1,   // ✅ keep this
+                delayChildren: 0.2      // ✅ replaces "when"
             },
         },
     };
