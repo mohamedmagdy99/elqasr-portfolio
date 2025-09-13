@@ -28,7 +28,7 @@ const Footer = () => {
                 variants={staggerContainer}
             >
                 <motion.div
-                    varitants={fadeInUp}
+                    variants={fadeInUp}
                 >
                     <div className="flex items-center space-x-2 mb-4">
                         <Image src={logo} alt="Alqasr Logo" style={{ width: "2rem", height: "2rem" }} />
