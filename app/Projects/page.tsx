@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import {FilterButton} from '@components/FilterButton/FilterButton';
 
 interface Project {
-    _id: number;
+    _id: string;
     title: string;
     type: "Residential" | "Commercial";
     description: string;

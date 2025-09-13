@@ -10,7 +10,7 @@ export const authOptions: NextAuthOptions = {
                 password: { label: "Password", type: "password" },
             },
             async authorize(credentials) {
-                const res = await fetch("http://localhost:3000/api/auth/backend/signin", {
+                const res = await fetch("https://alqasr-backend.onrender.com/api/auth/backend/signin", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(credentials),

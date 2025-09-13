@@ -6,7 +6,7 @@ import Gallery from '@components/Gallery/Gallery';
 import Contact from '@components/ContactSection/ContactSection';
 
 import * as motion from "motion/react-client";
-export default function Home() {
+export default   function Home() {
     const staggerContainer = {
         animate: {
             transition: {
@@ -30,7 +30,7 @@ export default function Home() {
             <Stats/>
         </motion.section>
         <section id="Projects" className="py-20">
-            <Projects/>
+                <Projects/>
         </section>
         <section id="about" className="py-20 bg-gray-50">
             <About/>

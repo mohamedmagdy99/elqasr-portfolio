@@ -5,7 +5,7 @@ interface Users {
 }
 
 export const signup = async (user:Users) => {
-    const res = await fetch('http://localhost:3000/api/auth/signup',{
+    const res = await fetch('https://alqasr-backend.onrender.com/api/auth/signup',{
         method:'POST',
         body:JSON.stringify(user),
         headers:{

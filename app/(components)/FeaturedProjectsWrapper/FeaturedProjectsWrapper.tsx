@@ -8,7 +8,7 @@ const FeaturedProjectsWrapper = async () => {
 
     await queryClient.prefetchQuery({
         queryKey: ["project"],
-        queryFn: getAllProjects,
+        queryFn: () => getAllProjects({ page: 1, limit: 3 }).then(res => res.data),
     });
 
     const dehydratedState = dehydrate(queryClient);
