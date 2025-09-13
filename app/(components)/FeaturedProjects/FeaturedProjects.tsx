@@ -10,7 +10,7 @@ import {Building2} from "lucide-react";
 import { useRouter } from 'next/navigation';
 
 interface Project {
-    _id: number;
+    _id: string;
     title: string;
     type: "Residential" | "Commercial";
     description: string;

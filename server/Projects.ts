@@ -1,14 +1,4 @@
-
-interface Project {
-    id: string;
-    title: string;
-    type: 'Residential' | 'Commercial';
-    description: string;
-    image: string;
-    status: 'completed' | 'in-progress' | 'planning';
-    location: string;
-    completionDate?: string;
-}
+import { getSession } from "next-auth/react";
 export const getAllProjects = async ({
                                          page = 1,
                                          limit = 10,
@@ -54,16 +44,27 @@ export const getSingleProject = async (id: string) => {
         return null;
     }
 };
+export const CreateProject = async (formData: FormData) => {
+    const session = await getSession();
+    console.log("Session in CreateProject:", session);
+    const token = session?.user?.token;
+    console.log("Token in CreateProject:", token);
+    if (!token) throw new Error("No token found in session");
 
+    const res = await fetch("http://localhost:3000/api/projects", {
+        method: "POST",
+        body: formData,
+        headers: {
+            Authorization: `Bearer ${session.user.token}`, // ✅ send token manually
+        },
+        credentials: "include", // ✅ important
+    });
+    console.log("Fetch called");
+    if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(`Failed to create project: ${res.status} ${JSON.stringify(errorData)}`);
+    }
 
-
-export const CreateProject = async (project: Project)=>{
-    const res = await fetch('http://localhost:3000/api/projects',{
-        method:'POST',
-        body:JSON.stringify(project),
-        headers:{
-            'Content-Type':'multipart/form-data'
-        }
-    })
     return res.json();
-}
+};
+

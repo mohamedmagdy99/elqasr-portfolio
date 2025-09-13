@@ -28,7 +28,7 @@ const Page = () => {
     const isActive = (key: keyof typeof filters, value: string) => filters[key] === value;
     const { data, isLoading, isError } = useQuery({
         queryKey: ["projects", page, filters],
-        queryFn: () => getAllProjects({ page, limit: 6, ...filters }),
+        queryFn: () => getAllProjects({ page, limit: 9, ...filters }),
         placeholderData: keepPreviousData,
     });
 

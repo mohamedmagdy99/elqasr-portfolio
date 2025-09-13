@@ -8,14 +8,15 @@ import { useRouter } from 'next/navigation';
 
 
 interface ProjectcardProps {
-    _id: number;
+    _id: string;
     title: string;
     type: 'Residential' | 'Commercial';
     description: string;
-    image: [string];
+    image: string[];
     status: 'completed' | 'in-progress' | 'Planning';
     location: string;
     completionDate?: string;
+    features?: string[];
 }
 
 const ProjectCard = ({_id,title,description,image,type,location,completionDate,status}:ProjectcardProps) => {

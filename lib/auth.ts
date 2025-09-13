@@ -17,13 +17,14 @@ export const authOptions: NextAuthOptions = {
                 });
 
                 const data = await res.json();
-                console.log("Backend response:", data);
+                console.log("data:", data);
                 if (res.ok && data.user?.id) {
                     return {
                         id: data.user.id,
                         name: data.user.name,
                         email: data.user.email,
                         role: data.user.role,
+                        token: data.token,
                     };
                 }
                 return null;
@@ -33,14 +34,18 @@ export const authOptions: NextAuthOptions = {
     session: { strategy: "jwt" },
     callbacks: {
         async jwt({ token, user }) {
-            if (user) token.role = user.role;
+            if (user) {
+                token.role = user.role;
+                token.token = user.token; // store the token in JWT
+                token.id = user.id;
+            }
             return token;
         },
         async session({ session, token }) {
-            if (session.user) {
-                session.user.role = token.role;
-            }
+            session.user.id = token.id as string;
+            session.user.role = token.role as string;
+            session.user.token = token.token as string; // now session has token
             return session;
         },
-    },
+    }
 };

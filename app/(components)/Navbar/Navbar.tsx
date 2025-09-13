@@ -178,6 +178,55 @@ export default function Navbar(){
                             <a href={item.link} onClick={() => setIsOpen(false)}>{item.title}</a>
                         </li>
                     ))}
+                    {isAdmin &&
+                        <motion.li
+                            whileHover={{scale: 1.05, y: -2}}
+                            className="relative cursor-pointer"
+                        >
+
+                            <a
+                                href="/Admin"
+                                className="text-white hover:text-blue-500 transition-colors duration-300
+          after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0
+          after:bg-blue-500 after:transition-all after:duration-300
+          hover:after:w-full"
+
+                            >
+
+                                ADMIN
+                            </a>
+                        </motion.li>}
+                    {isAdmin &&
+                        <motion.li
+                            whileHover={{scale: 1.05, y: -2}}
+                            className="relative cursor-pointer"
+                        >
+                            <Link
+                                href="api/auth/signup"
+                                className="text-white hover:text-blue-500 transition-colors duration-300
+          after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0
+          after:bg-blue-500 after:transition-all after:duration-300
+          hover:after:w-full"
+
+                            >
+                                make email
+                            </Link>
+                        </motion.li>}
+                    {isAdmin &&
+                        <motion.li
+                            whileHover={{scale: 1.05, y: -2}}
+                            className="relative cursor-pointer"
+                        >
+                            <button
+                                className="text-white hover:text-blue-500 transition-colors duration-300
+          after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0
+          after:bg-blue-500 after:transition-all after:duration-300
+          hover:after:w-full"
+                                onClick={() =>  signOut({
+                                    callbackUrl: "/"})}>
+                                <LogOut className="w-5 h-5  mx-auto mb-4"/>
+                            </button>
+                        </motion.li>}
                 </ul>
             </motion.div>
 
