@@ -46,9 +46,7 @@ export const getSingleProject = async (id: string) => {
 };
 export const CreateProject = async (formData: FormData) => {
     const session = await getSession();
-    console.log("Session in CreateProject:", session);
     const token = session?.user?.token;
-    console.log("Token in CreateProject:", token);
     if (!token) throw new Error("No token found in session");
 
     const res = await fetch("http://localhost:3000/api/projects", {
@@ -67,4 +65,42 @@ export const CreateProject = async (formData: FormData) => {
 
     return res.json();
 };
+export const UpdateProject = async (id: string, formData: FormData) => {
+    const session = await getSession();
+    const token = session?.user?.token;
+
+    if (!token) throw new Error("No token found in session");
+
+    const res = await fetch(`http://localhost:3000/api/projects/${id}`, { // ✅ include ID in URL
+        method: "PUT",
+        body: formData,
+        headers: {
+            Authorization: `Bearer ${token}`, // use token here
+        },
+        credentials: "include",
+    });
+
+    if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(`Failed to update project: ${res.status} ${JSON.stringify(errorData)}`);
+    }
+
+    return res.json();
+};
+export const DeleteProject = async (id: string) => {
+    const session = await getSession();
+    const token = session?.user?.token;
+    if (!token) throw new Error("No token found in session");
+    const res = await fetch(`http://localhost:3000/api/projects/${id}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        credentials: "include",
+    });
+    if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(`Failed to delete project: ${res.status} ${JSON.stringify(errorData)}`);
+    }
+}
 
