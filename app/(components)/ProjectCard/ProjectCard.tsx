@@ -57,7 +57,7 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
     const updateMutation = useMutation({
         mutationFn: (data: FormData) => UpdateProject(_id, data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["projects"] });
+            queryClient.invalidateQueries({ queryKey: ["project"] });
             setIsEditOpen(false);
         }
     });

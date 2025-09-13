@@ -18,6 +18,7 @@ interface Project {
     status: "completed" | "in-progress" | "Planning";
     location: string;
     completionDate?: string;
+    features?: string[];
 }
 
 const FeaturedProjects =  () => {
@@ -25,7 +26,7 @@ const FeaturedProjects =  () => {
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ["project"],
-        queryFn:  () => getAllProjects({ page: 1, limit: 3 }).then(res => res.data),
+        queryFn:  () => getAllProjects({ page: 1, limit: 3 }),
     });
     const typedData = data as { data: Project[] };
 
