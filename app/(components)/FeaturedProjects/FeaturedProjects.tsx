@@ -1,5 +1,5 @@
 "use client";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery  } from "@tanstack/react-query";
 import * as motion from "motion/react-client";
 import Card from "@components/ProjectCard/ProjectCard";
 import { Spinner } from '@/components/ui/shadcn-io/spinner';
@@ -20,12 +20,12 @@ interface Project {
     completionDate?: string;
 }
 
-const FeaturedProjects = () => {
+const FeaturedProjects =  () => {
     const router = useRouter();
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ["project"],
-        queryFn:  () => getAllProjects({ page: 1, limit: 3 }),
+        queryFn:  () => getAllProjects({ page: 1, limit: 3 }).then(res => res.data),
     });
     const typedData = data as { data: Project[] };
 

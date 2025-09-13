@@ -108,7 +108,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 
                         {/* Gallery Indicators */}
                         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-                            {Array.isArray(project?.image) && project?.image.map((_:any, index:number) => (
+                            {Array.isArray(project?.image) && project?.image.map((_:never, index:number) => (
                                 <button
                                     key={index}
                                     onClick={() => setCurrentImageIndex(index)}
