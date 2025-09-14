@@ -119,7 +119,7 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
             </CardHeader>
 
             <CardContent>
-                <p>{description}</p>
+                <p className="whitespace-pre-wrap break-words line-clamp-3">{description}</p>
                 {completionDate && (
                     <div className="flex items-center mt-2 text-sm text-gray-500">
                         <Clock className="w-4 h-4 mr-1" />

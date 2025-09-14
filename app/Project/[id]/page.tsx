@@ -10,11 +10,16 @@ import Image from "next/image";
 import {useState,use} from "react";
 import {ChevronLeft,ChevronRight,Home,ShoppingBag,MapPin,Clock,Award,Building2,Users }from 'lucide-react';
 import { useRouter } from 'next/navigation';
-
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 
 
 export default function Page({ params }: { params: Promise<{ id: string }> }) {
     const router = useRouter();
+    const [open, setOpen] = useState(false);
+    const [index, setIndex] = useState(0);
     const { id } = use(params);
     const fadeInUp = {
         initial: { opacity: 0, y: 60 },
@@ -45,7 +50,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
     const { data: project, isLoading, isError } = useQuery({
         queryKey: ['project', id],
         queryFn: () => getSingleProject(id as string),
-        enabled: !!id, // optional safety
+        enabled: !!id,
     });
     if (isLoading) {
         return (
@@ -58,7 +63,6 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
     if (isError || !project) {
         return <div className="text-center p-10">Project not found</div>;
     }
-    console.log(project);
     const nextImage = () => {
         if (!Array.isArray(project?.image)) return;
         setCurrentImageIndex((prev) => (prev + 1) % project.image.length);
@@ -85,14 +89,26 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                                     src={project.image[currentImageIndex]}
                                     alt="project image"
                                     fill
-                                    className="object-cover"
+                                    className="object-cover cursor-zoom-in"
+                                    onClick={() => {
+                                        console.log("Image clicked!");
+                                        setIndex(currentImageIndex);
+                                        setOpen(true);
+                                    }}
                                 />
-                                <div className="absolute inset-0 bg-black/30" />
+                                <div className="absolute inset-0 bg-black/30 pointer-events-none"  />
                             </motion.div>
                         )}
 
+                        {/* ✅ Lightbox */}
+                        <Lightbox
+                            open={open}
+                            close={() => setOpen(false)}
+                            index={index}
+                            slides={(project?.image || []).map((src: string) => ({ src }))}
+                            plugins={[Zoom, Fullscreen]}
+                        />
 
-                        {/* Gallery Navigation */}
                         <button
                             onClick={prevImage}
                             className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-2 rounded-full transition-colors"
@@ -119,9 +135,8 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                             ))}
                         </div>
 
-                        {/* Project Info Overlay */}
                         <motion.div
-                            className="absolute bottom-8 left-8 right-8 md:left-16 md:right-auto md:max-w-lg"
+                            className="absolute bottom-8 left-8 right-8 md:left-16 md:right-auto md:max-w-lg "
                             initial="initial"
                             animate="animate"
                             variants={slideInLeft}
@@ -168,7 +183,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                 </section>
             <section className="py-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-3 gap-12">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                         {/* Main Content */}
                         <motion.div
                             className="lg:col-span-2"
@@ -180,7 +195,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                             <motion.div variants={fadeInUp}>
                                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Project Overview</h2>
                                 <div className="prose prose-lg max-w-none">
-                                    <p className="text-gray-600 leading-relaxed mb-6">
+                                    <p className="text-gray-600 leading-relaxed mb-6 whitespace-pre-wrap break-words">
                                         {project.description}
                                     </p>
                                     <p className="text-gray-600 leading-relaxed mb-6">
@@ -197,7 +212,6 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 
                             <Separator className="my-8" />
 
-                            {/* Key Features */}
                             {project?.features.length > 0 && <motion.div variants={fadeInUp}>
                                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Features</h3>
                                 <motion.div

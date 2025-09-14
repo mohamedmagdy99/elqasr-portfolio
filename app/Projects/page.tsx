@@ -33,7 +33,7 @@ const Page = () => {
     });
 
     const handleFilter = (key: 'status' | 'type', value?: string) => {
-        setPage(1); // Reset to first page
+        setPage(1);
         setFilters(() => ({  [key]: value }));
     };
 

@@ -65,9 +65,9 @@ export default function Navbar(){
             y: 0,
             transition: {
                 duration: 0.6,
-                ease: easeOut,          // ✅ correct easing
-                staggerChildren: 0.1,   // ✅ keep this
-                delayChildren: 0.2      // ✅ replaces "when"
+                ease: easeOut,
+                staggerChildren: 0.1,
+                delayChildren: 0.2
             },
         },
     };
@@ -82,11 +82,13 @@ export default function Navbar(){
             >
                 <div className=" w-full max-w-screen-xl flex justify-between items-center py-4 px-4 md:px-8 mx-auto gap-8">
                     <div >
-                        <Image
-                            src={logo}
-                            alt="company logo"
-                            className="w-20 h-auto"
-                        />
+                        <Link href="/">
+                            <Image
+                                src={logo}
+                                alt="company logo"
+                                className="w-20 h-auto"
+                            />
+                        </Link>
                     </div>
                     <ul className="hidden md:flex justify-center gap-6">
                         {NavMenu.map((item :NavMenuProps) => (
@@ -166,10 +168,10 @@ export default function Navbar(){
             </motion.div>
             <motion.div
                 ref={menuRef}
-                initial={{ x: "-100%" }}
-                animate={{ x: isOpen ? 0 : "-100%" }}
-                transition={{ type: "tween", duration: 0.3 }}
-                className="fixed top-0 left-0 w-64 h-full bg-gray-800 text-white p-6 z-50 md:hidden"
+                initial={{ x: "100%" }}
+                animate={{ x: isOpen ? 0 : "100%" }}
+                transition={{ type: "tween", duration: 0.4 }}
+                className="fixed top-0 right-0 w-64 h-full bg-gray-800 text-white p-6 z-50 md:hidden"
             >
                 <button onClick={() => setIsOpen(false)} className="mb-4 text-right text-xl">×</button>
                 <ul className="flex flex-col gap-4">
