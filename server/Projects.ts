@@ -71,7 +71,7 @@ export const UpdateProject = async (id: string, formData: FormData) => {
 
     if (!token) throw new Error("No token found in session");
 
-    const res = await fetch(`https://alqasr-backend.onrender.com/api/projects/${id}`, { // ✅ include ID in URL
+    const res = await fetch(`http://localhost:3000/api/projects/${id}`, { // ✅ include ID in URL
         method: "PUT",
         body: formData,
         headers: {

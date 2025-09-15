@@ -37,10 +37,8 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
     const isAdmin = session?.user?.role === "admin";
     const queryClient = useQueryClient();
 
-    // Dialog state
     const [isEditOpen, setIsEditOpen] = useState(false);
 
-    // Form state
     const [formData, setFormData] = useState({
         title,
         type,
@@ -50,8 +48,10 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
         completionDate: completionDate || "",
         features: [...features],
         featureInput: "",
-        images: [] as File[],
+        removedImages: [] as string[], // URLs the admin wants to delete
+        images: [] as File[],          // new files to upload
     });
+    const displayedImages = image.filter(img => !formData.removedImages.includes(img));
 
     // Mutations
     const updateMutation = useMutation({
@@ -77,10 +77,16 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
         data.append("location", formData.location);
         if (formData.completionDate) data.append("completionDate", formData.completionDate);
         formData.features.forEach(f => data.append("features[]", f));
-        formData.images.forEach(f => data.append("image", f));
+
+        // Fix: Use "images[]" to append multiple files correctly
+        formData.images.forEach(f => data.append("images", f));
+
+        // The removedImages part is correct, but let's confirm it's using the same key as the server expects
+        formData.removedImages.forEach(f => data.append("removedImages[]", f));
 
         updateMutation.mutate(data);
     };
+
 
     const handleDelete = () => {
         if (confirm("Are you sure you want to delete this project?")) {
@@ -145,9 +151,8 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
                                     <DialogTitle>Edit Project</DialogTitle>
                                 </DialogHeader>
                                 <form onSubmit={handleEditSubmit} className="space-y-4">
-                                    {/* Include all your form fields here, same as Add Project form */}
                                     <div>
-                                        <Label htmlFor="title">Project Title *</Label>
+                                        <Label htmlFor="title">Project Title</Label>
                                         <Input id="title" value={formData.title} onChange={(e) => setFormData({...formData, title: e.target.value})} />
                                     </div>
                                     <div>
@@ -177,7 +182,7 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
                                     </div>
                                     <div>
                                         <Label htmlFor="description">Description</Label>
-                                        <Textarea rows={3} value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
+                                        <Textarea className="w-full resize-y whitespace-pre-wrap break-words break-all overflow-x-hidden"  rows={3} value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
                                     </div>
                                     <div>
                                         <Label htmlFor="completionDate">Completion Date</Label>
@@ -202,7 +207,55 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
                                             ))}
                                         </div>
                                     </div>
-
+                                    <div>
+                                        <Label>Upload New Images</Label>
+                                        <Input
+                                            type="file"
+                                            multiple
+                                            onChange={(e) => {
+                                                if (!e.target.files) return;
+                                                setFormData({
+                                                    ...formData,
+                                                    images: Array.from(e.target.files), // store selected files
+                                                });
+                                            }}
+                                        />
+                                        <div className="flex gap-2 mt-2 flex-wrap">
+                                            {formData.images.map((file, i) => (
+                                                <div key={i} className="relative w-24 h-24 bg-gray-100 flex items-center justify-center rounded">
+                                                    <span className="text-sm">{file.name}</span>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            setFormData({
+                                                                ...formData,
+                                                                images: formData.images.filter((_, idx) => idx !== i),
+                                                            })
+                                                        }
+                                                        className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center hover:bg-red-700"
+                                                    >
+                                                        ✕
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    {displayedImages.map((img, i) => (
+                                        <div key={i} className="relative w-24 h-24 bg-gray-100 flex items-center justify-center rounded">
+                                            <Image src={img} alt="existing" fill style={{ objectFit: "cover" }} />
+                                            <button
+                                                type="button"
+                                                onClick={() => setFormData({
+                                                    ...formData,
+                                                    // Make sure to remove the image from the displayed list as well
+                                                    removedImages: [...formData.removedImages, img]
+                                                })}
+                                                className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center hover:bg-red-700"
+                                            >
+                                                ✕
+                                            </button>
+                                        </div>
+                                    ))}
                                     <DialogFooter>
                                         <Button variant="outline" type="button" onClick={() => setIsEditOpen(false)}>Cancel</Button>
                                         <Button type="submit" disabled={updateMutation.status === "pending"}>
