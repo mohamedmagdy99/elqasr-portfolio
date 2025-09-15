@@ -42,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         "@type": "Organization",
                         "name": "El Qasr Development",
                         "url": "https://elqasr-development.com",
-                        "logo": "https://realestate-gallery.s3.eu-central-1.amazonaws.com/projects/1757505764687-%C3%98%C2%A7%C3%99%C2%84%C3%99%C2%82%C3%98%C2%B5%C3%98%C2%B1+copy.png"
+                        "logo": "https://realestate-gallery.s3.eu-central-1.amazonaws.com/projects/elqasr-logo.png"
                     })
                 }}
             />
