@@ -79,10 +79,10 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
         formData.features.forEach(f => data.append("features[]", f));
 
         // Fix: Use "images[]" to append multiple files correctly
-        formData.images.forEach(f => data.append("images", f));
+        formData.images.forEach(f => data.append("image", f));
 
         // The removedImages part is correct, but let's confirm it's using the same key as the server expects
-        formData.removedImages.forEach(f => data.append("removedImages[]", f));
+        formData.removedImages.forEach(f => data.append("removedImages", f));
 
         updateMutation.mutate(data);
     };
