@@ -7,6 +7,7 @@ import logo from "@/public/elqasr-logo.png";
 import { EyeOff, Eye } from 'lucide-react';
 import Image from "next/image";
 import { signup } from "@/server/Users";
+import Head from "next/head";
 
 export default function SignUpPage() {
     const [name, setName] = useState('');
@@ -44,6 +45,14 @@ export default function SignUpPage() {
 
     return (
         <main className="flex-grow flex min-h-screen">
+            <Head>
+                <title>El Qasr Development | signup</title>
+                <meta
+                    name="description"
+                    content="El Qasr Development provides premium residential and commercial projects in Egypt."
+                />
+                <meta name="robots" content="index, follow" />
+            </Head>
             <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 w-full"
                 initial="initial"

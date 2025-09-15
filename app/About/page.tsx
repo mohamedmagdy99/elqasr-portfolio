@@ -10,6 +10,8 @@ import Hero from '@components/PagesHero/PagesHero';
 
 import {  Target, Eye, Heart,Phone } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import Head from "next/head";
+import React from "react";
 
 const Page = () => {
     const router = useRouter();
@@ -44,6 +46,14 @@ const Page = () => {
     };
     return (
         <Transition>
+            <Head>
+                <title>El Qasr Development | About Us</title>
+                <meta
+                    name="description"
+                    content="El Qasr Development provides premium residential and commercial projects in Egypt."
+                />
+                <meta name="robots" content="index, follow" />
+            </Head>
             <div className="min-h-screen bg-white">
                 <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
                     <Hero title="About Alqasr RealEstate" description="Building tomorrow's infrastructure with over 5 years of expertise, innovation, and unwavering commitment to excellence."/>

@@ -16,7 +16,7 @@ export const getAllProjects = async ({
     if (status) params.append("status", status);
     if (type) params.append("type", type);
 
-    const res = await fetch(`https://alqasr-backend.onrender.com/api/projects?${params.toString()}`);
+    const res = await fetch(`https://api.elqasr-development.com/api/projects?${params.toString()}`);
     const json = await res.json();
     return json.success ? json : { data: [], totalPages: 0, currentPage: 1 };
 };
@@ -24,7 +24,7 @@ export const getAllProjects = async ({
 
 export const getSingleProject = async (id: string) => {
     try {
-        const res = await fetch(`https://alqasr-backend.onrender.com/api/projects/${id}`, {
+        const res = await fetch(`https://api.elqasr-development.com/api/projects/${id}`, {
             cache: "no-store",
         });
         if (!res.ok) throw new Error(`Failed to fetch project: ${res.status}`);
@@ -49,7 +49,7 @@ export const CreateProject = async (formData: FormData) => {
     const token = session?.user?.token;
     if (!token) throw new Error("No token found in session");
 
-    const res = await fetch("https://alqasr-backend.onrender.com/api/projects", {
+    const res = await fetch("https://api.elqasr-development.com/api/projects", {
         method: "POST",
         body: formData,
         headers: {
@@ -71,7 +71,7 @@ export const UpdateProject = async (id: string, formData: FormData) => {
 
     if (!token) throw new Error("No token found in session");
 
-    const res = await fetch(`https://alqasr-backend.onrender.com/api/projects/${id}`, { // ✅ include ID in URL
+    const res = await fetch(`https://api.elqasr-development.com/api/projects/${id}`, { // ✅ include ID in URL
         method: "PUT",
         body: formData,
         headers: {
@@ -91,7 +91,7 @@ export const DeleteProject = async (id: string) => {
     const session = await getSession();
     const token = session?.user?.token;
     if (!token) throw new Error("No token found in session");
-    const res = await fetch(`https://alqasr-backend.onrender.com/api/projects/${id}`, {
+    const res = await fetch(`https://api.elqasr-development.com/api/projects/${id}`, {
         method: "DELETE",
         headers: {
             Authorization: `Bearer ${token}`,

@@ -5,6 +5,7 @@ import * as motion from "motion/react-client";
 import logo from "@/public/elqasr-logo.png";
 import { EyeOff, Eye } from 'lucide-react';
 import Image from "next/image";
+import Head from "next/head";
 
 export default function SignInPage() {
     const [email, setEmail] = useState('');
@@ -28,6 +29,20 @@ export default function SignInPage() {
 
     return (
         <main className="flex-grow flex min-h-screen">
+            <Head>
+                <title>El Qasr Development | Signin</title>
+                <meta
+                    name="description"
+                    content="El Qasr Development provides premium residential and commercial projects in Egypt."
+                />
+                <meta name="robots" content="index, follow" />
+                <meta name="robots" content="index, follow" />
+                <meta property="og:title" content="El Qasr Development" />
+                <meta property="og:description" content="Premium residential and commercial projects in Egypt." />
+                <meta property="og:image" content="https://realestate-gallery.s3.eu-central-1.amazonaws.com/projects/1757505764687-%C3%98%C2%A7%C3%99%C2%84%C3%99%C2%82%C3%98%C2%B5%C3%98%C2%B1+copy.png" />
+                <meta property="og:url" content="https://elqasr-development.com" />
+                <meta name="twitter:card" content="summary_large_image" />
+            </Head>
             <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 w-full"
                 initial="initial"

@@ -4,6 +4,7 @@ import Transition from "@components/Transition/Transition";
 import * as motion from "motion/react-client";
 import {Facebook, Instagram, Mail, MapPin, Phone} from 'lucide-react';
 import ContentCard from "@components/ContactCard/ContactCard";
+import Head from "next/head";
 
 const Page = () => {
     const slideInRight = {
@@ -26,6 +27,14 @@ const Page = () => {
 
     return (
         <Transition>
+            <Head>
+                <title>El Qasr Development | Contact</title>
+                <meta
+                    name="description"
+                    content="El Qasr Development provides premium residential and commercial projects in Egypt."
+                />
+                <meta name="robots" content="index, follow" />
+            </Head>
             <div className="min-h-screen bg-white">
                 <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
                     <Hero title="Contact Us" description="Reach out today to explore Alqasr real estate solutions tailored to your goals — whether you're investing, developing, or searching for your next signature property."/>

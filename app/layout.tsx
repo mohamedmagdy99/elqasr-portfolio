@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ALQASR REAL STATE DEVELOPMENT",
-  description: "this is an offical website for alqasr real state development.",
+  title: "ALQASR REAL ESTATE DEVELOPMENT",
+  description: "this is an offical website for alqasr real estate development.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -33,6 +33,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     };
     return (
         <html lang="en" className={`${geistSans.className} ${geistMono.className}`}>
+        <head>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "El Qasr Development",
+                        "url": "https://elqasr-development.com",
+                        "logo": "https://realestate-gallery.s3.eu-central-1.amazonaws.com/projects/1757505764687-%C3%98%C2%A7%C3%99%C2%84%C3%99%C2%82%C3%98%C2%B5%C3%98%C2%B1+copy.png"
+                    })
+                }}
+            />
+        </head>
         <body className="antialiased">
         <TanstackProvider dehydratedState={undefined}>
             <NextAuthProvider>
