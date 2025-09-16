@@ -36,8 +36,8 @@ export const getSingleProject = async (id: string) => {
 
         return {
             ...project,
-            status: project.status?.toLowerCase(),   // "Completed" → "completed"
-            type: project.type?.toLowerCase(),       // "Residential" → "residential"
+            status: project.status?.toLowerCase(),
+            type: project.type?.toLowerCase(),
         };
     } catch (error) {
         console.error("getSingleProject error:", error);
@@ -53,9 +53,9 @@ export const CreateProject = async (formData: FormData) => {
         method: "POST",
         body: formData,
         headers: {
-            Authorization: `Bearer ${session.user.token}`, // ✅ send token manually
+            Authorization: `Bearer ${session.user.token}`,
         },
-        credentials: "include", // ✅ important
+        credentials: "include",
     });
     console.log("Fetch called");
     if (!res.ok) {

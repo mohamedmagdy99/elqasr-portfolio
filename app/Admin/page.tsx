@@ -126,25 +126,29 @@ export default function AdminPage() {
     // ✅ Handlers
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Form submitted");
-
-        const submissionData = new FormData();
-        submissionData.append("title", formData.title);
-        submissionData.append("description", formData.description);
-        submissionData.append("type", formData.type);
-        submissionData.append("status", formData.status);
-        submissionData.append("location", formData.location);
-        if (completionDate) {
-            const dateValue = new Date(completionDate);
-            if (!isNaN(dateValue.getTime())) {
-                submissionData.append("completionDate", dateValue.toISOString());
+        try{
+            const submissionData = new FormData();
+            submissionData.append("title", formData.title);
+            submissionData.append("description", formData.description);
+            submissionData.append("type", formData.type);
+            submissionData.append("status", formData.status);
+            submissionData.append("location", formData.location);
+            if (completionDate) {
+                const dateValue = new Date(completionDate);
+                if (!isNaN(dateValue.getTime())) {
+                    submissionData.append("completionDate", dateValue.toISOString());
+                }
             }
-        }        formData.features.forEach((feat) => submissionData.append("features[]", feat));
-        formData.images.forEach((file) => submissionData.append("image", file));
+            formData.features.forEach((feat) => submissionData.append("features[]", feat));
+            formData.images.forEach((file) => submissionData.append("image", file));
 
-        mutation.mutate(submissionData);
-        setIsAddDialogOpen(false);
-        showNotification('Project added successfully!', 'success');
+            mutation.mutate(submissionData);
+            setIsAddDialogOpen(false);
+            showNotification('Project added successfully!', 'success');
+        }catch(err){
+            showNotification('Something Went wrong please try again!', 'error');
+        }
+
     };
 
     const handleFilter = (key: "status" | "type", value?: string) => {

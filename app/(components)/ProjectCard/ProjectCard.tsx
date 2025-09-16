@@ -49,7 +49,7 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
         features: [...features],
         featureInput: "",
         removedImages: [] as string[], // URLs the admin wants to delete
-        images: [] as File[],          // new files to upload
+        image: [] as File[],          // new files to upload
     });
     const displayedImages = image.filter(img => !formData.removedImages.includes(img));
 
@@ -77,13 +77,8 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
         data.append("location", formData.location);
         if (formData.completionDate) data.append("completionDate", formData.completionDate);
         formData.features.forEach(f => data.append("features[]", f));
-
-        // Fix: Use "images[]" to append multiple files correctly
-        formData.images.forEach(f => data.append("image", f));
-
-        // The removedImages part is correct, but let's confirm it's using the same key as the server expects
+        formData.image.forEach(f => data.append("image", f));
         formData.removedImages.forEach(f => data.append("removedImages", f));
-
         updateMutation.mutate(data);
     };
 
@@ -216,12 +211,12 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
                                                 if (!e.target.files) return;
                                                 setFormData({
                                                     ...formData,
-                                                    images: Array.from(e.target.files), // store selected files
+                                                    image: Array.from(e.target.files), // store selected files
                                                 });
                                             }}
                                         />
                                         <div className="flex gap-2 mt-2 flex-wrap">
-                                            {formData.images.map((file, i) => (
+                                            {formData.image.map((file, i) => (
                                                 <div key={i} className="relative w-24 h-24 bg-gray-100 flex items-center justify-center rounded">
                                                     <span className="text-sm">{file.name}</span>
                                                     <button
@@ -229,7 +224,7 @@ const ProjectCard = ({ _id, title, description, image, type, location, completio
                                                         onClick={() =>
                                                             setFormData({
                                                                 ...formData,
-                                                                images: formData.images.filter((_, idx) => idx !== i),
+                                                                image: formData.image.filter((_, idx) => idx !== i),
                                                             })
                                                         }
                                                         className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center hover:bg-red-700"
