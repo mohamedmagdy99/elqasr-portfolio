@@ -34,7 +34,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
     const locale = useLocale();
 
-    // ✅ helpers for localized fields
+    // @typescript-eslint/no-explicit-any
     const getLocalizedString = (field: any) => {
         if (!field && field !== 0) return "";
         if (typeof field === "string") return field;
@@ -46,7 +46,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
             return "";
         }
     };
-
+    //@typescript-eslint/no-explicit-any
     const formatStatus = (statusField: any) => {
         const raw = (getLocalizedString(statusField) || "").toLowerCase();
 
