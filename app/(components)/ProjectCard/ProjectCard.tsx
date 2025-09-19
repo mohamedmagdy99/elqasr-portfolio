@@ -229,7 +229,7 @@ export const ProjectCard = ({
                                         <Edit className="w-4 h-4" /> {locale === "en" ? "Edit" : "تعديل"}
                                     </Button>
                                 </DialogTrigger>
-                                <DialogContent className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl p-4 sm:p-6">
+                                <DialogContent className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl p-4 sm:p-6 max-h-[90vh] overflow-y-auto">
                                     <DialogHeader>
                                         <DialogTitle>{locale === "en" ? "Edit Project" : "تعديل المشروع"}</DialogTitle>
                                     </DialogHeader>
