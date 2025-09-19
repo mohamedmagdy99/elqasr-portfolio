@@ -6,7 +6,7 @@ import Hero from '@components/PagesHero/PagesHero';
 import { useState } from 'react';
 import { useQuery,keepPreviousData  } from '@tanstack/react-query';
 import { getAllProjects } from '@/server/Projects';
-import ProjectCard from '@components/ProjectCard/ProjectCard';
+import {ProjectCard} from '@components/ProjectCard/ProjectCard';
 import { Spinner } from '@/components/ui/spinner';
 import { Button } from '@/components/ui/button';
 import {FilterButton} from '@components/FilterButton/FilterButton';

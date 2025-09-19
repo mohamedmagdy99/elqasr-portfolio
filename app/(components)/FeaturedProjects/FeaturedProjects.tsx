@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import * as motion from "motion/react-client";
-import Card from "@components/ProjectCard/ProjectCard";
+import {ProjectCard as Card} from "@components/ProjectCard/ProjectCard";
 import { Spinner } from "@/components/ui/shadcn-io/spinner";
 import { getAllProjects } from "@/server/Projects";
 import React from "react";

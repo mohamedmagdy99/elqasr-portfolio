@@ -51,7 +51,7 @@ type ProjectCardProps = {
     features?: LocalizedStringArray;
 };
 
-const ProjectCard = ({
+export const ProjectCard = ({
                          _id,
                          title,
                          description,
@@ -229,7 +229,7 @@ const ProjectCard = ({
                                         <Edit className="w-4 h-4" /> {locale === "en" ? "Edit" : "تعديل"}
                                     </Button>
                                 </DialogTrigger>
-                                <DialogContent className="max-w-md">
+                                <DialogContent className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl p-4 sm:p-6">
                                     <DialogHeader>
                                         <DialogTitle>{locale === "en" ? "Edit Project" : "تعديل المشروع"}</DialogTitle>
                                     </DialogHeader>
@@ -237,12 +237,12 @@ const ProjectCard = ({
                                     {/* Tabs for EN/AR */}
                                     <form onSubmit={handleEditSubmit} className="space-y-4">
                                         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as LocaleKey)}>
-                                            <TabsList>
+                                            <TabsList className="flex flex-wrap gap-2">
                                                 <TabsTrigger value="en">English</TabsTrigger>
                                                 <TabsTrigger value="ar">Arabic</TabsTrigger>
                                             </TabsList>
 
-                                            <TabsContent value="en">
+                                            <TabsContent value="en"  className="space-y-3">
                                                 <div>
                                                     <Label>Title</Label>
                                                     <Input value={formData.title.en} onChange={(e) => setFormData({...formData, title: {...formData.title, en: e.target.value}})} />
@@ -261,7 +261,7 @@ const ProjectCard = ({
                                                 </div>
                                             </TabsContent>
 
-                                            <TabsContent value="ar">
+                                            <TabsContent value="ar" className="space-y-3">
                                                 <div>
                                                     <Label>العنوان</Label>
                                                     <Input value={formData.title.ar} onChange={(e) => setFormData({...formData, title: {...formData.title, ar: e.target.value}})} />
@@ -299,7 +299,7 @@ const ProjectCard = ({
 
                                         <div>
                                             <Label>Features</Label>
-                                            <div className="flex gap-2">
+                                            <div className="flex flex-col sm:flex-row gap-2">
                                                 <Input value={formData.featureInput} onChange={e => setFormData({...formData, featureInput: e.target.value})} />
                                                 <Button type="button" onClick={() => {
                                                     if (!formData.featureInput.trim()) return;
@@ -338,9 +338,9 @@ const ProjectCard = ({
                                             ))}
                                         </div>
 
-                                        <DialogFooter>
+                                        <DialogFooter className="flex flex-col sm:flex-row gap-2">
                                             <Button variant="outline" type="button" onClick={() => setIsEditOpen(false)}>Cancel</Button>
-                                            <Button type="submit" disabled={updateMutation.status === "pending"}>{updateMutation.status === "pending" ? "Saving..." : "Save"}</Button>
+                                            <Button type="submit" disabled={updateMutation.status === "pending"}  className="flex-1">{updateMutation.status === "pending" ? "Saving..." : "Save"}</Button>
                                         </DialogFooter>
                                     </form>
 
@@ -348,7 +348,7 @@ const ProjectCard = ({
                             </Dialog>
 
                             {/* Delete */}
-                            <Button variant="destructive" className="flex-1 flex items-center justify-center gap-1" onClick={handleDelete}>
+                            <Button variant="destructive" className="flex-1 flex items-center justify-center gap-1 mt-2 sm:mt-0" onClick={handleDelete}>
                                 <Trash2 className="w-4 h-4" /> {locale === "en" ? "Delete" : "حذف"}
                             </Button>
                         </div>
@@ -358,10 +358,10 @@ const ProjectCard = ({
 
             {/* Gallery */}
             <Dialog open={isGalleryOpen} onOpenChange={setIsGalleryOpen}>
-                <DialogContent className="max-w-3xl">
-                    <div className="grid grid-cols-2 gap-4">
+                <DialogContent className="w-full max-w-full sm:max-w-3xl p-4 sm:p-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                         {image.map((img, idx) => (
-                            <div key={idx} className="relative w-full h-48">
+                            <div key={idx}  className="relative w-full h-48 sm:h-56 md:h-64">
                                 <Image src={img} alt={`${title[locale]} - ${idx + 1}`} fill className="object-cover rounded-lg" />
                             </div>
                         ))}
@@ -372,4 +372,3 @@ const ProjectCard = ({
     );
 };
 
-export default ProjectCard;

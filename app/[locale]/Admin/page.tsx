@@ -15,7 +15,7 @@ import { useTranslations, useLocale } from "next-intl";
 
 import { getAllProjects, CreateProject } from "@/server/Projects";
 import { FilterButton } from "@components/FilterButton/FilterButton";
-import ProjectCard from "@components/ProjectCard/ProjectCard";
+import {ProjectCard} from "@components/ProjectCard/ProjectCard";
 
 import { Spinner } from "@/components/ui/shadcn-io/spinner";
 import { Plus } from "lucide-react";
