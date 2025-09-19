@@ -1,9 +1,14 @@
-"use client";
+'use client';
+
+import React from 'react'
 import * as motion from "motion/react-client";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 
-import Construction from "../../public/Construction-site.jpeg"
+import Construction from "../../../public/Construction-site.jpeg"
 import Transition from "@components/Transition/Transition";
 import ContentCard from '@components/ContactCard/ContactCard';
 import Hero from '@components/PagesHero/PagesHero';
@@ -11,13 +16,14 @@ import Hero from '@components/PagesHero/PagesHero';
 import {  Target, Eye, Heart,Phone } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import Head from "next/head";
-import React from "react";
 
 const Page = () => {
     const router = useRouter();
-    const onNavigate = (path: string) => {
-        router.push(`/${path}`);
-    };
+    const t = useTranslations('AboutPage');
+    const locale = useLocale();
+    const isRtl = locale === 'ar';
+
+
 
     const fadeInUp = {
         initial: { opacity: 0, y: 60 },
@@ -44,47 +50,49 @@ const Page = () => {
             }
         }
     };
+
+    // Conditional animation based on locale
+    const slideInContentVariants = isRtl ? slideInRight : slideInLeft;
+    const slideInImageVariants = isRtl ? slideInLeft : slideInRight;
+
     return (
         <Transition>
             <Head>
-                <title>El Qasr Development | About Us</title>
-                <meta
-                    name="description"
-                    content="El Qasr Development provides premium residential and commercial projects in Egypt."
-                />
+                <title>{t('page_title')}</title>
+                <meta name="description" content={t('meta_description')} />
                 <meta name="robots" content="index, follow" />
             </Head>
-            <div className="min-h-screen bg-white">
+            <div className="min-h-screen bg-white" dir={isRtl ? 'rtl' : 'ltr'}>
                 <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
-                    <Hero title="About Alqasr RealEstate" description="Building tomorrow's infrastructure with over 5 years of expertise, innovation, and unwavering commitment to excellence."/>
+                    <Hero title={t('hero_title')} description={t('hero_description')}/>
                 </section>
                 <section className="py-20">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        <div className={`grid lg:grid-cols-2 gap-12 items-center ${isRtl ? 'lg:flex-row-reverse' : ''}`}>
                             <motion.div
                                 initial="initial"
                                 whileInView="animate"
                                 viewport={{ once: true }}
-                                variants={slideInLeft}
+                                variants={slideInContentVariants}
                             >
                                 <motion.h2
                                     className="text-4xl font-bold text-gray-900 mb-6"
                                     variants={fadeInUp}
                                 >
-                                    Our Story
+                                    {t('our_story_title')}
                                 </motion.h2>
                                 <motion.div
                                     className="space-y-4 text-lg text-gray-600"
                                     variants={staggerContainer}
                                 >
                                     <motion.p variants={fadeInUp}>
-                                        Alqasr Real Estate Development is one of Egypt’s leading companies in the field of real estate investment and development. The company was founded with a clear vision: to deliver integrated projects that combine quality and innovation, meeting the needs of clients across residential, commercial, and investment sectors.
+                                        {t('our_story_p1')}
                                     </motion.p>
                                     <motion.p variants={fadeInUp}>
-                                        As a prominent developer in Egypt, Alqasr specializes in residential, commercial, and administrative projects in Obour City and New Cairo. We prioritize strategic locations, modern architectural designs, and flexible payment plans tailored to suit every client.
+                                        {t('our_story_p2')}
                                     </motion.p>
                                     <motion.p variants={fadeInUp}>
-                                        Today, {"we're"} proud to be one of the most trusted construction companies in Egypt, with over 50 completed projects and a reputation built on excellence, reliability and customer satisfaction.
+                                        {t('our_story_p3')}
                                     </motion.p>
                                 </motion.div>
                             </motion.div>
@@ -92,13 +100,13 @@ const Page = () => {
                                 initial="initial"
                                 whileInView="animate"
                                 viewport={{ once: true }}
-                                variants={slideInRight}
+                                variants={slideInImageVariants}
                             >
                                 <motion.div
                                     whileHover={{scale: 1.02}}
                                     transition={{duration: 0.3}}
                                 >
-                                    <Image src={Construction} alt="Contsruction site" style={{ borderRadius: '1rem', boxShadow:'0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04)', width:"100%", height:"24rem"}}/>
+                                    <Image src={Construction} alt={t('story_image_alt')} style={{ borderRadius: '1rem', boxShadow:'0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04)', width:"100%", height:"24rem"}}/>
                                 </motion.div>
                             </motion.div>
                         </div>
@@ -113,8 +121,8 @@ const Page = () => {
                             viewport={{ once: true }}
                             variants={fadeInUp}
                         >
-                            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Foundation</h2>
-                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">The principles that guide everything we do</p>
+                            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('foundation_title')}</h2>
+                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t('foundation_subtitle')}</p>
                         </motion.div>
                         <motion.div
                             className="grid lg:grid-cols-3 gap-8"
@@ -123,9 +131,9 @@ const Page = () => {
                             viewport={{ once: true }}
                             variants={staggerContainer}
                         >
-                            <ContentCard Title="Our Mission" icon={<Target className="w-16 h-16 text-blue-600 mx-auto mb-4"/>} Content="To deliver exceptional construction projects that exceed our clients' expectations while contributing to the development of sustainable, beautiful, and functional communities." />
-                            <ContentCard Title="Our Vision" Content="To be the leading construction company that shapes the future of urban development through innovation, sustainability, and uncompromising quality." icon={<Eye className="w-16 h-16 text-blue-600 mx-auto mb-4" />} Delay={0.5} />
-                            <ContentCard Title="Our Values" Content="Integrity, excellence, innovation and safety guide every decision we make and every project we undertake." icon={<Heart className="w-16 h-16 text-blue-600 mx-auto mb-4" />} Delay={1} />
+                            <ContentCard Title={t('mission_title')} icon={<Target className="w-16 h-16 text-blue-600 mx-auto mb-4"/>} Content={t('mission_content')} />
+                            <ContentCard Title={t('vision_title')} Content={t('vision_content')} icon={<Eye className="w-16 h-16 text-blue-600 mx-auto mb-4" />} Delay={0.5} />
+                            <ContentCard Title={t('values_title')} Content={t('values_content')} icon={<Heart className="w-16 h-16 text-blue-600 mx-auto mb-4" />} Delay={1} />
                         </motion.div>
                     </div>
                 </section>
@@ -138,24 +146,28 @@ const Page = () => {
                             viewport={{ once: true }}
                             variants={fadeInUp}
                         >
-                            <h2 className="text-3xl font-bold text-gray-900 mb-4">Let’s Build Value, Not Just Property</h2>
-                            <p className="text-xl text-gray-600 mb-8 max-x-2xl mx-auto">From landmark developments to exclusive residences, we specialize in turning real estate visions into high-return realities. Partner with a team that understands the market, the luxury, and the long game.</p>
+                            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('cta_title')}</h2>
+                            <p className="text-xl text-gray-600 mb-8 max-x-2xl mx-auto">{t('cta_description')}</p>
                             <div className="flex sm:flex-row flex-col gap-4 justify-center">
                                 <Button
                                     size="lg"
-                                    onClick={() => onNavigate('Contact')}
+                                    asChild
                                     className="text-lg px-8 py-6"
                                 >
-                                    <Phone className="w-5 h-5 mr-2" />
-                                    Contact Us Today
+                                    <Link href="/Contact">
+                                        <Phone className="w-5 h-5 mr-2" />
+                                        {t('cta_contact_button')}
+                                    </Link>
                                 </Button>
                                 <Button
                                     size="lg"
                                     variant="outline"
-                                    onClick={() => onNavigate('Projects')}
+                                    asChild
                                     className="text-lg px-8 py-6"
                                 >
-                                    View Our Projects
+                                    <Link href="/Projects">
+                                        {t('cta_projects_button')}
+                                    </Link>
                                 </Button>
                             </div>
                         </motion.div>
@@ -165,4 +177,4 @@ const Page = () => {
         </Transition>
     )
 }
-export default Page
+export default Page;

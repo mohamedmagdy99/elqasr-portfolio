@@ -1,4 +1,16 @@
 import { getSession } from "next-auth/react";
+interface ParsedProject {
+    _id: string;
+    title: { en: string; ar: string };
+    type: "Residential" | "Commercial";
+    description: { en: string; ar: string };
+    image: string[];
+    status: { en: string; ar: string }; // Correct type for the parsed object
+    location: { en: string; ar: string };
+    completionDate?: string;
+    features: { en: string[]; ar: string[] };
+}
+
 export const getAllProjects = async ({
                                          page = 1,
                                          limit = 10,
@@ -16,28 +28,38 @@ export const getAllProjects = async ({
     if (status) params.append("status", status);
     if (type) params.append("type", type);
 
-    const res = await fetch(`https://api.elqasr-development.com/api/projects?${params.toString()}`);
+    const res = await fetch(
+        `https://api.elqasr-development.com/api/projects?${params.toString()}`
+    );
     const json = await res.json();
-    return json.success ? json : { data: [], totalPages: 0, currentPage: 1 };
+
+    if (json.success) {
+        // Backend already returns proper objects, no JSON.parse needed
+        return { ...json, data: json.data as ParsedProject[] };
+    }
+
+    return { data: [], totalPages: 0, currentPage: 1 };
 };
 
 
 export const getSingleProject = async (id: string) => {
     try {
-        const res = await fetch(`https://api.elqasr-development.com/api/projects/${id}`, {
-            cache: "no-store",
-        });
+        const res = await fetch(
+            `https://api.elqasr-development.com/api/projects/${id}`,
+            { cache: "no-store" }
+        );
+
         if (!res.ok) throw new Error(`Failed to fetch project: ${res.status}`);
         const json = await res.json();
 
         const project = json.data ?? null;
-
         if (!project) return null;
 
+        // No parsing needed, project already contains objects
         return {
             ...project,
-            status: project.status?.toLowerCase(),
-            type: project.type?.toLowerCase(),
+            status: project.status?.en?.toLowerCase() ?? "",
+            type: project.type?.toLowerCase() ?? "",
         };
     } catch (error) {
         console.error("getSingleProject error:", error);

@@ -1,26 +1,35 @@
+// components/AnimatedCounter/AnimatedCounter.tsx
 "use client"
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion"; // Keep motion for the wrapper div
 import { useEffect, useState } from "react";
+import { useLocale } from "next-intl";
+
 const AnimatedCounter = ({ target, duration = 1 }: { target: number; duration?: number }) => {
     const [count, setCount] = useState<number>(0);
-    const controls = useAnimation();
+    const locale = useLocale();
 
     useEffect(() => {
-        controls.start({
-            count: target,
-            transition: { duration, ease: "easeOut" },
-        });
-    }, [target, duration, controls]);
+        const start: number = performance.now();
+        const end = start + duration * 1000;
 
-    useEffect(() => {
-        const start:number = performance.now();
-        const step=(timestamp: number) => {
-            const progress:number = Math.min((timestamp - start) / (duration * 1000), 1);
+        const step = (timestamp: number) => {
+            const progress: number = Math.min((timestamp - start) / (end - start), 1);
             setCount(Math.floor(progress * target));
-            if (progress < 1) requestAnimationFrame(step);
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
         };
+
         requestAnimationFrame(step);
-    }, [target, duration]);
+
+        // Cleanup function to prevent memory leaks
+        return () => {
+            setCount(0);
+        };
+    }, [target, duration, locale]); // Add locale as a dependency
+
+    // Format the number based on the current locale
+    const formattedCount = new Intl.NumberFormat(locale).format(count);
 
     return (
         <motion.div
@@ -30,8 +39,8 @@ const AnimatedCounter = ({ target, duration = 1 }: { target: number; duration?: 
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
         >
-            {count}+
+            {formattedCount}+
         </motion.div>
     );
 };
-export default AnimatedCounter
+export default AnimatedCounter;

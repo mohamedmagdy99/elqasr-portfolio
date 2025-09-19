@@ -1,12 +1,21 @@
-import React from 'react'
+// app/Contact/page.tsx
+'use client';
+
+import React from 'react';
 import Hero from '@components/PagesHero/PagesHero';
 import Transition from "@components/Transition/Transition";
 import * as motion from "motion/react-client";
 import {Facebook, Instagram, Mail, MapPin, Phone} from 'lucide-react';
 import ContentCard from "@components/ContactCard/ContactCard";
 import Head from "next/head";
+import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 
 const Page = () => {
+    const t = useTranslations('ContactPage');
+    const locale = useLocale();
+    const isRtl = locale === 'ar';
+
     const slideInRight = {
         initial: { opacity: 0, x: 60 },
         animate: { opacity: 1, x: 0 },
@@ -28,16 +37,16 @@ const Page = () => {
     return (
         <Transition>
             <Head>
-                <title>El Qasr Development | Contact</title>
+                <title>{t('page_title')}</title>
                 <meta
                     name="description"
-                    content="El Qasr Development provides premium residential and commercial projects in Egypt."
+                    content={t('meta_description')}
                 />
                 <meta name="robots" content="index, follow" />
             </Head>
-            <div className="min-h-screen bg-white">
+            <div className="min-h-screen bg-white" dir={isRtl ? 'rtl' : 'ltr'}>
                 <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
-                    <Hero title="Contact Us" description="Reach out today to explore Alqasr real estate solutions tailored to your goals — whether you're investing, developing, or searching for your next signature property."/>
+                    <Hero title={t('hero_title')} description={t('hero_description')}/>
                 </section>
                 <section className="py-20">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,9 +57,9 @@ const Page = () => {
                             viewport={{ once: true }}
                             variants={slideInRight}
                         >
-                            <motion.h2 className="text-4xl font-bold mb-6 text-gray-900" variants={fadeInUp}>Our Social Media</motion.h2>
+                            <motion.h2 className="text-4xl font-bold mb-6 text-gray-900" variants={fadeInUp}>{t('social_media_title')}</motion.h2>
                             <motion.p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8" variants={fadeInUp}>
-                                Follow us on social media to stay up to date with the latest news and developments.
+                                {t('social_media_description')}
                             </motion.p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
                                 <a
@@ -60,7 +69,7 @@ const Page = () => {
                                     className="flex flex-col items-center"
                                 >
                                     <Facebook className="w-16 h-16 text-blue-600 mb-4" />
-                                    <span className="text-gray-700 text-lg">Facebook</span>
+                                    <span className="text-gray-700 text-lg">{t('facebook_link')}</span>
                                 </a>
 
                                 <a
@@ -70,7 +79,7 @@ const Page = () => {
                                     className="flex flex-col items-center"
                                 >
                                     <Instagram className="w-16 h-16 text-blue-600 mb-4" />
-                                    <span className="text-gray-700 text-lg">Instagram</span>
+                                    <span className="text-gray-700 text-lg">{t('instagram_link')}</span>
                                 </a>
                             </div>
 
@@ -86,7 +95,7 @@ const Page = () => {
                             viewport={{ once: true }}
                             variants={slideInRight}
                         >
-                            <motion.h2 className="text-4xl font-bold mb-6 text-gray-900" variants={fadeInUp}>Others</motion.h2>
+                            <motion.h2 className="text-4xl font-bold mb-6 text-gray-900" variants={fadeInUp}>{t('others_title')}</motion.h2>
                         </motion.div>
                         <motion.div
                             className="grid lg:grid-cols-3 gap-8"
@@ -95,9 +104,9 @@ const Page = () => {
                             viewport={{ once: true }}
                             variants={staggerContainer}
                         >
-                            <ContentCard Title="Call Us" Description="Sat-Fri: 10AM-9PM" Content="+20 1117073033" icon={<Phone className="w-12 h-12 text-blue-600 mx-auto mb-4" />} />
-                            <ContentCard Title="Email Us" Description="We'll respond within 24 hours" Content="Elqasrdevelopment@gmail.com" icon={<Mail className="w-12 h-12 text-blue-600 mx-auto mb-4" />} Delay={0.5} />
-                            <ContentCard Title="Visit Us" Description="Sat-Fri: 10AM-9PM" Content="Saqafa Street, Obour City, Cairo, Egypt" icon={<MapPin className="w-12 h-12 text-blue-600 mx-auto mb-4" />} Delay={1} />
+                            <ContentCard Title={t('call_us.title')} Description={t('call_us.description')} Content={t('call_us.content')} icon={<Phone className="w-12 h-12 text-blue-600 mx-auto mb-4" />} />
+                            <ContentCard Title={t('email_us.title')} Description={t('email_us.description')} Content={t('email_us.content')} icon={<Mail className="w-12 h-12 text-blue-600 mx-auto mb-4" />} Delay={0.5} />
+                            <ContentCard Title={t('visit_us.title')} Description={t('visit_us.description')} Content={t('visit_us.content')} icon={<MapPin className="w-12 h-12 text-blue-600 mx-auto mb-4" />} Delay={1} />
                         </motion.div>
                     </div>
                 </section>
@@ -105,4 +114,4 @@ const Page = () => {
         </Transition>
     )
 }
-export default Page
+export default Page;

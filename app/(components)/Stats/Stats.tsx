@@ -1,6 +1,13 @@
+// components/Stats/Stats.tsx
+'use client'; // This component needs to be a client component to use hooks
+
 import * as motion from "motion/react-client";
-import AnimatedCounter from "@components/AnimatedCounter/AnimatedCounter"
+import AnimatedCounter from "@components/AnimatedCounter/AnimatedCounter";
+import { useTranslations } from "next-intl"; // Import the useTranslations hook
+
 const Stats = () => {
+    const t = useTranslations('Stats'); // Get translations for the Stats section
+
     const staggerContainer = {
         animate: {
             transition: {
@@ -13,6 +20,7 @@ const Stats = () => {
         animate: { opacity: 1, scale: 1 },
         transition: { duration: 0.5, ease: "easeOut" }
     };
+
     return (
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg-px-8">
             <motion.div
@@ -21,25 +29,25 @@ const Stats = () => {
             >
                 <motion.div className="text-center" variants={scaleIn}>
                     <AnimatedCounter target={50} duration={1.5} />
-                    <div className="text-gray-600 font-bold">Projects Completed</div>
+                    <div className="text-gray-600 font-bold">{t('projects')}</div>
                 </motion.div>
 
                 <motion.div className="text-center" variants={scaleIn}>
                     <AnimatedCounter target={5} duration={1.2} />
-                    <div className="text-gray-600 font-bold">Years Experience</div>
+                    <div className="text-gray-600 font-bold">{t('experience')}</div>
                 </motion.div>
 
                 <motion.div className="text-center" variants={scaleIn}>
                     <AnimatedCounter target={95} duration={1.8} />
-                    <div className="text-gray-600 font-bold">Client Satisfaction</div>
+                    <div className="text-gray-600 font-bold">{t('satisfaction')}</div>
                 </motion.div>
 
                 <motion.div className="text-center" variants={scaleIn}>
                     <AnimatedCounter target={20} duration={1.4} />
-                    <div className="text-gray-600 font-bold">Expert Team</div>
+                    <div className="text-gray-600 font-bold">{t('team')}</div>
                 </motion.div>
             </motion.div>
         </div>
-    )
-}
-export default Stats
+    );
+};
+export default Stats;

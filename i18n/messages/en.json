@@ -1,0 +1,239 @@
+{
+  "Home": {
+    "page_title": "El Qasr Development | Home",
+    "page_description": "El Qasr Development provides premium residential and commercial projects in Egypt.",
+    "og_title": "El Qasr Development",
+    "og_description": "Premium residential and commercial projects in Egypt."
+  },
+  "Navbar": {
+    "logo_alt": "El Qasr Development company logo",
+    "home_link": "Home",
+    "projects_link": "Projects",
+    "about_link": "About",
+    "contact_link": "Contact Us",
+    "admin_link": "ADMIN",
+    "make_email_link": "Make email"
+  },
+  "Footer": {
+    "logo_alt": "Alqasr Logo",
+    "company_name": "ALQASR",
+    "slogan": "Building tomorrow's infrastructure with excellence and innovation.",
+    "services_title": "Services",
+    "services_residential": "Residential",
+    "services_commercial": "Commercial",
+    "contact_title": "Contact",
+    "contact_phone": "+20 1117073033",
+    "contact_email": "Elqasrdevelopment@gmail.com",
+    "contact_address_line1": "Saqafa Street,Obour City",
+    "contact_address_line2": "Cairo, Egypt",
+    "social_title": "Social",
+    "copyright": "© {year} Alqasr RealState. All rights reserved."
+  },
+  "Hero": {
+    "heading": "Building <highlight>Tomorrow's</highlight> Infrastructure",
+    "subheading": "From luxury homes to commercial complexes, we deliver exceptional construction projects that stand the test of time.",
+    "cta_button": "View Our Projects",
+    "image_alt": "Modern construction building"
+  },
+  "Stats": {
+    "projects": "Projects Completed",
+    "experience": "Years Experience",
+    "satisfaction": "Client Satisfaction",
+    "team": "Expert Team"
+  },
+  "AboutSection": {
+    "title": "Why Choose ALQASR?",
+    "description": "With over 5 years of experience in construction, we've built a reputation for excellence, innovation, and reliability. Our team of experts is committed to delivering projects that exceed expectations.",
+    "image_alt": "Construction site",
+    "quality_heading": "Award-Winning Quality",
+    "quality_description": "Recognized for excellence in construction and design innovation.",
+    "delivery_heading": "On-Time Delivery",
+    "delivery_description": "We pride ourselves on completing projects on schedule and within budget.",
+    "safety_heading": "Safety First",
+    "safety_description": "Maintaining the highest safety standards in all our construction projects."
+  },
+  "GallerySlider": {
+    "heading": "Our Projects Gallery",
+    "image_alt": "gallery image",
+    "image_alt_modal": "Preview"
+  },
+  "ContactSection": {
+    "title": "Get In Touch",
+    "subtitle": "Let’s talk real estate — your next chapter starts here.",
+    "call_us": {
+      "title": "Call Us",
+      "description": "Sat-Fri: 10AM-9PM",
+      "content": "+20 1117073033"
+    },
+    "email_us": {
+      "title": "Email Us",
+      "description": "We'll respond within 24 hours",
+      "content": "Elqasrdevelopment@gmail.com"
+    },
+    "visit_us": {
+      "title": "Visit Us",
+      "description": "Sat-Fri: 10AM-9PM",
+      "content": "Saqafa Street, Obour City, Cairo, Egypt"
+    }
+  },
+  "AboutPage": {
+    "page_title": "El Qasr Development | About Us",
+    "meta_description": "El Qasr Development provides premium residential and commercial projects in Egypt.",
+    "hero_title": "About Alqasr RealEstate",
+    "hero_description": "Building tomorrow's infrastructure with over 5 years of expertise, innovation, and unwavering commitment to excellence.",
+    "our_story_title": "Our Story",
+    "our_story_p1": "Alqasr Real Estate Development is one of Egypt’s leading companies in the field of real estate investment and development. The company was founded with a clear vision: to deliver integrated projects that combine quality and innovation, meeting the needs of clients across residential, commercial, and investment sectors.",
+    "our_story_p2": "As a prominent developer in Egypt, Alqasr specializes in residential, commercial, and administrative projects in Obour City and New Cairo. We prioritize strategic locations, modern architectural designs, and flexible payment plans tailored to suit every client.",
+    "our_story_p3": "Today, we're proud to be one of the most trusted construction companies in Egypt, with over 50 completed projects and a reputation built on excellence, reliability and customer satisfaction.",
+    "story_image_alt": "Construction site",
+    "foundation_title": "Our Foundation",
+    "foundation_subtitle": "The principles that guide everything we do",
+    "mission_title": "Our Mission",
+    "mission_content": "To deliver exceptional construction projects that exceed our clients' expectations while contributing to the development of sustainable, beautiful, and functional communities.",
+    "vision_title": "Our Vision",
+    "vision_content": "To be the leading construction company that shapes the future of urban development through innovation, sustainability, and uncompromising quality.",
+    "values_title": "Our Values",
+    "values_content": "Integrity, excellence, innovation and safety guide every decision we make and every project we undertake.",
+    "cta_title": "Let’s Build Value, Not Just Property",
+    "cta_description": "From landmark developments to exclusive residences, we specialize in turning real estate visions into high-return realities. Partner with a team that understands the market, the luxury, and the long game.",
+    "cta_contact_button": "Contact Us Today",
+    "cta_projects_button": "View Our Projects"
+  },
+  "ContactPage": {
+    "page_title": "El Qasr Development | Contact",
+    "meta_description": "El Qasr Development provides premium residential and commercial projects in Egypt.",
+    "hero_title": "Contact Us",
+    "hero_description": "Reach out today to explore Alqasr real estate solutions tailored to your goals — whether you're investing, developing, or searching for your next signature property.",
+    "social_media_title": "Our Social Media",
+    "social_media_description": "Follow us on social media to stay up to date with the latest news and developments.",
+    "facebook_link": "Facebook",
+    "instagram_link": "Instagram",
+    "others_title": "Others",
+    "call_us": {
+      "title": "Call Us",
+      "description": "Sat-Fri: 10AM-9PM",
+      "content": "+20 1117073033"
+    },
+    "email_us": {
+      "title": "Email Us",
+      "description": "We'll respond within 24 hours",
+      "content": "Elqasrdevelopment@gmail.com"
+    },
+    "visit_us": {
+      "title": "Visit Us",
+      "description": "Sat-Fri: 10AM-9PM",
+      "content": "Saqafa Street, Obour City, Cairo, Egypt"
+    }
+  },
+  "SignInPage": {
+    "page_title": "El Qasr Development | Signin",
+    "meta_description": "El Qasr Development provides premium residential and commercial projects in Egypt.",
+    "og_title": "El Qasr Development",
+    "og_description": "Premium residential and commercial projects in Egypt.",
+    "image_alt": "Admin Login",
+    "form_heading": "Sign In As Admin",
+    "email_placeholder": "Email",
+    "password_placeholder": "Password",
+    "sign_in_button": "Sign In"
+  },
+  "SignUpPage": {
+    "page_title": "El Qasr Development | Sign up",
+    "meta_description": "El Qasr Development provides premium residential and commercial projects in Egypt.",
+    "image_alt": "Admin Logo",
+    "form_heading": "Sign Up As Admin",
+    "full_name_placeholder": "Full Name",
+    "email_placeholder": "Email",
+    "password_placeholder": "Password",
+    "sign_up_button": "Sign Up",
+    "error_failed_to_signup": "Failed to sign up",
+    "error_something_went_wrong": "Something went wrong"
+  },
+  "AdminPage": {
+    "add_project_button": "Add Project",
+    "add_project_title": "Add a New Project",
+    "add_project_description": "Fill out the details to add a new project to your portfolio.",
+    "title_label": "Title",
+    "location_label": "Location",
+    "description_label": "Description",
+    "features_label": "Features",
+    "add_feature_button": "Add Feature",
+    "type_label": "Type",
+    "status_label": "Status",
+    "completion_date_label": "Completion Date",
+    "images_label": "Images",
+    "cancel_button": "Cancel",
+    "adding_button": "Adding...",
+    "add_project_submit_button": "Add Project",
+    "validation_error_message": "Please fill out all required fields.",
+    "add_error_message": "Failed to add project. Please try again.",
+    "add_success_message": "Project added successfully!",
+    "all_filter": "All",
+    "completed_filter": "Completed",
+    "in-progress_filter": "in-progress",
+    "planning_filter": "Planning",
+    "residential_filter": "Residential",
+    "commercial_filter": "Commercial",
+    "previous_button": "Previous",
+    "next_button": "Next",
+    "page_indicator": "Page {currentPage} of {totalPages}",
+    "page_title": "Admin Page",
+    "meta_description": "Admin page",
+    "load_error": "there is error in loading projects",
+    "project_types": {
+      "residential": "Residential",
+      "commercial": "Commercial"
+    },
+    "project_statuses": {
+      "completed": "Completed",
+      "in-progress": "In-progress",
+      "planning": "Planning"
+    }
+  },
+  "ProjectCard": {
+    "confirm_delete": "Are you sure you want to delete this project? This action cannot be undone.",
+    "edit_project_title": "Edit Project",
+    "title_label": "Title",
+    "location_label": "Location",
+    "status_label": "Status",
+    "description_label": "Description",
+    "completion_date_label": "Completion Date",
+    "features_label": "Features",
+    "add_feature_button": "Add",
+    "saving_button": "Saving...",
+    "save_button": "Save",
+    "cancel_button": "Cancel",
+    "delete_button": "Delete",
+    "view_details_button": "View Details",
+    "completed_label": "Completed",
+    "residential_type": "Residential",
+    "commercial_type": "Commercial",
+    "planning_status": "Planning",
+    "in_progress_status": "In Progress",
+    "completed_status": "Completed",
+    "planning_status_ar": "مخطط له",
+    "in_progress_status_ar": "قيد الإنشاء",
+    "completed_status_ar": "مكتمل",
+    "feature_en_placeholder": "Enter English feature",
+    "feature_ar_placeholder": "أدخل ميزة باللغة العربية",
+    "upload_new_images_label": "Upload New Images",
+    "edit_button": "Edit"
+  },
+  "ProjectsPage": {
+    "page_title": "Our Projects",
+    "meta_description": "Elqasr Projects",
+    "og_title": "Elqasr Projects.",
+    "og_description": "See Our Projects and Contact us.",
+    "hero_title": "Our Projects",
+    "hero_description": "Discover our comprehensive portfolio of construction projects, from luxury residential developments to state-of-the-art commercial complexes.",
+    "all_filter": "All",
+    "residential_filter": "Residential",
+    "commercial_filter": "Commercial",
+    "completed_filter": "Completed",
+    "in_progress_filter": "in-progress",
+    "planning_filter": "Planning",
+    "load_error": "Error While Loading Projects",
+    "previous_button": "Previous",
+    "page_indicator": "Page {currentPage} of {totalPages}",
+    "next_button": "Next"
+  }
+}

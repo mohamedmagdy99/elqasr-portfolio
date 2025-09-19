@@ -1,9 +1,19 @@
+// components/AboutSection/AboutSection.tsx
+'use client'; // Make it a client component
+
 import * as motion from "motion/react-client";
 import { Award,Clock,Shield } from 'lucide-react';
 import Image from 'next/image';
 import constructionSite from "@/public/Construction-site.jpeg";
+import { useTranslations } from "next-intl"; // Import client-side translation hook
+import { useLocale } from "next-intl"; // Import client-side locale hook
 
 const AboutSection = () => {
+    const t = useTranslations('AboutSection'); // Get translations for this section
+    const locale = useLocale();
+    const isRtl = locale === 'ar';
+
+    // Conditional animation based on locale
     const slideInLeft = {
         initial: { opacity: 0, x: -60 },
         animate: { opacity: 1, x: 0 },
@@ -26,27 +36,31 @@ const AboutSection = () => {
         animate: { opacity: 1, x: 0 },
         transition: { duration: 0.7, ease: "easeOut" }
     };
+
+    // Apply conditional flexbox class
+    const flexDirectionClass = isRtl ? 'lg:flex-row-reverse' : 'lg:flex-row';
+
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" dir={isRtl ? 'rtl' : 'ltr'}>
+            <div className={`grid lg:grid-cols-2 gap-12 items-center ${flexDirectionClass}`}>
                 <motion.div
                     initial="initial"
                     whileInView="animate"
                     viewport={{ once: true }}
-                    variants={slideInLeft}
+                    variants={isRtl ? slideInRight : slideInLeft} // Adjust animation for RTL
                 >
                     <motion.h2
                         className="text-4xl font-bold text-gray-900 mb-6"
                         variants={fadeInUp}
                     >
-                        Why Choose ALQASR?
+                        {t('title')}
                     </motion.h2>
                     <motion.p
                         className="text-lg text-gray-600 mb-8"
                         variants={fadeInUp}
                         transition={{ delay: 0.1 }}
                     >
-                        With over 5 years of experience in construction, {"we've "} built a reputation for excellence, innovation, and reliability. Our team of experts is committed to delivering projects that exceed expectations.
+                        {t('description')}
                     </motion.p>
                     <motion.div
                         className="space-y-6"
@@ -59,8 +73,8 @@ const AboutSection = () => {
                         >
                             <Award className="w-6 h-6 text-blue-600 mt-1" />
                             <div>
-                                <h3 className="font-semibold text-gray-900 mb-2">Award-Winning Quality</h3>
-                                <p className="text-gray-600">Recognized for excellence in construction and design innovation.</p>
+                                <h3 className="font-semibold text-gray-900 mb-2">{t('quality_heading')}</h3>
+                                <p className="text-gray-600">{t('quality_description')}</p>
                             </div>
                         </motion.div>
                         <motion.div
@@ -70,8 +84,8 @@ const AboutSection = () => {
                         >
                             <Clock className="w-6 h-6 text-blue-600 mt-1" />
                             <div>
-                                <h3 className="font-semibold text-gray-900 mb-2">On-Time Delivery</h3>
-                                <p className="text-gray-600">We pride ourselves on completing projects on schedule and within budget.</p>
+                                <h3 className="font-semibold text-gray-900 mb-2">{t('delivery_heading')}</h3>
+                                <p className="text-gray-600">{t('delivery_description')}</p>
                             </div>
                         </motion.div>
 
@@ -82,8 +96,8 @@ const AboutSection = () => {
                         >
                             <Shield className="w-6 h-6 text-blue-600 mt-1" />
                             <div>
-                                <h3 className="font-semibold text-gray-900 mb-2">Safety First</h3>
-                                <p className="text-gray-600">Maintaining the highest safety standards in all our construction projects.</p>
+                                <h3 className="font-semibold text-gray-900 mb-2">{t('safety_heading')}</h3>
+                                <p className="text-gray-600">{t('safety_description')}</p>
                             </div>
                         </motion.div>
                     </motion.div>
@@ -92,17 +106,17 @@ const AboutSection = () => {
                     initial="initial"
                     whileInView="animate"
                     viewport={{ once: true }}
-                    variants={slideInRight}
+                    variants={isRtl ? slideInLeft : slideInRight} // Adjust animation for RTL
                 >
                     <motion.div
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <Image src={constructionSite} alt="Construction site" loading="lazy" style={{ borderRadius: '1rem', boxShadow:'0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04)', width:"100%", height:"24rem"}}/>
+                        <Image src={constructionSite} alt={t('image_alt')} loading="lazy" style={{ borderRadius: '1rem', boxShadow:'0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04)', width:"100%", height:"24rem"}}/>
                     </motion.div>
                 </motion.div>
             </div>
         </div>
     )
 }
-export default AboutSection
+export default AboutSection;
