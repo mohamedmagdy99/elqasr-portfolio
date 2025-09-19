@@ -34,36 +34,26 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
     const locale = useLocale();
 
-    // @typescript-eslint/no-explicit-any
-    const getLocalizedString = (field: any) => {
-        if (!field && field !== 0) return "";
-        if (typeof field === "string") return field;
-        if (field[locale]) return field[locale];
-        if (field.en) return field.en;
-        try {
-            return String(field);
-        } catch {
-            return "";
-        }
+    type MultiLangField = { en: string; ar: string } | string | null | undefined;
+
+    const getLocalizedString = (field: MultiLangField, locale: 'en' | 'ar'): string => {
+        if (!field) return ''; // no need to check for 0
+        if (typeof field === 'string') return field;
+        if ('en' in field && 'ar' in field) return field[locale] || field.en;
+        return String(field);
     };
-    //@typescript-eslint/no-explicit-any
-    const formatStatus = (statusField: any) => {
-        const raw = (getLocalizedString(statusField) || "").toLowerCase();
+    const formatStatus = (statusField: MultiLangField, locale: 'en' | 'ar'): string => {
+        const raw = (getLocalizedString(statusField, locale) || '').toLowerCase();
 
-        if (!raw) return "";
-        if (raw.includes("complete"))
-            return locale === "en" ? "Completed" : "مكتمل";
-        if (
-            raw.includes("in-progress") ||
-            raw.includes("in progress") ||
-            raw.includes("progress")
-        ) {
-            return locale === "en" ? "In Progress" : "تحت الانشاء";
+        if (!raw) return '';
+
+        if (raw.includes('complete')) return locale === 'en' ? 'Completed' : 'مكتمل';
+        if (raw.includes('in-progress') || raw.includes('in progress') || raw.includes('progress')) {
+            return locale === 'en' ? 'In Progress' : 'تحت الانشاء';
         }
-        if (raw.includes("plan") || raw.includes("planning"))
-            return locale === "en" ? "Planning" : "مخطط";
+        if (raw.includes('plan') || raw.includes('planning')) return locale === 'en' ? 'Planning' : 'مخطط';
 
-        return getLocalizedString(statusField);
+        return getLocalizedString(statusField, locale);
     };
 
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
@@ -96,6 +86,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
             (prev) => (prev - 1 + project.image.length) % project.image.length
         );
     };
+    const currentLocale: 'en' | 'ar' = locale === 'ar' ? 'ar' : 'en';
 
     return (
         <>
@@ -191,7 +182,9 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                         >
                             <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
                                 <div className="flex items-center gap-3 mb-4">
-                                    <Badge variant="default">{formatStatus(project.status)}</Badge>
+                                    <Badge variant="default">
+                                        {formatStatus(project.status, currentLocale)}
+                                    </Badge>
                                     <Badge variant="outline">
                                         {project?.type === "residential" ? (
                                             <>
@@ -207,11 +200,11 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                                     </Badge>
                                 </div>
                                 <h1 className="text-2xl font-bold text-gray-900 mb-2">
-                                    {getLocalizedString(project.title)}
+                                    {getLocalizedString(project.title, currentLocale)}
                                 </h1>
                                 <div className="flex items-center text-gray-600 mb-2">
                                     <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
-                                    {getLocalizedString(project.location)}
+                                    {getLocalizedString(project.location, currentLocale)}
                                 </div>
                                 {project?.completionDate && (
                                     <div className="flex items-center text-gray-600">
@@ -247,7 +240,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                                     </h2>
                                     <div className="prose prose-lg max-w-none">
                                         <p className="text-gray-600 leading-relaxed mb-6 whitespace-pre-wrap break-words">
-                                            {getLocalizedString(project.description)}
+                                            {getLocalizedString(project.description, currentLocale)}
                                         </p>
                                     </div>
                                 </motion.div>
