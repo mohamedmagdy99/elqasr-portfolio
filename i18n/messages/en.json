@@ -123,6 +123,15 @@
       "title": "Visit Us",
       "description": "Sat-Fri: 10AM-9PM",
       "content": "Saqafa Street, Obour City, Cairo, Egypt"
+    },
+    "contact_us_title": "Contact Request",
+    "form":{
+        "name":"Full Name",
+        "email":"Email Address",
+        "number":"Phone Number",
+        "submit":"Submit",
+        "success_message": "Your message has been sent successfully!",
+        "error_message": "There was an error sending your message. Please try again later."
     }
   },
   "SignInPage": {

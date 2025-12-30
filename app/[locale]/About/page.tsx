@@ -51,7 +51,6 @@ const Page = () => {
         }
     };
 
-    // Conditional animation based on locale
     const slideInContentVariants = isRtl ? slideInRight : slideInLeft;
     const slideInImageVariants = isRtl ? slideInLeft : slideInRight;
 
