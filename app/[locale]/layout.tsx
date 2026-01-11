@@ -23,11 +23,6 @@ const geistMono = Geist_Mono({
     style: "normal",
 });
 
-export const metadata: Metadata = {
-    title: "ALQASR REAL ESTATE DEVELOPMENT",
-    description: "this is an offical website for alqasr real estate development.",
-};
-
 export default async function RootLayout({
                                              children,
                                              params,
@@ -54,48 +49,50 @@ export default async function RootLayout({
     const isRtl = locale === 'ar';
 
     return (
-        <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} className={`${geistSans.className} ${geistMono.className}`}>
+      <html
+        lang={locale}
+        dir={isRtl ? "rtl" : "ltr"}
+        className={`${geistSans.className} ${geistMono.className}`}
+      >
         <head>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "Organization",
-                        "name": "El Qasr Development",
-                        "url": "https://elqasr-development.com",
-                        "logo": "https://realestate-gallery.s3.eu-central-1.amazonaws.com/projects/elqasr-logo.png"
-                    })
-                }}
-            />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: "El Qasr Development",
+                url: "https://elqasr-development.com",
+                logo: "https://realestate-gallery.s3.eu-central-1.amazonaws.com/projects/elqasr-logo.png",
+              }),
+            }}
+          />
         </head>
         <body className="antialiased">
-        <TanstackProvider dehydratedState={undefined}>
+          <TanstackProvider dehydratedState={undefined}>
             <NextAuthProvider>
-                {/* ✅ Correctly pass the locale and messages to the provider. 
+              {/* ✅ Correctly pass the locale and messages to the provider. 
                   This is the key step to making client components reactive.
                 */}
-                <NextIntlClientProvider locale={locale} messages={messages}>
-                    {/* ✅ Navbar now inside SessionProvider */}
-                    <nav className="sticky top-0 bg-white shadow-sm md:border-b border-gray-300 z-50">
-                        <Navbar />
-                    </nav>
-                    {/* ✅ Page content */}
-                    {children}
-                    {/* ✅ Footer also inside provider */}
-                    <motion.footer
-                        className="bg-gray-900 text-white py-12"
-                        initial="initial"
-                        whileInView="animate"
-                        viewport={{ once: true }}
-                        variants={fadeIn}
-                    >
-                        <Footer />
-                    </motion.footer>
-                </NextIntlClientProvider>
+              <NextIntlClientProvider locale={locale} messages={messages}>
+                {/* ✅ Navbar now inside SessionProvider */}
+                  <Navbar />
+                {/* ✅ Page content */}
+                {children}
+                {/* ✅ Footer also inside provider */}
+                <motion.footer
+                  className="bg-gray-900 text-white py-12"
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true }}
+                  variants={fadeIn}
+                >
+                  <Footer />
+                </motion.footer>
+              </NextIntlClientProvider>
             </NextAuthProvider>
-        </TanstackProvider>
+          </TanstackProvider>
         </body>
-        </html>
+      </html>
     );
 }

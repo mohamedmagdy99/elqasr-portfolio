@@ -29,7 +29,7 @@ export const getAllProjects = async ({
     if (type) params.append("type", type);
 
     const res = await fetch(
-        `https://api.elqasr-development.com/api/projects?${params.toString()}`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects?${params.toString()}`
     );
     const json = await res.json();
 
@@ -45,8 +45,8 @@ export const getAllProjects = async ({
 export const getSingleProject = async (id: string) => {
     try {
         const res = await fetch(
-            `https://api.elqasr-development.com/api/projects/${id}`,
-            { cache: "no-store" }
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/${id}`,
+          { cache: "no-store" }
         );
 
         if (!res.ok) throw new Error(`Failed to fetch project: ${res.status}`);
@@ -71,13 +71,13 @@ export const CreateProject = async (formData: FormData) => {
     const token = session?.user?.token;
     if (!token) throw new Error("No token found in session");
 
-    const res = await fetch("https://api.elqasr-development.com/api/projects", {
-        method: "POST",
-        body: formData,
-        headers: {
-            Authorization: `Bearer ${session.user.token}`,
-        },
-        credentials: "include",
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/projects`, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${session.user.token}`,
+      },
+      credentials: "include",
     });
     console.log("Fetch called");
     if (!res.ok) {
@@ -88,38 +88,47 @@ export const CreateProject = async (formData: FormData) => {
     return res.json();
 };
 export const UpdateProject = async (id: string, formData: FormData) => {
-    const session = await getSession();
-    const token = session?.user?.token;
+  const session = await getSession();
+  const token = session?.user?.token;
 
-    if (!token) throw new Error("No token found in session");
+  if (!token) throw new Error("No token found in session");
 
-    const res = await fetch(`https://api.elqasr-development.com/api/projects/${id}`, { // ✅ include ID in URL
-        method: "PUT",
-        body: formData,
-        headers: {
-            Authorization: `Bearer ${token}`, // use token here
-        },
-        credentials: "include",
-    });
-
-    if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(`Failed to update project: ${res.status} ${JSON.stringify(errorData)}`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/${id}`,
+    {
+      // ✅ include ID in URL
+      method: "PUT",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${token}`, // use token here
+      },
+      credentials: "include",
     }
+  );
 
-    return res.json();
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(
+      `Failed to update project: ${res.status} ${JSON.stringify(errorData)}`
+    );
+  }
+
+  return res.json();
 };
 export const DeleteProject = async (id: string) => {
     const session = await getSession();
     const token = session?.user?.token;
     if (!token) throw new Error("No token found in session");
-    const res = await fetch(`https://api.elqasr-development.com/api/projects/${id}`, {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/${id}`,
+      {
         method: "DELETE",
         headers: {
-            Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         credentials: "include",
-    });
+      }
+    );
     if (!res.ok) {
         const errorData = await res.json();
         throw new Error(`Failed to delete project: ${res.status} ${JSON.stringify(errorData)}`);

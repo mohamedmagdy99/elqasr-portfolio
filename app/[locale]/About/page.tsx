@@ -51,7 +51,6 @@ const Page = () => {
         }
     };
 
-    // Conditional animation based on locale
     const slideInContentVariants = isRtl ? slideInRight : slideInLeft;
     const slideInImageVariants = isRtl ? slideInLeft : slideInRight;
 
@@ -63,7 +62,7 @@ const Page = () => {
                 <meta name="robots" content="index, follow" />
             </Head>
             <div className="min-h-screen bg-white" dir={isRtl ? 'rtl' : 'ltr'}>
-                <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+                <section className="bg-gradient-to-br from-blue-50 to-indigo-100">
                     <Hero title={t('hero_title')} description={t('hero_description')}/>
                 </section>
                 <section className="py-20">

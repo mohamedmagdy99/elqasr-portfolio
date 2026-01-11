@@ -243,6 +243,9 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                                             {getLocalizedString(project.description, currentLocale)}
                                         </p>
                                     </div>
+                                    <div className="flex items-center space-x-6 mt-8 text-gray-700">
+                                        {locale === "en" ? "Bedrooms:" : "الغرف:"} {project.bedrooms} | {locale === "en" ? "Bathrooms:" : "الحمامات:"} {project.bathrooms} | {locale === "en" ? "Area:" : "المساحة:"} {project.area} m²
+                                    </div>
                                 </motion.div>
 
                                 <Separator className="my-8" />
