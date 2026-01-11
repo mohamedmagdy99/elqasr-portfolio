@@ -12,11 +12,14 @@
     "about_link": "About",
     "contact_link": "Contact Us",
     "admin_link": "ADMIN",
-    "make_email_link": "Make email"
+    "make_email_link": "Make email",
+    "brand_name": "ELQASR REALSTATE DEVELOPMENT",
+    "old-projects_link": "Old Projects",
+    "logout_text": "Logout"
   },
   "Footer": {
-    "logo_alt": "Alqasr Logo",
-    "company_name": "ALQASR",
+    "logo_alt": "Elqasr Logo",
+    "company_name": "ELQASR",
     "slogan": "Building tomorrow's infrastructure with excellence and innovation.",
     "services_title": "Services",
     "services_residential": "Residential",
@@ -27,7 +30,7 @@
     "contact_address_line1": "Saqafa Street,Obour City",
     "contact_address_line2": "Cairo, Egypt",
     "social_title": "Social",
-    "copyright": "© {year} Alqasr RealState. All rights reserved."
+    "copyright": "© {year} Elqasr RealState. All rights reserved."
   },
   "Hero": {
     "heading": "Building <highlight>Tomorrow's</highlight> Infrastructure",
@@ -42,7 +45,7 @@
     "team": "Expert Team"
   },
   "AboutSection": {
-    "title": "Why Choose ALQASR?",
+    "title": "Why Choose ELQASR?",
     "description": "With over 5 years of experience in construction, we've built a reputation for excellence, innovation, and reliability. Our team of experts is committed to delivering projects that exceed expectations.",
     "image_alt": "Construction site",
     "quality_heading": "Award-Winning Quality",
@@ -79,11 +82,11 @@
   "AboutPage": {
     "page_title": "El Qasr Development | About Us",
     "meta_description": "El Qasr Development provides premium residential and commercial projects in Egypt.",
-    "hero_title": "About Alqasr RealEstate",
+    "hero_title": "About Elqasr RealEstate",
     "hero_description": "Building tomorrow's infrastructure with over 5 years of expertise, innovation, and unwavering commitment to excellence.",
     "our_story_title": "Our Story",
-    "our_story_p1": "Alqasr Real Estate Development is one of Egypt’s leading companies in the field of real estate investment and development. The company was founded with a clear vision: to deliver integrated projects that combine quality and innovation, meeting the needs of clients across residential, commercial, and investment sectors.",
-    "our_story_p2": "As a prominent developer in Egypt, Alqasr specializes in residential, commercial, and administrative projects in Obour City and New Cairo. We prioritize strategic locations, modern architectural designs, and flexible payment plans tailored to suit every client.",
+    "our_story_p1": "Elqasr Real Estate Development is one of Egypt’s leading companies in the field of real estate investment and development. The company was founded with a clear vision: to deliver integrated projects that combine quality and innovation, meeting the needs of clients across residential, commercial, and investment sectors.",
+    "our_story_p2": "As a prominent developer in Egypt, Elqasr specializes in residential, commercial, and administrative projects in Obour City and New Cairo. We prioritize strategic locations, modern architectural designs, and flexible payment plans tailored to suit every client.",
     "our_story_p3": "Today, we're proud to be one of the most trusted construction companies in Egypt, with over 50 completed projects and a reputation built on excellence, reliability and customer satisfaction.",
     "story_image_alt": "Construction site",
     "foundation_title": "Our Foundation",
@@ -103,7 +106,7 @@
     "page_title": "El Qasr Development | Contact",
     "meta_description": "El Qasr Development provides premium residential and commercial projects in Egypt.",
     "hero_title": "Contact Us",
-    "hero_description": "Reach out today to explore Alqasr real estate solutions tailored to your goals — whether you're investing, developing, or searching for your next signature property.",
+    "hero_description": "Reach out today to explore Elqasr real estate solutions tailored to your goals — whether you're investing, developing, or searching for your next signature property.",
     "social_media_title": "Our Social Media",
     "social_media_description": "Follow us on social media to stay up to date with the latest news and developments.",
     "facebook_link": "Facebook",
@@ -177,9 +180,8 @@
     "add_error_message": "Failed to add project. Please try again.",
     "add_success_message": "Project added successfully!",
     "all_filter": "All",
-    "completed_filter": "Completed",
-    "in-progress_filter": "in-progress",
-    "planning_filter": "Planning",
+    "available_filter": "Available",
+    "sold_filter": "Sold",
     "residential_filter": "Residential",
     "commercial_filter": "Commercial",
     "previous_button": "Previous",

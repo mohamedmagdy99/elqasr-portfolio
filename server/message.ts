@@ -1,6 +1,6 @@
 export const sendMessage = async (formData: FormData) => {
        const res = await fetch(
-         "https://hooks.zapier.com/hooks/catch/25867827/uwul3yq/",
+         `${process.env.Zapier_URL}`,
          {
            method: "POST",
            mode: "cors",

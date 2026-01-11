@@ -12,7 +12,10 @@
     "about_link": "من نحن",
     "contact_link": "اتصل بنا",
     "admin_link": "الادارة",
-    "make_email_link": "إنشاء بريد إلكتروني"
+    "make_email_link": "إنشاء بريد إلكتروني",
+    "brand_name": "القصر للتطوير العقاري",
+    "old-projects_link": "سابقة الأعمال",
+    "logout_text": "تسجيل الخروج"
   },
   "Footer": {
     "logo_alt": "شعار القصر",
@@ -168,9 +171,8 @@
     "add_error_message": "فشل في إضافة المشروع. يرجى المحاولة مرة أخرى.",
     "add_success_message": "تمت إضافة المشروع بنجاح!",
     "all_filter": "جميع المشاريع",
-    "completed_filter": "المشاريع المنتهية",
-    "in-progress_filter": "المشاريع الجاري العمل بها",
-    "planning_filter": "المشاريع الجاري التخطيط لها",
+    "available_filter": "المشاريع المتاحة",
+    "sold_filter": "المشاريع المباعة",
     "residential_filter": "سكني",
     "commercial_filter": "تجاري ",
     "previous_button": "السابق",

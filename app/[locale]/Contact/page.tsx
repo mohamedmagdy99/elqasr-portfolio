@@ -41,13 +41,13 @@ const Page = () => {
         <meta name="robots" content="index, follow" />
       </Head>
       <div className="min-h-screen bg-white" dir={isRtl ? "rtl" : "ltr"}>
-        <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+        <section className="bg-gradient-to-br from-blue-50 to-indigo-100">
           <Hero title={t("hero_title")} description={t("hero_description")} />
         </section>
         <section>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4448.410790932664!2d31.445029975560605!3d30.22549257483291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzDCsDEzJzMxLjgiTiAzMcKwMjYnNTEuNCJF!5e1!3m2!1sen!2seg!4v1767116358813!5m2!1sen!2seg"
-            className="w-screen h-200"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4448.409057351145!2d31.447713099999998!3d30.2255309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14581bcc8d981fa1%3A0x4bd1ae724e049427!2sEl%20Qasr%20Developments!5e1!3m2!1sen!2seg!4v1767265873615!5m2!1sen!2seg"
+            className="w-full h-200"
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
@@ -104,9 +104,8 @@ const Page = () => {
         </section>
         <section>
           <iframe
-            src="https://forms.form-data.com/c0XrU0E78Do6vM"
+            src={process.env.NEXT_PUBLIC_CONTACT_FORM_URL}
             className="w-full h-[700px] rounded-lg border shadow-sm"
-            frameBorder="0"
             loading="lazy"
           />
         </section>
