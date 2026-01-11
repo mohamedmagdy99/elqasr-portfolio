@@ -2,50 +2,40 @@
 
 import { useQuery } from "@tanstack/react-query";
 import * as motion from "motion/react-client";
-import { ProjectCard  } from "@components/ProjectCard/ProjectCard";
+import { ProjectCard } from "@components/ProjectCard/ProjectCard";
 import { Spinner } from "@/components/ui/shadcn-io/spinner";
 import { getAllProjects } from "@/server/Projects";
 import React, { useMemo } from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Building2,
-  AlertCircle,
-  MapPin,
-  Home,
-  ArrowUpRight,
-  Loader2,
-} from "lucide-react";
+import { AlertCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useLocale } from "next-intl"; // ✅ ensure you're using next-intl
+import { useLocale } from "next-intl";
 
 // ---- Types ----
-type LocalizedStringArray = {
-  en: string[];
-  ar: string[];
+type LocalizedString = {
+  en: string;
+  ar: string;
 };
 
 type Project = {
   _id: string;
-  title: { en: string; ar: string };
-  description: { en: string; ar: string };
-  status: { en: string; ar: string };
-  location: { en: string; ar: string };
-  features: LocalizedStringArray; // 👈 fix here
+  title: LocalizedString;
+  description: LocalizedString;
+  status: LocalizedString;
+  location: LocalizedString;
   type: "Residential" | "Commercial";
-  completionDate?: string;
   image: string[];
 };
+
 type ProjectFromApi = {
   _id: string;
-  title: string;
+  title: string; // JSON string or raw string
   description: string;
   status: string;
   location: string;
-  features?: string[]; // raw JSON strings
-  type: "Residential" | "Commercial";
-  completionDate?: string;
+  type?: "Residential" | "Commercial";
   image: string[];
 };
+
 const FeaturedProjects = () => {
   const router = useRouter();
   const locale = useLocale();
@@ -56,23 +46,23 @@ const FeaturedProjects = () => {
     staleTime: 1000 * 60 * 50,
   });
 
-  // cast API response shape
-  const typedData = data as { data: ProjectFromApi[] };
-
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6, ease: "easeOut" },
   };
-  const processedProjects = useMemo(() => {
-    const rawData = (data as any)?.data || [];
 
-    return rawData.map((p: any) => {
-      const safeParse = (val: any) => {
+  const processedProjects = useMemo(() => {
+    // Cast the raw query data to the expected API response structure
+    const rawData = (data as { data: ProjectFromApi[] })?.data || [];
+
+    return rawData.map((p: ProjectFromApi): Project => {
+      const safeParse = (val: string): LocalizedString => {
         if (typeof val !== "string") return val;
         try {
           return JSON.parse(val);
-        } catch (e) {
+        } catch {
+          // Fallback if the string isn't valid JSON
           return { en: val, ar: val };
         }
       };
@@ -88,6 +78,7 @@ const FeaturedProjects = () => {
       };
     });
   }, [data]);
+
   const staggerContainer = {
     animate: {
       transition: {
@@ -100,7 +91,11 @@ const FeaturedProjects = () => {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-red-500">
         <AlertCircle size={48} className="mb-4" />
-        <p className="text-lg font-medium">{locale === "en" ? "Failed to load projects" : "فشل في تحميل المشاريع"}</p>
+        <p className="text-lg font-medium">
+          {locale === "en"
+            ? "Failed to load projects"
+            : "فشل في تحميل المشاريع"}
+        </p>
       </div>
     );
   }
@@ -118,7 +113,9 @@ const FeaturedProjects = () => {
           {locale === "en" ? "Our Featured Projects" : "مشاريعنا المميزة"}
         </h2>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          {locale === "en" ? "Explore our portfolio of exceptional construction projects." : "استكشف مشاريعنا الاستثنائية في مجال البناء"}
+          {locale === "en"
+            ? "Explore our portfolio of exceptional construction projects."
+            : "استكشف مشاريعنا الاستثنائية في مجال البناء"}
         </p>
       </motion.div>
 
@@ -134,7 +131,7 @@ const FeaturedProjects = () => {
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          {processedProjects.map((project: any) => (
+          {processedProjects.map((project: Project) => (
             <motion.div key={project._id} variants={fadeInUp}>
               <ProjectCard {...project} />
             </motion.div>

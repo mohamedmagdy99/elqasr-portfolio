@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Card,
   CardHeader,
@@ -262,7 +262,8 @@ const { data: mainProjectsData } = useQuery({
 
         <CardContent className="flex-grow pt-0">
           <p className="text-gray-600 leading-relaxed line-clamp-3 text-sm italic">
-            "{description[locale]}"
+            {/* 2. Fixed unescaped entities by using {` `} or entity codes */}
+            &ldquo;{description[locale]}&rdquo;
           </p>
           <div className="flex items-center gap-4 mt-4">
             {bedrooms !== undefined && (

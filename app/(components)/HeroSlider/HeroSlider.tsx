@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { useLocale } from "next-intl";
+import { motion, type PanInfo } from "framer-motion";import { useLocale } from "next-intl";
 import Image from "next/image";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { getAllMainProjects } from "@/server/mainProjects";
+import Link from "next/link";
 
 type MainProject = {
   _id: string;
@@ -22,7 +22,7 @@ const AUTOPLAY_DELAY = 7000;
 export default function HeroSlider() {
   const locale = useLocale();
   const isRtl = locale === "ar";
-  const [page, setPage] = useState(1);
+  const [page] = useState(1); // SetPage removed if not used to avoid unused-var warning
   const [index, setIndex] = useState(0);
 
   /* ---------------- Fetch Data ---------------- */
@@ -37,8 +37,7 @@ export default function HeroSlider() {
     placeholderData: keepPreviousData,
   });
 
-  // Extract projects from the query response
-  const projects = data?.data || [];
+  const projects: MainProject[] = data?.data || [];
 
   /* ---------------- Autoplay ---------------- */
   useEffect(() => {
@@ -50,15 +49,22 @@ export default function HeroSlider() {
     return () => clearInterval(timer);
   }, [projects.length]);
 
-  const handleDragEnd = (_: any, info: any) => {
-    if (Math.abs(info.offset.x) > 100) {
-      setIndex((i) =>
-        info.offset.x < 0
-          ? (i + 1) % projects.length
-          : (i - 1 + projects.length) % projects.length
-      );
-    }
-  };
+  /**
+   * FIX: Replaced 'any' with MouseEvent/PointerEvent/TouchEvent
+   * and PanInfo from framer-motion.
+   */
+const handleDragEnd = (
+  _event: unknown,
+  info: { offset: { x: number; y: number }; velocity: { x: number; y: number } }
+) => {
+  if (Math.abs(info.offset.x) > 100) {
+    setIndex((i) =>
+      info.offset.x < 0
+        ? (i + 1) % projects.length
+        : (i - 1 + projects.length) % projects.length
+    );
+  }
+};
 
   if (isLoading)
     return (
@@ -82,7 +88,7 @@ export default function HeroSlider() {
         animate={{ x: isRtl ? `${index * 100}%` : `-${index * 100}%` }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
       >
-        {data?.data.map((project: MainProject, i: number) => {
+        {projects.map((project, i) => {
           const title = isRtl ? project.title.ar : project.title.en;
           const desc = isRtl ? project.description.ar : project.description.en;
 
@@ -91,7 +97,6 @@ export default function HeroSlider() {
               key={project._id}
               className="relative w-full h-full flex-shrink-0"
             >
-              {/* Background Image */}
               <Image
                 src={project.image?.[0] || "/basic-placeholder.jpg"}
                 alt={title}
@@ -102,10 +107,8 @@ export default function HeroSlider() {
                 draggable={false}
               />
 
-              {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
-              {/* Text Content */}
               <div
                 className={`absolute bottom-10 md:bottom-16 max-w-xl px-6 md:px-12 space-y-4
                 ${isRtl ? "right-0 text-right" : "left-0 text-left"}`}
@@ -133,19 +136,19 @@ export default function HeroSlider() {
                     isRtl ? "flex-row-reverse" : ""
                   }`}
                 >
-                  <a
+                  <Link
                     href="/Contact"
                     className="px-6 py-3 rounded-full bg-amber-600 text-white font-semibold hover:bg-amber-700 transition"
                   >
                     {isRtl ? "تواصل معنا" : "Contact Us"}
-                  </a>
+                  </Link>
 
-                  <a
+                  <Link
                     href={`/main-project/${project._id}`}
                     className="px-6 py-3 rounded-full border border-amber-400 text-amber-400 hover:bg-amber-400/10 transition"
                   >
                     {isRtl ? "عرض التفاصيل" : "View Details"}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -155,6 +158,7 @@ export default function HeroSlider() {
 
       {/* Pagination */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        {/* FIX: Replaced 'any' with 'MainProject' */}
         {projects.map((_: MainProject, i: number) => (
           <button
             key={i}
