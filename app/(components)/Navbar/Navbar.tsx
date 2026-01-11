@@ -201,26 +201,29 @@ export default function Navbar() {
 
                     {/* RESTORED: Admin Mobile Link */}
                     {isAdmin && (
-                      <li className="pt-6 border-t border-slate-100">
-                        <Link
-                          href="/Admin"
-                          className="text-2xl font-bold text-blue-600"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          {t("admin_link")}
-                        </Link>
-                      </li>
+                      <div>
+                        <li className="pt-6 border-t border-slate-100">
+                          <Link
+                            href="/Admin"
+                            className="text-2xl font-bold text-blue-600"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {t("admin_link")}
+                          </Link>
+                        </li>
+                        <li className="pt-6 border-t border-slate-100">
+                          <button
+                            onClick={() => signOut()}
+                            className="mt-6 flex items-center gap-3 w-full p-4 bg-slate-100 text-slate-900 rounded-xl font-medium hover:bg-slate-200 transition-colors"
+                          >
+                            <LogOut size={18} /> {t("logout_text") || "Logout"}
+                          </button>
+                        </li>
+                      </div>
                     )}
                   </ul>
-
                   <div className="mt-auto pt-10 border-t border-slate-100">
                     <LanguageSwitcher />
-                    <button
-                      onClick={() => signOut()}
-                      className="mt-6 flex items-center gap-3 w-full p-4 bg-slate-100 text-slate-900 rounded-xl font-medium hover:bg-slate-200 transition-colors"
-                    >
-                      <LogOut size={18} /> {t("logout_text") || "Logout"}
-                    </button>
                   </div>
                 </div>
               </motion.div>
