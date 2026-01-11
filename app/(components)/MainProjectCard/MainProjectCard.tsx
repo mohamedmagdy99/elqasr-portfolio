@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   MapPin,
-  Building2,
+  // Fixed: Removed Building2 (unused)
   Edit,
   Trash2,
   X,
@@ -67,7 +67,6 @@ export const MainProjectCard = ({
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"en" | "ar">(locale);
 
-  // --- Form State ---
   const [formData, setFormData] = useState({
     title: { ...title },
     description: { ...description },
@@ -78,7 +77,6 @@ export const MainProjectCard = ({
     newFiles: [] as File[],
   });
 
-  // --- Mutations ---
   const updateMutation = useMutation({
     mutationFn: (data: FormData) => updateMainProject(_id, data),
     onSuccess: () => {
@@ -97,7 +95,6 @@ export const MainProjectCard = ({
     e.preventDefault();
     const data = new FormData();
 
-    // Flattening objects for the backend parser
     data.append("title_en", formData.title.en);
     data.append("title_ar", formData.title.ar);
     data.append("description_en", formData.description.en);
@@ -107,7 +104,6 @@ export const MainProjectCard = ({
     data.append("state", formData.state);
     data.append("type", formData.type);
 
-    // Images
     formData.removedImages.forEach((url) => data.append("removedImages", url));
     formData.newFiles.forEach((file) => data.append("image", file));
 
@@ -123,7 +119,6 @@ export const MainProjectCard = ({
     }
   };
 
-  // Filter out images that are marked for removal for UI preview
   const currentImagesPreview = image.filter(
     (img) => !formData.removedImages.includes(img)
   );
@@ -134,15 +129,12 @@ export const MainProjectCard = ({
       animate={{ opacity: 1, y: 0 }}
       className="group bg-white rounded-3xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500"
     >
-      {/* Visual Card Content */}
       <div className="relative h-72 overflow-hidden">
         <Image
-          // Fallback to a placeholder if image[0] is undefined
           src={image?.[0] || "/placeholder-project.jpg"}
           alt={title[locale] || "Project Image"}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-110"
-          // Optional: add priority if these cards are at the top of the page
           priority={false}
         />
         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-4 py-1.5 rounded-full text-sm font-bold shadow-sm">
@@ -175,7 +167,6 @@ export const MainProjectCard = ({
         </Link>
       </div>
 
-      {/* Admin Actions */}
       {isAdmin && (
         <div className="flex gap-2 p-6 pt-0 mt-auto">
           <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
@@ -192,13 +183,14 @@ export const MainProjectCard = ({
               <form onSubmit={handleEditSubmit} className="space-y-6">
                 <Tabs
                   value={activeTab}
-                  onValueChange={(v: any) => setActiveTab(v)}
+                  // Fixed: Changed any to string
+                  onValueChange={(v: string) => setActiveTab(v as "en" | "ar")}
                 >
                   <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="en">English</TabsTrigger>
                     <TabsTrigger value="ar">العربية</TabsTrigger>
                   </TabsList>
-                  {["en", "ar"].map((lang) => (
+                  {(["en", "ar"] as const).map((lang) => (
                     <TabsContent
                       key={lang}
                       value={lang}
@@ -207,7 +199,7 @@ export const MainProjectCard = ({
                       <div className="space-y-2">
                         <Label>Project Title</Label>
                         <Input
-                          value={formData.title[lang as "en" | "ar"]}
+                          value={formData.title[lang]}
                           onChange={(e) =>
                             setFormData({
                               ...formData,
@@ -222,7 +214,7 @@ export const MainProjectCard = ({
                       <div className="space-y-2">
                         <Label>Location</Label>
                         <Input
-                          value={formData.location[lang as "en" | "ar"]}
+                          value={formData.location[lang]}
                           onChange={(e) =>
                             setFormData({
                               ...formData,
@@ -238,7 +230,7 @@ export const MainProjectCard = ({
                         <Label>Description</Label>
                         <Textarea
                           rows={4}
-                          value={formData.description[lang as "en" | "ar"]}
+                          value={formData.description[lang]}
                           onChange={(e) =>
                             setFormData({
                               ...formData,
@@ -254,13 +246,11 @@ export const MainProjectCard = ({
                   ))}
                 </Tabs>
 
-                {/* MEDIA MANAGEMENT SECTION */}
                 <div className="space-y-3">
                   <Label className="text-base font-bold flex items-center gap-2">
                     <ImageIcon size={18} /> Media Gallery
                   </Label>
                   <div className="grid grid-cols-4 gap-3 border p-4 rounded-2xl bg-gray-50/50">
-                    {/* Upload Trigger */}
                     <label className="aspect-square border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all">
                       <Plus size={24} className="text-gray-400" />
                       <span className="text-[10px] uppercase font-bold text-gray-500 mt-1">
@@ -275,7 +265,6 @@ export const MainProjectCard = ({
                       />
                     </label>
 
-                    {/* Existing Images */}
                     {currentImagesPreview.map((url, idx) => (
                       <div
                         key={`old-${idx}`}
@@ -302,16 +291,18 @@ export const MainProjectCard = ({
                       </div>
                     ))}
 
-                    {/* New Files Preview */}
                     {formData.newFiles.map((file, idx) => (
                       <div
                         key={`new-${idx}`}
                         className="relative aspect-square rounded-xl overflow-hidden border-2 border-blue-500 shadow-md"
                       >
-                        <img
+                        {/* Fixed: Replaced <img> with Next.js <Image /> using URL.createObjectURL */}
+                        <Image
                           src={URL.createObjectURL(file)}
-                          alt="new"
-                          className="w-full h-full object-cover"
+                          alt="new upload preview"
+                          fill
+                          className="object-cover"
+                          unoptimized // Necessary for blob URLs to work with Next Image
                         />
                         <button
                           type="button"
@@ -323,11 +314,11 @@ export const MainProjectCard = ({
                               ),
                             })
                           }
-                          className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                          className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 z-10"
                         >
                           <X size={12} />
                         </button>
-                        <div className="absolute bottom-0 left-0 right-0 bg-blue-500 text-[8px] text-white text-center py-0.5">
+                        <div className="absolute bottom-0 left-0 right-0 bg-blue-500 text-[8px] text-white text-center py-0.5 z-10">
                           NEW
                         </div>
                       </div>
@@ -340,7 +331,8 @@ export const MainProjectCard = ({
                     <Label>Project State</Label>
                     <Select
                       value={formData.state}
-                      onValueChange={(v: any) =>
+                      // Fixed: Changed any to string
+                      onValueChange={(v: "available" | "sold") =>
                         setFormData({ ...formData, state: v })
                       }
                     >
