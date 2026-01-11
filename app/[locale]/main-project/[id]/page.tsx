@@ -166,7 +166,7 @@ export default function MainProjectPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <div className="max-w-7xl mx-auto px-4 py-10">
+      <div className="max-w-7xl mx-auto px-4 py-10 pt-20">
         {/* Back Button */}
         <motion.button
           onClick={() => router.push(`/${locale}`)}
