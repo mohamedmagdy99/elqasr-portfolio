@@ -67,7 +67,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-[999] transition-all duration-300 ${navClass}`}
+        className={`fixed top-0 left-0 w-full z-999 transition-all duration-300 ${navClass}`}
       >
         <motion.div
           className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center"
@@ -77,7 +77,7 @@ export default function Navbar() {
           dir={isRtl ? "rtl" : "ltr"}
         >
           {/* Brand Identity */}
-          <Link href="/" className="relative z-[1001]">
+          <Link href="/" >
             <h1
               className="text-xl md:text-2xl font-bold leading-tight bg-clip-text text-transparent transition-transform hover:scale-105"
               style={{
@@ -137,7 +137,7 @@ export default function Navbar() {
           {/* Mobile Toggle Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg bg-slate-100 text-slate-900 relative z-[1001]"
+            className="md:hidden p-2 rounded-lg bg-slate-100 text-slate-900 relative z-1001"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -152,7 +152,7 @@ export default function Navbar() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[1000] md:hidden"
+                className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-1000 md:hidden"
                 onClick={() => setIsOpen(false)}
               />
 
@@ -165,7 +165,7 @@ export default function Navbar() {
                 variants={mobileMenuVariants}
                 className={`fixed top-0 ${
                   isRtl ? "left-0" : "right-0"
-                } w-[80%] max-w-sm h-screen bg-white shadow-2xl z-[1002] md:hidden overflow-y-auto`}
+                } w-[80%] max-w-sm h-screen bg-white shadow-2xl z-1002 md:hidden overflow-y-auto`}
               >
                 <div className="p-8 flex flex-col min-h-full bg-white">
                   <div className="flex items-center justify-between mb-10">
