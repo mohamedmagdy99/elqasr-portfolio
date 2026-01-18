@@ -63,14 +63,7 @@ export default async function Home() {
       <section id="Projects" className="py-20">
         <Projects />
       </section>
-      <motion.div
-        variants={fadeInUp}
-        className="flex items-center justify-center gap-6 mb-10 opacity-100 mt-20"
-      >
-        <div className="w-96 h-1 bg-gradient-to-r from-transparent to-amber-500" />
-        <div className="w-3 h-3 rotate-45 border-2 border-amber-500" />
-        <div className="w-96 h-1 bg-gradient-to-l from-transparent to-amber-500" />
-      </motion.div>
+      
       <section id="old_Projects">
         <OldProjects />
       </section>

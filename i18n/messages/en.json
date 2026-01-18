@@ -185,6 +185,7 @@
     "residential_filter": "Residential",
     "commercial_filter": "Commercial",
     "previous_button": "Previous",
+    "state_label": "State:",
     "next_button": "Next",
     "page_indicator": "Page {currentPage} of {totalPages}",
     "page_title": "Admin Page",

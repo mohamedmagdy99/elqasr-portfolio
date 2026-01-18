@@ -251,7 +251,10 @@ const AdminPage = () => {
                           onChange={(e) =>
                             setFormData({
                               ...formData,
-                              title: { ...formData.title, [lng]: e.target.value },
+                              title: {
+                                ...formData.title,
+                                [lng]: e.target.value,
+                              },
                             })
                           }
                           placeholder={
@@ -259,7 +262,46 @@ const AdminPage = () => {
                           }
                         />
                       </div>
-                      {/* ... repeat pattern for location/description ... */}
+                      <div className="space-y-2">
+                        <Label>
+                          {t("description_label")} ({lng})
+                        </Label>
+                        <Input
+                          value={formData.description[lng]}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              description: {
+                                ...formData.description,
+                                [lng]: e.target.value,
+                              },
+                            })
+                          }
+                          placeholder={
+                            lng === "ar" ? "وصف المشروع" : "Project Description"
+                          }
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>
+                          {t("location_label")} ({lng})
+                        </Label>
+                        <Input
+                          value={formData.location[lng]}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              location: {
+                                ...formData.location,
+                                [lng]: e.target.value,
+                              },
+                            })
+                          }
+                          placeholder={
+                            lng === "ar" ? "موقع المشروع" : "Project Location"
+                          }
+                        />
+                      </div>
                     </TabsContent>
                   ))}
                 </Tabs>
@@ -286,7 +328,27 @@ const AdminPage = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  {/* ... repeat pattern for state ... */}
+                  <div className="space-y-2">
+                    <Label>{t("state_label")}</Label>
+                    <Select
+                      value={formData.state}
+                      onValueChange={(v: ProjectState) =>
+                        setFormData({ ...formData, state: v })
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="available">
+                          {isRtl ? "متاح" : "Available"}
+                        </SelectItem>
+                        <SelectItem value="sold">
+                          {isRtl ? "غير متاح" : "Sold"}
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
 
                 <div className="space-y-2">

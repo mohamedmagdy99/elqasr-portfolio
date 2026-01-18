@@ -76,7 +76,7 @@ type ProjectCardProps = {
   completionDate?: string;
   image: string[];
   features?: LocalizedStringArray;
-  mainProject?: string; 
+  mainProject?: string;
   bedrooms?: number;
   bathrooms?: number;
   area?: number;
@@ -130,12 +130,12 @@ export const ProjectCard = ({
   });
 
   const displayedImages = image.filter(
-    (img) => !formData.removedImages.includes(img)
+    (img) => !formData.removedImages.includes(img),
   );
-const { data: mainProjectsData } = useQuery({
-  queryKey: ["main-projects-list"],
-  queryFn: () => getAllMainProjects({ limit: 100 }), // High limit to see all options
-});
+  const { data: mainProjectsData } = useQuery({
+    queryKey: ["main-projects-list"],
+    queryFn: () => getAllMainProjects({ limit: 100 }), // High limit to see all options
+  });
   // ✅ Mutations
   const updateMutation = useMutation({
     mutationFn: (data: FormData) => UpdateProject(_id, data),
@@ -164,7 +164,7 @@ const { data: mainProjectsData } = useQuery({
     data.append("type", formData.type);
     data.append("bedrooms", formData.bedrooms.toString());
     data.append("bathrooms", formData.bathrooms.toString());
-    data.append("area", formData.area.toString());  
+    data.append("area", formData.area.toString());
     if (formData.completionDate)
       data.append("completionDate", formData.completionDate);
     formData.features.en.forEach((f) => data.append("features_en[]", f));
@@ -230,8 +230,8 @@ const { data: mainProjectsData } = useQuery({
               {locale === "en"
                 ? type
                 : type === "Residential"
-                ? "سكني"
-                : "تجاري"}
+                  ? "سكني"
+                  : "تجاري"}
             </Badge>
           </div>
 
@@ -260,25 +260,25 @@ const { data: mainProjectsData } = useQuery({
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="flex-grow pt-0">
+        <CardContent className="grow pt-0">
           <p className="text-gray-600 leading-relaxed line-clamp-3 text-sm italic">
             {/* 2. Fixed unescaped entities by using {` `} or entity codes */}
             &ldquo;{description[locale]}&rdquo;
           </p>
           <div className="flex items-center gap-4 mt-4">
-            {bedrooms !== undefined && (
+            {bedrooms !== undefined && bedrooms > 0 && (
               <div className="flex items-center gap-1 text-sm text-gray-500">
                 <BedSingle />
                 {bedrooms} {locale === "en" ? "Bedrooms" : "غرف نوم"}
               </div>
             )}
-            {bathrooms !== undefined && (
+            {bathrooms !== undefined && bathrooms > 0 && (
               <div className="flex items-center gap-1 text-sm text-gray-500">
                 <Bath />
                 {bathrooms} {locale === "en" ? "Bathrooms" : "حمامات"}
               </div>
             )}
-            {area !== undefined && (
+            {area !== undefined && area > 0 && (
               <div className="flex items-center gap-1 text-sm text-gray-500">
                 <RulerDimensionLine />
                 {area} {locale === "en" ? "sq.m" : "م²"}
@@ -693,7 +693,7 @@ const { data: mainProjectsData } = useQuery({
                                 setFormData({
                                   ...formData,
                                   images: formData.images.filter(
-                                    (_, idx) => idx !== i
+                                    (_, idx) => idx !== i,
                                   ),
                                 })
                               }
