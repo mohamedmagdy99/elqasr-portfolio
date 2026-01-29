@@ -40,8 +40,8 @@ export default function ProjectsPage() {
       getAllMainProjects({
         page,
         limit: 9,
-        state: "available", // ✅ enforced
-        type: typeFilter, // ✅ optional
+        state: "available", 
+        type: typeFilter,
       }),
     placeholderData: keepPreviousData,
   });

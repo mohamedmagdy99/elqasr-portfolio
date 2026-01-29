@@ -60,7 +60,8 @@ export default function MainProjectPage() {
   const id = params.id as string;
   const locale = (params.locale as string) || "en";
   const isRtl = locale === "ar";
-
+  const [page, setPage] = useState(1);
+  const limit = 9;
   const { data: session } = useSession();
   const isAdmin = session?.user?.role === "admin";
 
@@ -93,7 +94,7 @@ export default function MainProjectPage() {
 
   const { data: projectsData } = useQuery({
     queryKey: ["projects-for-main", id],
-    queryFn: () => getAllProjectsForMain(id),
+    queryFn: () => getAllProjectsForMain({ id, page, limit }),
   });
 
   // --- MUTATIONS ---
@@ -197,8 +198,8 @@ export default function MainProjectPage() {
                   ? "سكني"
                   : "Residential"
                 : isRtl
-                ? "تجاري"
-                : "Commercial"}
+                  ? "تجاري"
+                  : "Commercial"}
             </div>
           </div>
 
@@ -520,6 +521,55 @@ export default function MainProjectPage() {
               <ProjectCard key={project._id} {...project} />
             ))}
           </div>
+          {projectsData?.totalPages > 1 && (
+            <div
+              className="flex justify-center items-center gap-4 mt-12"
+              dir={isRtl ? "rtl" : "ltr"}
+            >
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setPage((old) => Math.max(old - 1, 1))}
+                disabled={page === 1}
+                className="rounded-xl"
+              >
+                {isRtl ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+                {isRtl ? "السابق" : "Previous"}
+              </Button>
+
+              <div className="flex items-center gap-2">
+                {Array.from(
+                  { length: projectsData.totalPages },
+                  (_, i) => i + 1,
+                ).map((p) => (
+                  <button
+                    key={p}
+                    onClick={() => setPage(p)}
+                    className={`w-10 h-10 rounded-xl font-bold transition-all ${
+                      page === p
+                        ? "bg-blue-600 text-white shadow-md shadow-blue-200"
+                        : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
+                    }`}
+                  >
+                    {p}
+                  </button>
+                ))}
+              </div>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() =>
+                  setPage((old) => Math.min(old + 1, projectsData.totalPages))
+                }
+                disabled={page === projectsData.totalPages}
+                className="rounded-xl"
+              >
+                {isRtl ? "التالي" : "Next"}
+                {isRtl ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
+              </Button>
+            </div>
+          )}
         </section>
       </div>
     </motion.div>

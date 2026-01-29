@@ -14,16 +14,27 @@ export const getSingleMainProject = async (id: string) => {
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/main-projects/${id}`,
     {
       cache: "no-store",
-    }
+    },
   );
   if (!res.ok) throw new Error(`Failed to fetch main project: ${res.status}`);
   const json = await res.json();
   return json.data;
 };
 
-export const getAllProjectsForMain = async (id: string) => {
+export const getAllProjectsForMain = async ({
+  page = 1,
+  limit = 10,
+  id,
+}: {
+  page?: number;
+  limit?: number;
+  id: string;
+}) => {
+  const params = new URLSearchParams();
+  params.append("page", page.toString());
+  params.append("limit", limit.toString());
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/main/${id}`
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/main/${id}?${params.toString()}`,
   );
   if (!res.ok)
     throw new Error(`Failed to fetch projects for main project: ${res.status}`);
@@ -47,10 +58,7 @@ export const getAllMainProjects = async ({
   if (state) params.append("state", state);
   if (type) params.append("type", type);
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/main-projects?${params}`,
-    {
-      cache: "no-store",
-    }
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/main-projects?${params.toString()}`,
   );
 
   if (!res.ok) {
@@ -59,7 +67,6 @@ export const getAllMainProjects = async ({
   const json = await res.json();
 
   if (json.success) {
-    // Backend already returns proper objects, no JSON.parse needed
     return { ...json, data: json.data as ParsedProject[] };
   }
 
@@ -78,14 +85,14 @@ export const updateMainProject = async (id: string, formData: FormData) => {
         Authorization: `Bearer ${token}`,
       },
       credentials: "include",
-    }
+    },
   );
   if (!res.ok) {
     const errorData = await res.json();
     throw new Error(
       `Failed to update main project: ${res.status} ${JSON.stringify(
-        errorData
-      )}`
+        errorData,
+      )}`,
     );
   }
   const json = await res.json();
@@ -103,21 +110,23 @@ export const deleteMainProject = async (id: string) => {
         Authorization: `Bearer ${token}`,
       },
       credentials: "include",
-    }
+    },
   );
   if (!res.ok) {
     const errorData = await res.json();
     throw new Error(
       `Failed to delete main project: ${res.status} ${JSON.stringify(
-        errorData
-      )}`
+        errorData,
+      )}`,
     );
   }
   return res.json();
-}
-export const createMainProject = async (formData: FormData) => {
+};
+export const createMainProject = async (
+  formData: FormData,
+): Promise<ParsedProject> => {
   try {
-        const session = await getSession();
+    const session = await getSession();
 
     const token = session?.user?.token;
     if (!token) throw new Error("No token found in session");
@@ -127,23 +136,34 @@ export const createMainProject = async (formData: FormData) => {
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${session.user.token}`,
+          Authorization: `bearer ${token}`,
         },
         credentials: "include",
         body: formData,
-      }
+      },
     );
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      const errorFields = errorData?.fields || [];
+      const errorMessage =
+        errorFields.length > 0
+          ? (errorFields as { message: string }[])
+              .map((error) => error.message)
+              .join(", ")
+          : errorData.message || "Failed to create project";
+      throw new Error(errorMessage);
+    }
 
     const json = await res.json();
 
-    if (!res.ok) {
-      // Handle backend validation errors (like the 'fields' array you have in your controller)
-      throw new Error(json.err || "Failed to create project");
+    if (!json.success) {
+      throw new Error("Failed to create project");
     }
 
-    return json;
-  } catch (error: any) {
-    console.error("Create Project Error:", error);
+    return json.data;
+  } catch (error) {
+    console.error("Create Main Project Error:", error);
     throw error;
   }
 };
