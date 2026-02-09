@@ -1,7 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions } from "next-auth";
 
-
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -63,18 +62,20 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, user }) {
+      // 'user' is only available the very first time the user logs in
       if (user) {
-        token.role = user.role;
-        token.accessToken = user.token; // store the token in JWT
         token.id = user.id;
+        token.role = user.role;
+        token.token = user.token; // This is the backend JWT
       }
       return token;
     },
     async session({ session, token }) {
-      if (token) {
-        session.user.id = token.id;
-        session.user.role = token.role;
-        session.user.token = token.accessToken;
+      // Pass the properties from the JWT token to the session object
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.user.role = token.role as string;
+        session.user.token = token.token as string; // This makes it available to your fetch call
       }
       return session;
     },
