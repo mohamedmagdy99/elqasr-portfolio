@@ -517,7 +517,7 @@ export default function MainProjectPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projectsData?.map((project: SmallProject) => (
+            {projectsData?.data?.map((project: SmallProject) => (
               <ProjectCard key={project._id} {...project} />
             ))}
           </div>
@@ -539,7 +539,7 @@ export default function MainProjectPage() {
 
               <div className="flex items-center gap-2">
                 {Array.from(
-                  { length: projectsData.totalPages },
+                  { length: projectsData.totalPages }, // This is correct based on your JSON
                   (_, i) => i + 1,
                 ).map((p) => (
                   <button

@@ -39,7 +39,7 @@ export const getAllProjectsForMain = async ({
   if (!res.ok)
     throw new Error(`Failed to fetch projects for main project: ${res.status}`);
   const json = await res.json();
-  return json.data;
+  return json;
 };
 export const getAllMainProjects = async ({
   page = 1,
