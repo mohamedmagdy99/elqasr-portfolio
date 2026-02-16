@@ -92,10 +92,12 @@ export default function MainProjectPage() {
     queryFn: () => getSingleMainProject(id),
   });
 
-  const { data: projectsData } = useQuery({
-    queryKey: ["projects-for-main", id],
-    queryFn: () => getAllProjectsForMain({ id, page, limit }),
-  });
+const { data: projectsData, isPlaceholderData } = useQuery({
+  queryKey: ["projects-for-main", id, page],
+  queryFn: () => getAllProjectsForMain({ id, page, limit }),
+  placeholderData: (previousData) => previousData, 
+  staleTime: 5000,
+});
 
   // --- MUTATIONS ---
   const addMutation = useMutation({
