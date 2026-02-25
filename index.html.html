@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>مول تجاري في العبور | O2 Mall & Value Mall | القصر للتطوير العقاري</title>
+  <meta name="description" content="استثمر في أقوى مولات العبور التجارية. O2 Mall و Value Mall — محلات للبيع بالعبور، عيادات، مساحات تجارية. أسعار قبل الزيادة. 01117073033"/>
+  <meta name="keywords" content="مول تجاري في العبور، استثمار تجاري العبور، محلات للبيع بالعبور، عيادات للبيع العبور، O2 Mall، Value Mall"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --navy:#0a1628;--navy2:#0f1e36;--navy3:#162d42;
+      --gold:#c9922a;--gold2:#e8b045;--gold3:#f5c842;--gold-shine:#ffd870;--gold-dim:#a37520;
+      --gold-bdr:rgba(201,146,42,.32);
+      --cream:#faf7f0;--text:#0a1628;--muted:#5a7088;--light:#8fa8be;--red:#e53935;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;direction:rtl}
+
+    /* ── GOLD TEXT ── */
+    .g{background:linear-gradient(135deg,var(--gold-dim),var(--gold) 35%,var(--gold3) 70%,var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .g2{background:linear-gradient(135deg,var(--gold),var(--gold3) 55%,var(--gold-shine));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+    /* ── TOPBAR ── */
+    .topbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:linear-gradient(90deg,#7f0000,var(--red),#7f0000);padding:9px 20px;display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap}
+    .topbar span{font-size:.82rem;font-weight:700;color:#fff}
+    .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#fff;animation:blink 1s infinite;margin-left:6px;vertical-align:middle}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.1}}
+    .tb-btn{background:#fff;color:var(--red);padding:6px 20px;border-radius:50px;font-weight:900;font-size:.78rem;text-decoration:none;white-space:nowrap;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+
+    /* ── FLOAT ── */
+    .float-stack{position:fixed;left:14px;top:50%;transform:translateY(-50%);z-index:999;display:flex;flex-direction:column;gap:10px;align-items:center}
+    .float-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+    .fb{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .25s;overflow:hidden}
+    .fb:hover{transform:scale(1.13)}
+    .fb.call{background:linear-gradient(145deg,#ff5252,var(--red),#b71c1c);animation:pulse-red 2s ease-in-out infinite}
+    @keyframes pulse-red{0%,100%{box-shadow:0 0 0 0 rgba(229,57,53,.55)}60%{box-shadow:0 0 0 15px rgba(229,57,53,0)}}
+    .call-icon{font-size:1.6rem;animation:ring 3.5s ease-in-out infinite;display:block}
+    @keyframes ring{0%,55%,100%{transform:rotate(0)}10%{transform:rotate(-18deg)}20%{transform:rotate(18deg)}30%{transform:rotate(-12deg)}40%{transform:rotate(12deg)}50%{transform:rotate(-5deg)}}
+    .fb.wa{background:transparent;padding:0;animation:bob 2.8s ease-in-out infinite}
+    .fb.wa img{width:56px;height:56px;border-radius:50%;display:block;box-shadow:0 4px 22px rgba(37,211,102,.45)}
+    @keyframes bob{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1.05)}}
+    .fb-label{font-size:.6rem;color:#fff;font-weight:700;background:rgba(10,22,40,.85);border:1px solid var(--gold-bdr);padding:2px 7px;border-radius:4px;white-space:nowrap}
+    @media(max-width:480px){.float-stack{left:4px}.fb,.fb.wa img{width:46px;height:46px}.call-icon{font-size:1.2rem}.fb-label{display:none}}
+
+    /* ── HERO ── */
+    .hero{
+      min-height:100vh;padding-top:46px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      position:relative;overflow:hidden;
+    }
+    .hero-bg{position:absolute;inset:0;z-index:0}
+    .hero-bg img{width:100%;height:100%;object-fit:cover;display:block}
+    .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(5,12,24,.95) 0%,rgba(8,18,36,.88) 55%,rgba(201,146,42,.07) 100%)}
+    .hero-grid{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(201,146,42,.025) 0,rgba(201,146,42,.025) 1px,transparent 1px,transparent 80px);pointer-events:none;z-index:1}
+    .hero-fade{position:absolute;bottom:0;left:0;right:0;height:130px;background:linear-gradient(to top,var(--cream),transparent);z-index:2;pointer-events:none}
+    .gold-line{position:absolute;top:46px;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold-dim),var(--gold3),var(--gold-dim),transparent);z-index:3}
+    .hero-inner{max-width:960px;width:100%;padding:72px 24px 64px;text-align:center;position:relative;z-index:3}
+    .logo-wrap{margin-bottom:28px;animation:fd .7s ease both}
+    .logo-wrap img{height:100px;filter:drop-shadow(0 4px 28px rgba(201,146,42,.55))}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(192,57,43,.15);border:1px solid rgba(229,57,53,.5);color:#ff9a9a;padding:7px 22px;border-radius:50px;font-size:.82rem;font-weight:700;margin-bottom:22px;animation:fd .9s ease both}
+    h1.hero-h{font-size:clamp(2rem,5.5vw,3.8rem);font-weight:900;line-height:1.18;color:#fff;margin-bottom:16px;animation:fd 1s ease both}
+    .hero-pills{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:20px 0;animation:fu 1.1s ease both}
+    .proj-pill{background:rgba(255,255,255,.07);border:1px solid var(--gold-bdr);padding:10px 28px;border-radius:8px;color:#fff;font-weight:700;font-size:.96rem;backdrop-filter:blur(6px)}
+    .proj-pill span{background:linear-gradient(135deg,var(--gold),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:900}
+    .hero-sub{font-size:.96rem;color:rgba(255,255,255,.65);line-height:2;margin:0 auto 28px;max-width:620px;animation:fu 1.15s ease both}
+    .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fu 1.2s ease both}
+    .stats-row{display:flex;justify-content:center;gap:42px;margin-top:56px;flex-wrap:wrap;animation:fu 1.3s ease both}
+    .stat{text-align:center}
+    .stat-n{font-size:2.1rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1.1}
+    .stat-l{font-size:.72rem;color:rgba(255,255,255,.42);margin-top:4px}
+    .stat-div{width:1px;background:linear-gradient(to bottom,transparent,var(--gold-bdr),transparent);height:54px;align-self:center}
+
+    /* ── BUTTONS ── */
+    .btn-gold{background:linear-gradient(135deg,var(--gold-dim),var(--gold) 35%,var(--gold3) 70%,var(--gold2));color:var(--navy);padding:16px 40px;border-radius:8px;font-size:1.05rem;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;gap:9px;box-shadow:0 8px 32px rgba(201,146,42,.45),inset 0 1px 0 rgba(255,255,255,.25);transition:transform .2s,box-shadow .2s;white-space:nowrap;border:none;cursor:pointer;font-family:'Cairo',sans-serif;position:relative;overflow:hidden}
+    .btn-gold::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-20deg);transition:left .6s}
+    .btn-gold:hover::before{left:150%}
+    .btn-gold:hover{transform:translateY(-3px);box-shadow:0 18px 50px rgba(201,146,42,.6)}
+    .btn-red{background:linear-gradient(135deg,#ff5252,var(--red),#b71c1c);color:#fff;padding:16px 40px;border-radius:8px;font-size:1.05rem;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;gap:9px;box-shadow:0 8px 32px rgba(229,57,53,.4);transition:transform .2s,box-shadow .2s;white-space:nowrap;font-family:'Cairo',sans-serif}
+    .btn-red:hover{transform:translateY(-3px);box-shadow:0 18px 50px rgba(229,57,53,.55)}
+
+    /* ── URGENCY ── */
+    .urgency{background:var(--navy2);border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);padding:22px 24px}
+    .urgency-inner{max-width:1060px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap}
+    .urg-item{display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;min-width:110px}
+    .urg-icon{font-size:1.6rem}
+    .urg-t{font-size:.84rem;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .urg-s{font-size:.7rem;color:var(--light)}
+
+    /* ── SECTION ── */
+    section{padding:86px 24px}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-tag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);border-bottom:2px solid var(--gold);padding-bottom:3px;margin-bottom:14px}
+    .sec-title{font-size:clamp(1.5rem,3.2vw,2.5rem);font-weight:900;line-height:1.22;color:var(--text);margin-bottom:10px}
+    .sec-sub{font-size:.96rem;color:var(--muted);line-height:2;max-width:640px}
+    .gold-bar{width:60px;height:3px;background:linear-gradient(90deg,var(--gold-dim),var(--gold3));border-radius:2px;margin-top:12px}
+    .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+    .rv.vis{opacity:1;transform:none}
+    @keyframes fd{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+    @keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+    /* ══════════════════════════════════════
+       PROJECT CARD — NEW SLIDER DESIGN
+    ══════════════════════════════════════ */
+    .proj-wrap{margin-bottom:72px;border-radius:20px;overflow:hidden;box-shadow:0 16px 70px rgba(0,0,0,.18)}
+
+    /* Header */
+    .proj-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);border-bottom:2px solid var(--gold);padding:40px 48px;position:relative;overflow:hidden}
+    .proj-header::before{content:'';position:absolute;top:-60%;right:-5%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(201,146,42,.12),transparent 70%);pointer-events:none}
+    .proj-badge{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--navy);padding:6px 20px;border-radius:50px;font-size:.78rem;font-weight:900;margin-bottom:18px;box-shadow:0 4px 14px rgba(201,146,42,.35)}
+    .proj-name{font-size:clamp(2.4rem,5.5vw,3.8rem);font-weight:900;color:#fff;line-height:1;margin-bottom:10px;position:relative;z-index:1}
+    .proj-tagline{font-size:1rem;color:rgba(255,255,255,.58);position:relative;z-index:1}
+
+    /* ── SLIDER ── */
+    .slider-section{background:var(--navy);position:relative}
+    .slider-track{position:relative;overflow:hidden;height:520px;cursor:zoom-in}
+    .slide{position:absolute;inset:0;transition:opacity .45s ease,transform .45s ease;opacity:0;pointer-events:none}
+    .slide.active{opacity:1;pointer-events:auto}
+    .slide img{width:100%;height:100%;object-fit:cover;display:block}
+    /* caption overlay */
+    .slide-caption{position:absolute;bottom:0;left:0;right:0;padding:24px 28px 20px;background:linear-gradient(to top,rgba(5,10,20,.94),transparent)}
+    .slide-num{font-size:.7rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(135deg,var(--gold),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:4px}
+    .slide-title{font-size:1.05rem;font-weight:700;color:#fff}
+    /* arrow buttons */
+    .sl-btn{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:54px;height:54px;border-radius:50%;border:2px solid rgba(201,146,42,.5);
+      background:rgba(10,22,40,.75);backdrop-filter:blur(6px);
+      color:#fff;font-size:1.6rem;display:flex;align-items:center;justify-content:center;
+      cursor:pointer;z-index:10;transition:all .22s;
+      -webkit-user-select:none;user-select:none;
+    }
+    .sl-btn:hover{background:rgba(201,146,42,.35);border-color:var(--gold);transform:translateY(-50%) scale(1.1)}
+    .sl-btn.prev{right:18px}
+    .sl-btn.next{left:18px}
+    /* dot indicators */
+    .sl-dots{position:absolute;bottom:76px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:10}
+    .sl-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.2);transition:all .25s;cursor:pointer}
+    .sl-dot.active{background:var(--gold);border-color:var(--gold);width:24px;border-radius:4px}
+    /* filmstrip thumbnails below */
+    .filmstrip{background:#060e1c;padding:12px 16px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--gold) #060e1c}
+    .filmstrip::-webkit-scrollbar{height:3px}
+    .filmstrip::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+    .fs-thumb{width:80px;height:56px;flex-shrink:0;border-radius:6px;overflow:hidden;cursor:pointer;border:2px solid transparent;opacity:.5;transition:all .22s}
+    .fs-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .fs-thumb.active,.fs-thumb:hover{border-color:var(--gold);opacity:1;transform:scale(1.06)}
+
+    /* ── SELL + SPACES LAYOUT ── */
+    .content-block{background:linear-gradient(135deg,var(--navy2) 0%,var(--navy3) 100%);padding:48px}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+    @media(max-width:860px){.two-col{grid-template-columns:1fr}}
+    .block-title{font-size:clamp(1.1rem,2.3vw,1.55rem);font-weight:900;color:#fff;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--gold-bdr);line-height:1.3}
+    .block-title .g2{background:linear-gradient(135deg,var(--gold),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+    /* selling points */
+    .sp-list{display:flex;flex-direction:column;gap:12px}
+    .sp{display:flex;align-items:flex-start;gap:12px;padding:15px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(201,146,42,.12);border-right:3px solid var(--gold);border-radius:9px;transition:background .2s,transform .2s}
+    .sp:hover{background:rgba(201,146,42,.07);transform:translateX(-3px)}
+    .sp-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px}
+    .sp-t{font-size:.9rem;font-weight:800;color:#fff;margin-bottom:3px}
+    .sp-d{font-size:.77rem;color:var(--light);line-height:1.65}
+
+    /* ── SIMPLE SPACES ── */
+    .spaces-title{font-size:1rem;font-weight:900;color:#fff;margin-bottom:16px;letter-spacing:.02em}
+    .spaces-simple{display:flex;flex-direction:column;gap:10px}
+    .srow2{display:flex;align-items:center;gap:12px;padding:13px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(201,146,42,.14);border-right:3px solid var(--gold);border-radius:9px;transition:background .18s}
+    .srow2:hover{background:rgba(201,146,42,.07)}
+    .srow-icon{font-size:1.35rem;flex-shrink:0}
+    .srow-info{flex:1;min-width:0}
+    .srow-name{font-size:.88rem;font-weight:800;color:#fff}
+    .srow-range{font-size:.74rem;color:var(--light);margin-top:2px}
+    .srow-avail{font-size:.68rem;font-weight:900;padding:4px 10px;border-radius:50px;white-space:nowrap;flex-shrink:0}
+    .avail{background:rgba(37,211,102,.15);color:#4ddb8a;border:1px solid rgba(37,211,102,.3)}
+    .limited{background:rgba(255,165,0,.12);color:#ffb74d;border:1px solid rgba(255,165,0,.3)}
+    .verylt{background:rgba(229,57,53,.12);color:#ff7070;border:1px solid rgba(229,57,53,.3)}
+    .spaces-cta-note{margin-top:14px;font-size:.8rem;color:var(--light);padding:12px 14px;background:rgba(201,146,42,.07);border-radius:8px;border-right:3px solid var(--gold);line-height:1.7}
+
+    /* ── BACK TO TOP ── */
+    .btt{
+      position:fixed;bottom:28px;right:22px;z-index:997;
+      width:46px;height:46px;border-radius:50%;
+      background:linear-gradient(135deg,var(--gold-dim),var(--gold));
+      color:var(--navy);font-size:1.3rem;font-weight:900;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;border:none;
+      box-shadow:0 4px 18px rgba(201,146,42,.45);
+      opacity:0;pointer-events:none;
+      transition:opacity .3s,transform .3s;
+      font-family:'Cairo',sans-serif;
+    }
+    .btt.show{opacity:1;pointer-events:auto}
+    .btt:hover{transform:translateY(-3px);box-shadow:0 8px 26px rgba(201,146,42,.6)}
+
+    /* ── PAYMENT ── */
+    .payment-block{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);padding:40px 48px;border-top:1px solid rgba(201,146,42,.15)}
+    .pay-title{font-size:clamp(1.1rem,2.2vw,1.45rem);font-weight:900;color:#fff;margin-bottom:22px;display:flex;align-items:center;gap:12px}
+    .pay-title::after{content:'';flex:1;height:1px;background:linear-gradient(to left,transparent,var(--gold-bdr))}
+    .pay-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:26px}
+    .pay-card{background:rgba(255,255,255,.04);border:1px solid var(--gold-bdr);border-radius:12px;padding:22px 18px;text-align:center;transition:all .25s;position:relative;overflow:hidden}
+    .pay-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold-dim),var(--gold3),var(--gold-dim))}
+    .pay-card:hover{background:rgba(201,146,42,.08);border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 36px rgba(201,146,42,.18)}
+    .pay-pct{font-size:2.4rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;display:block;margin-bottom:6px}
+    .pay-label{font-size:.82rem;font-weight:800;color:#fff;margin-bottom:5px}
+    .pay-sub{font-size:.73rem;color:var(--light);line-height:1.65}
+    .pay-note{background:rgba(201,146,42,.08);border:1px solid var(--gold-bdr);border-radius:10px;padding:16px 20px;display:flex;align-items:flex-start;gap:13px}
+    .pay-note-icon{font-size:1.7rem;flex-shrink:0}
+    .pay-note-text{font-size:.84rem;color:rgba(255,255,255,.75);line-height:1.85}
+    .pay-note-text strong{color:var(--gold2)}
+
+    /* ── PROJ CTA ── */
+    .proj-cta{text-align:center;padding:0 48px 48px;background:linear-gradient(135deg,var(--navy),var(--navy2))}
+
+    /* ── PORTFOLIO ── */
+    .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+    @media(max-width:700px){.port-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:420px){.port-grid{grid-template-columns:1fr}}
+    .port-card{border-radius:12px;overflow:hidden;position:relative;background:var(--navy);cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.12);transition:transform .3s,box-shadow .3s}
+    .port-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.2)}
+    .port-card img{width:100%;height:210px;object-fit:cover;display:block;transition:transform .4s}
+    .port-card:hover img{transform:scale(1.07)}
+    .port-overlay{position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(to top,rgba(5,10,20,.93),transparent)}
+    .port-name{font-size:.86rem;font-weight:800;color:#fff;margin-bottom:3px}
+    .port-loc{font-size:.7rem;background:linear-gradient(135deg,var(--gold),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
+    .trust-bar{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;margin-top:40px;padding-top:40px;border-top:1px solid rgba(201,146,42,.15)}
+    .trust-item{text-align:center}
+    .trust-n{font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
+    .trust-l{font-size:.72rem;color:var(--muted)}
+
+    /* ── WHY NOW ── */
+    .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:38px}
+    .why-card{padding:28px 22px;text-align:center;background:#fff;border:1px solid rgba(201,146,42,.15);border-top:3px solid var(--gold);border-radius:13px;transition:all .25s}
+    .why-card:hover{box-shadow:0 10px 36px rgba(201,146,42,.14);transform:translateY(-6px)}
+    .why-n{font-size:2.3rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px;display:block}
+    .why-t{font-size:.92rem;font-weight:800;color:var(--text);margin-bottom:6px}
+    .why-d{font-size:.79rem;color:var(--muted);line-height:1.7}
+
+    /* ── ABOUT ── */
+    .about-strip{background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);padding:70px 24px;border-top:2px solid var(--gold-bdr);border-bottom:2px solid var(--gold-bdr)}
+    .about-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    @media(max-width:700px){.about-inner{grid-template-columns:1fr;gap:30px}}
+    .about-text p{font-size:.96rem;color:rgba(255,255,255,.7);line-height:2.1;margin-bottom:14px}
+    .about-text strong{color:var(--gold2)}
+    .pillar-list{display:flex;flex-direction:column;gap:13px}
+    .pillar{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:rgba(255,255,255,.04);border-right:3px solid var(--gold);border-radius:8px;border:1px solid rgba(201,146,42,.12)}
+    .pillar-icon{font-size:1.4rem;flex-shrink:0}
+    .pillar-t{font-size:.92rem;font-weight:800;color:#fff;margin-bottom:3px}
+    .pillar-d{font-size:.78rem;color:var(--light);line-height:1.6}
+
+    /* ── CLOSING ── */
+    .closing{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 70%,rgba(201,146,42,.05) 100%);padding:110px 24px;text-align:center;position:relative;overflow:hidden}
+    .closing::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+    .closing::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+    .closing-inner{max-width:820px;margin:0 auto;position:relative;z-index:2}
+    .closing h2{font-size:clamp(2rem,5.5vw,3.4rem);font-weight:900;color:#fff;margin:16px 0;line-height:1.18}
+    .closing-sub{font-size:1.05rem;color:rgba(255,255,255,.65);margin-bottom:36px;line-height:2.1}
+    .closing-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    .closing-phone{font-size:1rem;font-weight:900;color:rgba(255,255,255,.3);margin-top:22px;letter-spacing:.06em;direction:ltr}
+    .cdrow{display:flex;gap:13px;justify-content:center;margin:36px 0;flex-wrap:wrap}
+    .cdu{text-align:center;background:rgba(255,255,255,.05);border:1px solid var(--gold-bdr);border-radius:12px;padding:16px 22px;min-width:80px}
+    .cdn{font-size:2.1rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1}
+    .cdl{font-size:.68rem;color:var(--light);margin-top:5px;letter-spacing:.05em}
+
+    /* ── LIGHTBOX ── */
+    .lightbox{position:fixed;inset:0;background:rgba(4,8,16,.97);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(10px)}
+    .lightbox.open{display:flex}
+    .lb-img{max-width:90vw;max-height:88vh;border-radius:12px;object-fit:contain;box-shadow:0 0 80px rgba(0,0,0,.7);border:1px solid var(--gold-bdr)}
+    .lb-close{position:absolute;top:18px;left:22px;color:#fff;font-size:1.4rem;cursor:pointer;background:rgba(255,255,255,.1);width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);transition:all .2s}
+    .lb-close:hover{background:var(--red)}
+    .lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:2.2rem;cursor:pointer;background:rgba(255,255,255,.08);width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);transition:all .2s;-webkit-user-select:none;user-select:none}
+    .lb-prev:hover,.lb-next:hover{background:rgba(201,146,42,.35);border-color:var(--gold)}
+    .lb-prev{right:22px}.lb-next{left:22px}
+
+    /* ── FOOTER ── */
+    footer{background:var(--navy2);border-top:1px solid var(--gold-bdr);padding:40px 24px;text-align:center}
+    footer p{font-size:.8rem;color:var(--muted);line-height:2}
+    footer a{color:var(--gold2);text-decoration:none;transition:color .2s}
+    footer a:hover{color:var(--gold3)}
+    .footer-logo{height:65px;margin-bottom:16px;filter:drop-shadow(0 2px 14px rgba(201,146,42,.35))}
+    .seo{font-size:.66rem;color:#1e3248;margin-top:12px}
+
+    @media(max-width:768px){
+      .slider-track{height:260px}
+      .content-block,.payment-block,.proj-cta{padding:24px 20px}
+      .proj-header{padding:26px 22px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb" onclick="lbBg(event)">
+  <div class="lb-close" onclick="lbClose()">✕</div>
+  <div class="lb-prev" onclick="lbNav(-1)">›</div>
+  <img class="lb-img" id="lb-img" src="" alt=""/>
+  <div class="lb-next" onclick="lbNav(1)">‹</div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span><span class="dot"></span> ⚠️ الوحدات المتبقية محدودة — الأسعار في ارتفاع مستمر</span>
+  <a href="https://wa.me/201117073033" target="_blank" class="tb-btn">💬 احجز الآن مجانًا</a>
+</div>
+
+<!-- FLOATING -->
+<div class="float-stack">
+  <div class="float-item">
+    <a class="fb wa" href="https://wa.me/201117073033" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png" alt="واتساب"/>
+    </a>
+    <div class="fb-label">واتساب</div>
+  </div>
+  <div class="float-item">
+    <a class="fb call" href="tel:01117073033">
+      <span class="call-icon">📞</span>
+    </a>
+    <div class="fb-label">اتصل</div>
+  </div>
+</div>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img src="https://redaezzat.me/v1.jpg" alt="Value Mall — القصر للتطوير العقاري"/>
+  </div>
+  <div class="hero-grid"></div>
+  <div class="gold-line"></div>
+  <div class="hero-fade"></div>
+  <div class="hero-inner">
+    <div class="logo-wrap">
+      <img src="https://redaezzat.me/alqasrlogo.jpg" alt="القصر للتطوير العقاري" onerror="this.style.display='none'"/>
+    </div>
+    <div class="hero-badge">🔥 أسعار قبل الزيادة — وحدات محدودة جدًا</div>
+    <h1 class="hero-h">استثمر الآن في<br/><span class="g">أقوى فرص العبور التجارية</span></h1>
+    <div class="hero-pills">
+      <div class="proj-pill"><span>O2 Mall</span> — فرصة استثمارية ذهبية</div>
+      <div class="proj-pill"><span>Value Mall</span> — الاستثمار الذكي لأصحاب الرؤية</div>
+    </div>
+    <p class="hero-sub">مواقع استراتيجية في قلب العبور · أنظمة سداد مرنة للجميع · عائد إيجاري مضمون من اليوم الأول</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/201117073033" target="_blank" class="btn-gold">💬 احجز وحدتك الآن</a>
+      <a href="tel:01117073033" class="btn-red">📞 اتصل فورًا</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-n">+5</span><div class="stat-l">سنوات خبرة فعلية</div></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-n">2 مول</span><div class="stat-l">تجاريان راسخان الآن</div></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-n">100%</span><div class="stat-l">تسليم حقيقي في الموعد</div></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-n">صفر</span><div class="stat-l">وعود بدون تنفيذ</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY -->
+<div class="urgency">
+  <div class="urgency-inner">
+    <div class="urg-item"><div class="urg-icon">🔥</div><div class="urg-t">وحدات محدودة</div><div class="urg-s">الطلب يتخطى العرض</div></div>
+    <div class="urg-item"><div class="urg-icon">📈</div><div class="urg-t">الأسعار ترتفع</div><div class="urg-s">قرار اليوم يكسب غدًا</div></div>
+    <div class="urg-item"><div class="urg-icon">💰</div><div class="urg-t">عائد إيجاري مرتفع</div><div class="urg-s">طلب تجاري دائم في العبور</div></div>
+    <div class="urg-item"><div class="urg-icon">🏆</div><div class="urg-t">مطور موثوق</div><div class="urg-s">سجل تسليم حقيقي موثّق</div></div>
+    <div class="urg-item"><div class="urg-icon">📲</div><div class="urg-t">رد فوري</div><div class="urg-s">استشارة مجانية الآن</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PROJECTS
+══════════════════════════════════════ -->
+<section style="background:var(--cream);padding:86px 24px" id="projects">
+  <div class="container">
+    <div class="rv" style="text-align:center;margin-bottom:60px">
+      <span class="sec-tag">فرص استثمار حقيقية على الأرض</span>
+      <h2 class="sec-title">مشروعاتنا الحالية</h2>
+      <p class="sec-sub" style="margin:10px auto 0">مولان تجاريان بمواقع استراتيجية — استخدم الأسهم لاستعراض كل صور المشروع</p>
+      <div class="gold-bar" style="margin:14px auto 0"></div>
+    </div>
+
+    <!-- ═══ O2 MALL ═══ -->
+    <div class="proj-wrap rv">
+      <div class="proj-header">
+        <div class="proj-badge">🔥 الأقوى في العبور — لا يتكرر</div>
+        <div class="proj-name"><span class="g2">O2</span> Mall</div>
+        <p class="proj-tagline">أيقونة تجارية راسخة في قلب العبور — واجهات ضخمة — عائد مضمون من اليوم الأول</p>
+      </div>
+
+      <!-- SLIDER O2 -->
+      <div class="slider-section">
+        <div class="slider-track" id="o2-track">
+          <!-- slides injected by JS -->
+          <button class="sl-btn prev" onclick="slide('o2',-1)">&#8250;</button>
+          <button class="sl-btn next" onclick="slide('o2',1)">&#8249;</button>
+          <div class="sl-dots" id="o2-dots"></div>
+        </div>
+        <div class="filmstrip" id="o2-film"></div>
+      </div>
+
+      <!-- SELL + SPACES -->
+      <div class="content-block">
+        <div class="two-col">
+          <!-- Left: selling points -->
+          <div>
+            <div class="block-title">لماذا <span class="g2">O2 Mall</span> هو أقوى استثمار تجاري في العبور الآن؟</div>
+            <div class="sp-list">
+              <div class="sp"><div class="sp-icon">📍</div><div><div class="sp-t">موقع على محور رئيسي حيوي</div><div class="sp-d">واجهات مباشرة تُشاهَد يوميًا من آلاف السكان والمارة</div></div></div>
+              <div class="sp"><div class="sp-icon">🏗</div><div><div class="sp-t">تصميم يستقطب العلامات الكبرى</div><div class="sp-d">معمارية عصرية تجعل وحدتك وجهة مرغوبة للماركات المرموقة</div></div></div>
+              <div class="sp"><div class="sp-icon">👥</div><div><div class="sp-t">كثافة سكانية ضخمة جاهزة</div><div class="sp-d">يخدم أحياء مكتملة بعشرات الآلاف — زبائنك موجودون الآن</div></div></div>
+              <div class="sp"><div class="sp-icon">📊</div><div><div class="sp-t">عائد إيجاري يبدأ فورًا</div><div class="sp-d">الطلب التجاري في أعلى مستوياته — وحدتك تدرّ دخلًا من اليوم الأول</div></div></div>
+              <div class="sp"><div class="sp-icon">🚀</div><div><div class="sp-t">قيمة رأس المال في ارتفاع مستمر</div><div class="sp-d">سعر اليوم هو أرخص سعر ستجده — كل تأجيل يكلفك فرقًا حقيقيًا</div></div></div>
+            </div>
+          </div>
+          <!-- Right: spaces -->
+          <div>
+            <div class="spaces-title">📐 المساحات المتاحة</div>
+            <div class="spaces-simple">
+              <div class="srow2"><div class="srow-icon">🏪</div><div class="srow-info"><div class="srow-name">محلات تجارية</div><div class="srow-range">٢٥ — ٨٠ م² · دور أرضي · واجهة مباشرة</div></div><div class="srow-avail avail">متاح</div></div>
+              <div class="srow2"><div class="srow-icon">🏥</div><div class="srow-info"><div class="srow-name">عيادات طبية</div><div class="srow-range">٤٠ — ١٢٠ م² · الطوابق الأولى</div></div><div class="srow-avail limited">محدود</div></div>
+              <div class="srow2"><div class="srow-icon">💼</div><div class="srow-info"><div class="srow-name">مكاتب إدارية</div><div class="srow-range">٥٠ — ٢٠٠ م² · طابق ثانٍ وثالث</div></div><div class="srow-avail avail">متاح</div></div>
+              <div class="srow2"><div class="srow-icon">☕</div><div class="srow-info"><div class="srow-name">مطاعم وكافيهات</div><div class="srow-range">٦٠ — ١٥٠ م² · دور أرضي</div></div><div class="srow-avail verylt">محدود جدًا</div></div>
+            </div>
+            <div class="spaces-cta-note">السعر يختلف حسب الموقع والمساحة — <a href="https://wa.me/201117073033" target="_blank" style="color:var(--gold2);font-weight:800">تواصل الآن للحصول على عرض خاص</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENT O2 -->
+      <div class="payment-block">
+        <div class="pay-title"><span>💳 نظام السداد — O2 Mall</span></div>
+        <div class="pay-grid">
+          <div class="pay-card"><span class="pay-pct">10%</span><div class="pay-label">مقدّم الحجز</div><div class="pay-sub">احجز فورًا بأقل مقدم وضمان السعر الحالي</div></div>
+          <div class="pay-card"><span class="pay-pct">5 سنوات</span><div class="pay-label">مدة التقسيط</div><div class="pay-sub">أقساط مريحة تناسب دخلك بالضبط</div></div>
+          <div class="pay-card"><span class="pay-pct">مرن</span><div class="pay-label">خطط متعددة</div><div class="pay-sub">سنوي أو ربع سنوي — نصمم لك ما يناسبك</div></div>
+          <div class="pay-card"><span class="pay-pct">0%</span><div class="pay-label">رسوم خفية</div><div class="pay-sub">ما تتفق عليه هو ما تدفعه — لا مفاجآت</div></div>
+        </div>
+        <div class="pay-note">
+          <div class="pay-note-icon">⚠️</div>
+          <div class="pay-note-text"><strong>تنبيه مهم:</strong> الأسعار والأنظمة المتاحة الآن <strong>قابلة للتغيير خلال أيام</strong>. من يحجز اليوم يضمن السعر ويوقّع العقد فورًا.</div>
+        </div>
+      </div>
+      <div class="proj-cta">
+        <a href="https://wa.me/201117073033" target="_blank" class="btn-gold" style="font-size:1.1rem;padding:19px 56px">💬 احجز وحدة في O2 Mall الآن</a>
+      </div>
+    </div><!-- /O2 -->
+
+    <!-- ═══ VALUE MALL ═══ -->
+    <div class="proj-wrap rv">
+      <div class="proj-header">
+        <div class="proj-badge">✨ الاستثمار الذكي لأصحاب الرؤية</div>
+        <div class="proj-name"><span class="g2">Value</span> Mall</div>
+        <p class="proj-tagline">استثمار بعقل — تصميم بإبداع — عائد بضمان — في قلب المناطق السكنية المكتملة</p>
+      </div>
+
+      <!-- SLIDER VM -->
+      <div class="slider-section">
+        <div class="slider-track" id="vm-track">
+          <button class="sl-btn prev" onclick="slide('vm',-1)">&#8250;</button>
+          <button class="sl-btn next" onclick="slide('vm',1)">&#8249;</button>
+          <div class="sl-dots" id="vm-dots"></div>
+        </div>
+        <div class="filmstrip" id="vm-film"></div>
+      </div>
+
+      <!-- SELL + SPACES -->
+      <div class="content-block">
+        <div class="two-col">
+          <div>
+            <div class="block-title">لماذا <span class="g2">Value Mall</span> فرصة لن تتكرر؟</div>
+            <div class="sp-list">
+              <div class="sp"><div class="sp-icon">🏘</div><div><div class="sp-t">يخدم مناطق سكنية مكتملة</div><div class="sp-d">جمهور حقيقي يحتاج خدماتك كل يوم — لا انتظار لاكتمال الكثافة</div></div></div>
+              <div class="sp"><div class="sp-icon">🔄</div><div><div class="sp-t">حركة تجارية يومية ضخمة</div><div class="sp-d">محاط بالسكان من كل اتجاه — ضمان استمرار الإيجار وارتفاع قيمته</div></div></div>
+              <div class="sp"><div class="sp-icon">🎨</div><div><div class="sp-t">تصميم يعزز تجربة العملاء</div><div class="sp-d">واجهات حديثة ترفع معدل الزيارة والإنفاق لصالحك كمؤجِّر</div></div></div>
+              <div class="sp"><div class="sp-icon">💎</div><div><div class="sp-t">أسعار تنافسية لا تُضاهى</div><div class="sp-d">قيمة استثمارية حقيقية لن تجد مثلها في العبور اليوم</div></div></div>
+              <div class="sp"><div class="sp-icon">⏰</div><div><div class="sp-t">السعر اليوم لن يعود غدًا</div><div class="sp-d">الوحدات تُباع بسرعة قياسية — من ينتظر يدفع الفارق لاحقًا</div></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="spaces-title">📐 المساحات المتاحة</div>
+            <div class="spaces-simple">
+              <div class="srow2"><div class="srow-icon">🏪</div><div class="srow-info"><div class="srow-name">محلات تجارية</div><div class="srow-range">٢٠ — ٧٠ م² · دور أرضي · واجهة مميزة</div></div><div class="srow-avail avail">متاح</div></div>
+              <div class="srow2"><div class="srow-icon">🏥</div><div class="srow-info"><div class="srow-name">عيادات متخصصة</div><div class="srow-range">٣٥ — ١٠٠ م² · الطابق الأول</div></div><div class="srow-avail limited">محدود</div></div>
+              <div class="srow2"><div class="srow-icon">💊</div><div class="srow-info"><div class="srow-name">صيدليات وخدمات</div><div class="srow-range">٣٠ — ٩٠ م² · دور أرضي</div></div><div class="srow-avail avail">متاح</div></div>
+              <div class="srow2"><div class="srow-icon">💼</div><div class="srow-info"><div class="srow-name">مكاتب وشركات</div><div class="srow-range">٤٥ — ١٦٠ م² · الطابق الثاني</div></div><div class="srow-avail verylt">محدود جدًا</div></div>
+            </div>
+            <div class="spaces-cta-note">السعر يختلف حسب الموقع والمساحة — <a href="https://wa.me/201117073033" target="_blank" style="color:var(--gold2);font-weight:800">تواصل الآن للحصول على عرض خاص</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENT VM -->
+      <div class="payment-block">
+        <div class="pay-title"><span>💳 نظام السداد — Value Mall</span></div>
+        <div class="pay-grid">
+          <div class="pay-card"><span class="pay-pct">15%</span><div class="pay-label">مقدّم الحجز</div><div class="pay-sub">ابدأ بمقدم مناسب وضمان مكانك الآن</div></div>
+          <div class="pay-card"><span class="pay-pct">4 سنوات</span><div class="pay-label">مدة التقسيط</div><div class="pay-sub">أقساط مريحة بلا ضغط مالي</div></div>
+          <div class="pay-card"><span class="pay-pct">ربع سنوي</span><div class="pay-label">دورية السداد</div><div class="pay-sub">مرونة كاملة في إدارة تدفقك النقدي</div></div>
+          <div class="pay-card"><span class="pay-pct">عقد فوري</span><div class="pay-label">توثيق قانوني</div><div class="pay-sub">استثمارك محمي قانونيًا من اللحظة الأولى</div></div>
+        </div>
+        <div class="pay-note">
+          <div class="pay-note-icon">💡</div>
+          <div class="pay-note-text"><strong>للمستثمرين الجادين:</strong> عند الدفع الكامل يمكن الحصول على <strong>خصم خاص</strong>. اتصل الآن لمعرفة التفاصيل.</div>
+        </div>
+      </div>
+      <div class="proj-cta">
+        <a href="tel:01117073033" class="btn-red" style="font-size:1.1rem;padding:19px 56px">📞 تواصل الآن لحجز وحدتك في Value Mall</a>
+      </div>
+    </div><!-- /VM -->
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-strip" id="about">
+  <div class="about-inner">
+    <div class="rv">
+      <span class="sec-tag" style="color:var(--gold2);border-color:var(--gold2)">من نحن</span>
+      <h2 class="sec-title" style="color:#fff;margin-bottom:20px">القصر للتطوير العقاري<br/><span class="g">5 سنوات تبني ولا تعد</span></h2>
+      <div class="about-text">
+        <p><strong>القصر للتطوير العقاري</strong> ليست شركة تبيع وعودًا — هي شركة تسلّم حجارة وأرضًا وعقودًا موثّقة. في سوق مليء بالمطورين الذين يبيعون على الورق، نحن نبني على الأرض.</p>
+        <p>منذ أكثر من <strong>5 سنوات</strong>، سلّمنا مشروعات سكنية وتجارية بالعبور في مواعيدها المحددة بدون تأخير يوم واحد. اليوم نقدم <strong>O2 Mall و Value Mall</strong> — مشروعان تجاريان بمعايير لم تشهدها العبور من قبل.</p>
+      </div>
+    </div>
+    <div class="pillar-list rv">
+      <div class="pillar"><div class="pillar-icon">🏆</div><div><div class="pillar-t">مطور موثوق بسجل حقيقي</div><div class="pillar-d">مشروعات قائمة يمكنك زيارتها غدًا — لا صور تصميم فقط</div></div></div>
+      <div class="pillar"><div class="pillar-icon">📋</div><div><div class="pillar-t">عقود قانونية واضحة</div><div class="pillar-d">كل شيء مكتوب — لا غموض ولا بنود خفية ولا مفاجآت</div></div></div>
+      <div class="pillar"><div class="pillar-icon">⏱</div><div><div class="pillar-t">التسليم في الموعد دائمًا</div><div class="pillar-d">التزامنا بالمواعيد هو رأس مالنا الحقيقي</div></div></div>
+      <div class="pillar"><div class="pillar-icon">📞</div><div><div class="pillar-t">دعم ما بعد البيع</div><div class="pillar-d">علاقتنا بعملائنا لا تنتهي بتوقيع العقد</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<section style="background:#fff;padding:86px 24px" id="portfolio">
+  <div class="container">
+    <div class="rv" style="text-align:center;margin-bottom:42px">
+      <span class="sec-tag">سجلنا يتحدث عنا</span>
+      <h2 class="sec-title">مشروعات مسلّمة — على أرض الواقع</h2>
+      <p class="sec-sub" style="margin:10px auto 0">لسنا نبيع أحلامًا — نبيع حجارة وعقودًا وتسليمًا فعليًا</p>
+      <div class="gold-bar" style="margin:14px auto 0"></div>
+    </div>
+    <div class="port-grid rv">
+      <div class="port-card" onclick="openLbH(0)"><img src="https://redaezzat.me/h1.jpeg" alt=""/><div class="port-overlay"><div class="port-name">الحي الخامس – قطعة 16 – بلوك 16012</div><div class="port-loc">✅ مسلّم فعليًا</div></div></div>
+      <div class="port-card" onclick="openLbH(1)"><img src="https://redaezzat.me/h2.jpeg" alt=""/><div class="port-overlay"><div class="port-name">الحي الرابع – فيلا 19011</div><div class="port-loc">✅ تسليم كامل</div></div></div>
+      <div class="port-card" onclick="openLbH(2)"><img src="https://redaezzat.me/h3.jpeg" alt=""/><div class="port-overlay"><div class="port-name">بيت الوطن – الحي التاسع</div><div class="port-loc">✅ جاهز للسكن الفوري</div></div></div>
+      <div class="port-card" onclick="openLbH(3)"><img src="https://redaezzat.me/h4.jpeg" alt=""/><div class="port-overlay"><div class="port-name">الحي الثالث – وحدة تجارية</div><div class="port-loc">✅ مُدِر للإيجار</div></div></div>
+      <div class="port-card" onclick="openLbH(4)"><img src="https://redaezzat.me/h5.jpeg" alt=""/><div class="port-overlay"><div class="port-name">العبور – الحي السابع</div><div class="port-loc">✅ مكتمل وجاهز</div></div></div>
+      <div class="port-card" onclick="openLbH(5)"><img src="https://redaezzat.me/h6.jpeg" alt=""/><div class="port-overlay"><div class="port-name">الحي السادس – بلوك A</div><div class="port-loc">✅ تسليم بلا تأخير</div></div></div>
+      <div class="port-card" onclick="openLbH(6)"><img src="https://redaezzat.me/h7.jpeg" alt=""/><div class="port-overlay"><div class="port-name">الحي الثامن – وحدة استثمارية</div><div class="port-loc">✅ عائد إيجاري فوري</div></div></div>
+      <div class="port-card" onclick="openLbH(7)"><img src="https://redaezzat.me/h8.jpeg" alt=""/><div class="port-overlay"><div class="port-name">مشروع العبور – سجل موثّق</div><div class="port-loc">✅ عملاء راضون</div></div></div>
+      <div class="port-card" onclick="openLbH(8)"><img src="https://redaezzat.me/h9.jpeg" alt=""/><div class="port-overlay"><div class="port-name">وحدة تجارية – مسلّمة</div><div class="port-loc">✅ دخل شهري ثابت</div></div></div>
+    </div>
+    <div class="rv" style="text-align:center;margin-top:46px">
+      <p style="font-size:1.05rem;color:var(--muted);max-width:600px;margin:0 auto 26px;line-height:2"><strong style="color:var(--text)">أكثر من 5 سنوات من التسليم الفعلي</strong> — مشروعات قائمة يمكنك زيارتها — عملاء حقيقيون لديهم ما يقولونه</p>
+      <a href="https://wa.me/201117073033" target="_blank" class="btn-gold">💬 اسأل عن أقرب مشروع لك الآن</a>
+    </div>
+    <div class="trust-bar rv">
+      <div class="trust-item"><span class="trust-n">+5</span><div class="trust-l">سنوات خبرة فعلية</div></div>
+      <div class="trust-item"><span class="trust-n">100%</span><div class="trust-l">تسليم في المواعيد</div></div>
+      <div class="trust-item"><span class="trust-n">2 مول</span><div class="trust-l">تجاري نشط الآن</div></div>
+      <div class="trust-item"><span class="trust-n">صفر</span><div class="trust-l">وعود بدون تنفيذ</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NOW -->
+<section style="background:var(--cream);padding:86px 24px" id="why">
+  <div class="container">
+    <div class="rv" style="text-align:center;margin-bottom:0">
+      <span class="sec-tag">لماذا الآن تحديدًا؟</span>
+      <h2 class="sec-title">الفرصة أمامك — التأخير يكلفك</h2>
+      <div class="gold-bar" style="margin:14px auto 0"></div>
+    </div>
+    <div class="why-grid rv">
+      <div class="why-card"><span class="why-n">+30%</span><div class="why-t">نمو سعر المتر خلال 3 سنوات</div><div class="why-d">من اشترى في العبور قبل 3 سنوات يبيع اليوم بأكثر من 30% ربح صافٍ</div></div>
+      <div class="why-card"><span class="why-n">📈</span><div class="why-t">العبور ينمو بلا توقف</div><div class="why-d">مشاريع تطوير تتزاحم في العبور — الطلب السكاني والتجاري في ارتفاع متسارع</div></div>
+      <div class="why-card"><span class="why-n">🔒</span><div class="why-t">العقار الملاذ الآمن</div><div class="why-d">في ظل التضخم، العقار هو الوعاء الوحيد الذي يحفظ ثروتك ويضاعفها</div></div>
+      <div class="why-card"><span class="why-n">⚡</span><div class="why-t">الطلب التجاري يتضاعف</div><div class="why-d">سكان العبور يحتاجون خدمات تجارية أكثر كل عام — وحدتك ستجد مستأجرًا فورًا</div></div>
+    </div>
+    <div class="rv" style="text-align:center;margin-top:38px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="https://wa.me/201117073033" target="_blank" class="btn-gold">💬 استشارة مجانية — الرد فوري</a>
+      <a href="tel:01117073033" class="btn-red">📞 01117073033</a>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<div class="closing" id="contact">
+  <div class="closing-inner">
+    <div class="rv">
+      <span class="sec-tag" style="color:var(--gold2);border-color:var(--gold2)">القرار الآن بين يديك</span>
+      <h2>الوحدات المتبقية<br/><span class="g">محدودة — والسعر الحالي لن يستمر</span></h2>
+      <p class="closing-sub">كل يوم تنتظر فيه = وحدة أقل وسعر أعلى<br/>تواصل الآن واحجز مكانك في <strong style="color:var(--gold2)">O2 Mall</strong> أو <strong style="color:var(--gold2)">Value Mall</strong></p>
+      <div class="cdrow">
+        <div class="cdu"><span class="cdn" id="cdh">24</span><div class="cdl">ساعة</div></div>
+        <div class="cdu"><span class="cdn" id="cdm">00</span><div class="cdl">دقيقة</div></div>
+        <div class="cdu"><span class="cdn" id="cds">00</span><div class="cdl">ثانية</div></div>
+      </div>
+      <p style="color:rgba(255,255,255,.3);font-size:.7rem;margin-bottom:34px">⏳ العداد يعكس الوقت المتبقي على مراجعة الأسعار القادمة</p>
+      <div class="closing-btns">
+        <a href="https://wa.me/201117073033" target="_blank" class="btn-gold" style="font-size:1.1rem;padding:20px 52px">💬 احجز عبر واتساب الآن</a>
+        <a href="tel:01117073033" class="btn-red" style="font-size:1.1rem;padding:20px 48px">📞 اتصل الآن</a>
+      </div>
+      <div class="closing-phone" dir="ltr">01117073033</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <img class="footer-logo" src="https://redaezzat.me/alqasrlogo.jpg" alt="القصر للتطوير العقاري" onerror="this.style.display='none'"/>
+  <p>
+    <strong style="color:var(--gold2);font-size:.9rem">القصر للتطوير العقاري</strong><br/>
+    مدينة العبور — القاهرة، جمهورية مصر العربية<br/>
+    <a href="tel:01117073033">📞 01117073033</a> · <a href="https://wa.me/201117073033" target="_blank">💬 واتساب</a> · <a href="https://www.facebook.com/elqasr123" target="_blank">فيسبوك</a> · <a href="https://www.instagram.com/elqasr_development/" target="_blank">إنستجرام</a><br/>
+    السبت – الجمعة: 10 صباحًا – 9 مساءً
+  </p>
+  <div class="seo">مول تجاري في العبور · استثمار تجاري العبور · محلات للبيع بالعبور · عيادات للبيع العبور · O2 Mall · Value Mall · القصر للتطوير العقاري</div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="العودة للأعلى">↑</button>
+
+<script>
+/* ══ GALLERIES DATA ══ */
+const GAL = {
+  o2: {
+    imgs: [
+      'https://redaezzat.me/1.jpg','https://redaezzat.me/2.jpg','https://redaezzat.me/3.jpg',
+      'https://redaezzat.me/4.jpg','https://redaezzat.me/5.jpg','https://redaezzat.me/6.jpg',
+      'https://redaezzat.me/7.jpg','https://redaezzat.me/8.jpg','https://redaezzat.me/9.jpg'
+    ],
+    caps: [
+      'واجهة المشروع الرئيسية','الواجهة الجانبية للمشروع','مميزات ومحاور O2 Mall',
+      'نظام السداد والتقسيط','واجهة إضافية للمشروع','الدور الأرضي — المحلات التجارية',
+      'الطابق الأول — المساحات الإدارية','الطابق الثاني — العيادات والخدمات','الدور الثالث — الوحدات الإدارية'
+    ]
+  },
+  vm: {
+    imgs: [
+      'https://redaezzat.me/v1.jpg','https://redaezzat.me/v2.jpg','https://redaezzat.me/v3.jpg',
+      'https://redaezzat.me/v4.jpg','https://redaezzat.me/v5.jpg','https://redaezzat.me/v6.jpg',
+      'https://redaezzat.me/v7.jpg','https://redaezzat.me/v8.jpg','https://redaezzat.me/v9.jpg'
+    ],
+    caps: [
+      'واجهة Value Mall الرئيسية','مميزات المشروع والخدمات','نظام السداد والتقسيط المرن',
+      'واجهة أخرى من المشروع','الواجهة الإضافية','المشروع من الأعلى — المساقط الكاملة',
+      'الدور الأرضي — المحلات','الطابق الأول — العيادات','الطابق الثاني — المكاتب'
+    ]
+  }
+};
+const H = [
+  'https://redaezzat.me/h1.jpeg','https://redaezzat.me/h2.jpeg','https://redaezzat.me/h3.jpeg',
+  'https://redaezzat.me/h4.jpeg','https://redaezzat.me/h5.jpeg','https://redaezzat.me/h6.jpeg',
+  'https://redaezzat.me/h7.jpeg','https://redaezzat.me/h8.jpeg','https://redaezzat.me/h9.jpeg'
+];
+
+/* ══ SLIDER STATE ══ */
+const state = { o2: 0, vm: 0 };
+let autoTimers = {};
+
+function buildSlider(id) {
+  const g = GAL[id];
+  const track = document.getElementById(id + '-track');
+  const film = document.getElementById(id + '-film');
+  const dotsEl = document.getElementById(id + '-dots');
+
+  // create slides
+  g.imgs.forEach((src, i) => {
+    const sl = document.createElement('div');
+    sl.className = 'slide' + (i === 0 ? ' active' : '');
+    sl.innerHTML = `<img src="${src}" alt="${g.caps[i]}" loading="${i===0?'eager':'lazy'}"/>
+      <div class="slide-caption">
+        <span class="slide-num">${String(i+1).padStart(2,'0')} / 0${g.imgs.length}</span>
+        <div class="slide-title">${g.caps[i]}</div>
+      </div>`;
+    sl.addEventListener('click', () => openLbG(id, state[id]));
+    track.insertBefore(sl, track.querySelector('.sl-btn.prev'));
+
+    // dot
+    const dot = document.createElement('div');
+    dot.className = 'sl-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(id, i));
+    dotsEl.appendChild(dot);
+
+    // filmstrip thumb
+    const th = document.createElement('div');
+    th.className = 'fs-thumb' + (i === 0 ? ' active' : '');
+    th.innerHTML = `<img src="${src}" alt=""/>`;
+    th.addEventListener('click', () => goTo(id, i));
+    film.appendChild(th);
+  });
+
+  // auto-advance
+  startAuto(id);
+}
+
+function goTo(id, idx) {
+  const g = GAL[id];
+  const slides = document.querySelectorAll('#' + id + '-track .slide');
+  const dots = document.querySelectorAll('#' + id + '-dots .sl-dot');
+  const thumbs = document.querySelectorAll('#' + id + '-film .fs-thumb');
+
+  slides[state[id]].classList.remove('active');
+  dots[state[id]].classList.remove('active');
+  thumbs[state[id]].classList.remove('active');
+
+  state[id] = (idx + g.imgs.length) % g.imgs.length;
+
+  slides[state[id]].classList.add('active');
+  dots[state[id]].classList.add('active');
+  thumbs[state[id]].classList.add('active');
+
+  // scroll only the filmstrip container, NOT the page
+  const filmEl = document.getElementById(id + '-film');
+  const activeThumb = thumbs[state[id]];
+  filmEl.scrollLeft = activeThumb.offsetLeft - filmEl.offsetWidth / 2 + activeThumb.offsetWidth / 2;
+
+  // reset auto timer
+  clearInterval(autoTimers[id]);
+  startAuto(id);
+}
+
+function slide(id, dir) { goTo(id, state[id] + dir); }
+
+function startAuto(id) {
+  autoTimers[id] = setInterval(() => goTo(id, state[id] + 1), 4500);
+}
+
+/* ══ LIGHTBOX ══ */
+let lbImgs = [], lbIdx = 0;
+
+function openLbG(id, i) { lbImgs = GAL[id].imgs; lbIdx = i; showLb(); }
+function openLbH(i) { lbImgs = H; lbIdx = i; showLb(); }
+function showLb() {
+  document.getElementById('lb-img').src = lbImgs[lbIdx];
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function lbClose() { document.getElementById('lb').classList.remove('open'); document.body.style.overflow = ''; }
+function lbBg(e) { if (e.target.id === 'lb') lbClose(); }
+function lbNav(d) { lbIdx = (lbIdx + d + lbImgs.length) % lbImgs.length; document.getElementById('lb-img').src = lbImgs[lbIdx]; }
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lb').classList.contains('open')) return;
+  if (e.key === 'Escape') lbClose();
+  if (e.key === 'ArrowLeft') lbNav(1);
+  if (e.key === 'ArrowRight') lbNav(-1);
+});
+
+/* ══ SWIPE on slider ══ */
+['o2','vm'].forEach(id => {
+  const track = document.getElementById(id + '-track');
+  let sx = 0;
+  track.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) slide(id, dx > 0 ? -1 : 1);
+  }, {passive:true});
+});
+
+/* ══ BACK TO TOP ══ */
+const bttBtn = document.getElementById('btt');
+window.addEventListener('scroll', () => {
+  bttBtn.classList.toggle('show', window.scrollY > 400);
+}, {passive: true});
+
+/* ══ BUILD SLIDERS ══ */
+buildSlider('o2');
+buildSlider('vm');
+
+/* ══ SCROLL REVEAL ══ */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => { if (e.isIntersecting) { e.target.style.transitionDelay = (i % 5 * 55) + 'ms'; e.target.classList.add('vis'); }});
+}, {threshold: .07});
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+/* ══ COUNTDOWN ══ */
+(function(){
+  let end;
+  try { end = parseInt(localStorage.getItem('alq_cd8') || '0'); } catch(e){}
+  if (!end || end < Date.now()) { end = Date.now() + 24*3600*1000; try { localStorage.setItem('alq_cd8', end); } catch(e){} }
+  const tick = () => {
+    const d = end - Date.now(); if (d < 0) return;
+    document.getElementById('cdh').textContent = String(Math.floor(d/3600000)).padStart(2,'0');
+    document.getElementById('cdm').textContent = String(Math.floor(d%3600000/60000)).padStart(2,'0');
+    document.getElementById('cds').textContent = String(Math.floor(d%60000/1000)).padStart(2,'0');
+  };
+  tick(); setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
